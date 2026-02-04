@@ -1,4 +1,4 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy Dashboard to GitHub Pages
 
 on:
   push:
@@ -19,19 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
       - name: Install
-        run: pip install -r requirements.txt
-      - name: Build
-        run: mkdocs build --strict
+        working-directory: web
+        run: npm ci
+
+      - name: Build (Next.js static export)
+        working-directory: web
+        run: npm run build
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: web/out
 
   deploy:
     needs: build
