@@ -17,6 +17,11 @@ This is the initial prototype for converting long-form text (podcast transcripts
 node scripts/insight_x/run.mjs --in input/transcript.txt --out output
 ```
 
+With metadata:
+```bash
+node scripts/insight_x/run.mjs --in input/transcript.txt --meta input/meta.json --out output
+```
+
 ## Notes
 - If `OPENAI_API_KEY` is present, the script can generate drafts automatically.
 - Otherwise it will emit **copy/paste prompts** you can run through Heimdall manually.

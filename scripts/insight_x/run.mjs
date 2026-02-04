@@ -12,6 +12,7 @@ function arg(name, def = null) {
 const inPath = arg("--in");
 const outDir = arg("--out", "output");
 const model = arg("--model", "gpt-4o-mini");
+const metaPath = arg("--meta", null);
 
 if (!inPath) {
   console.error("Usage: node scripts/insight_x/run.mjs --in input/transcript.txt --out output");
@@ -21,6 +22,14 @@ if (!inPath) {
 fs.mkdirSync(outDir, { recursive: true });
 
 const transcript = fs.readFileSync(inPath, "utf8");
+
+const meta = metaPath && fs.existsSync(metaPath)
+  ? JSON.parse(fs.readFileSync(metaPath, "utf8"))
+  : {};
+
+const tone = meta.tone ?? "smart, human, slightly opinionated";
+const audience = meta.audience ?? "curious builders and operators";
+const topic = meta.topic ?? "";
 
 function chunkText(text, maxChars = 9000, overlap = 800) {
   const chunks = [];
@@ -37,7 +46,33 @@ function chunkText(text, maxChars = 9000, overlap = 800) {
 const chunks = chunkText(transcript);
 
 function promptForChunk(chunk, idx, total) {
-  return `You are extracting non-obvious, nuanced insights from a podcast transcript.\n\nRules:\n- Only use what is supported by the transcript. No invented facts.\n- Prefer mechanisms, constraints, tradeoffs, and examples.\n- Avoid generic advice.\n- Output JSON only.\n\nReturn 5-12 insight candidates as an array. Each item:\n{\n  "insight": "...",\n  "why_it_matters": "...",\n  "evidence_quote": "short excerpt",\n  "tags": ["..."],\n  "novelty": 1-5,\n  "usefulness": 1-5\n}\n\nTranscript chunk ${idx + 1}/${total}:\n\n${chunk}`;
+  return `You are extracting non-obvious, nuanced insights from a long-form transcript.
+
+Context
+- Audience: ${audience}
+- Desired tone: ${tone}
+${topic ? `- Topic: ${topic}` : ""}
+
+Rules
+- Only use what is supported by the transcript. No invented facts.
+- Prefer mechanisms, constraints, tradeoffs, and concrete examples.
+- Avoid generic advice and platitudes.
+- If an insight has a "yes, but" nuance, include it.
+- Output JSON only.
+
+Return 5–12 insight candidates as an array. Each item:
+{
+  "insight": "one-sentence claim",
+  "why_it_matters": "one sentence",
+  "evidence_quote": "short excerpt",
+  "tags": ["..."],
+  "novelty": 1-5,
+  "usefulness": 1-5
+}
+
+Transcript chunk ${idx + 1}/${total}:
+
+${chunk}`;
 }
 
 async function callOpenAI(prompt) {
@@ -101,17 +136,88 @@ if (!process.env.OPENAI_API_KEY) {
   process.exit(0);
 }
 
-// Simple dedupe + rank (v1)
-const seen = new Set();
-const merged = [];
-for (const c of candidates) {
-  const key = (c.insight || "").toLowerCase().trim();
-  if (!key || seen.has(key)) continue;
-  seen.add(key);
-  merged.push(c);
+function normalize(s) {
+  return (s || "")
+    .toLowerCase()
+    .replace(/https?:\/\/\S+/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-merged.sort((a, b) => (b.novelty + b.usefulness) - (a.novelty + a.usefulness));
+function tokenSet(s) {
+  const stop = new Set([
+    "the",
+    "a",
+    "an",
+    "and",
+    "or",
+    "but",
+    "to",
+    "of",
+    "in",
+    "on",
+    "for",
+    "with",
+    "is",
+    "are",
+    "was",
+    "were",
+    "be",
+    "been",
+    "it",
+    "that",
+    "this",
+    "as",
+    "at",
+    "by",
+    "from",
+    "we",
+    "you",
+    "they",
+    "i",
+  ]);
+  return new Set(
+    normalize(s)
+      .split(" ")
+      .filter((t) => t.length > 2 && !stop.has(t))
+  );
+}
+
+function jaccard(a, b) {
+  const A = tokenSet(a);
+  const B = tokenSet(b);
+  if (!A.size || !B.size) return 0;
+  let inter = 0;
+  for (const t of A) if (B.has(t)) inter++;
+  const union = A.size + B.size - inter;
+  return union ? inter / union : 0;
+}
+
+// Dedupe/merge (v2): merge highly similar insight statements
+const merged = [];
+for (const c of candidates) {
+  if (!c?.insight) continue;
+  const score = (Number(c.novelty) || 0) + (Number(c.usefulness) || 0);
+
+  let matched = false;
+  for (const m of merged) {
+    if (jaccard(m.insight, c.insight) >= 0.72) {
+      // keep the stronger phrasing / evidence
+      const mScore = (Number(m.novelty) || 0) + (Number(m.usefulness) || 0);
+      if (score > mScore) {
+        Object.assign(m, c);
+      } else if (!m.evidence_quote && c.evidence_quote) {
+        m.evidence_quote = c.evidence_quote;
+      }
+      matched = true;
+      break;
+    }
+  }
+  if (!matched) merged.push(c);
+}
+
+merged.sort((a, b) => (Number(b.novelty) + Number(b.usefulness)) - (Number(a.novelty) + Number(a.usefulness)));
 
 const top = merged.slice(0, 12);
 
@@ -127,7 +233,52 @@ const insightsMd = `# Insight Brief\n\n## TL;DR\n${top
 
 fs.writeFileSync(path.join(outDir, "insights.md"), insightsMd);
 
-const xPrompt = `Using the following canonical insights, write 15 X drafts.\n\nConstraints:\n- Sound human, specific, nuanced.\n- No generic hype.\n- Strong hook. Short lines.\n- Mix: singles + 5-8 tweet threads.\n- Ground every post in the insights; do not invent.\n\nReturn markdown with sections: Singles, Threads.\n\nINSIGHTS:\n${JSON.stringify(top, null, 2)}`;
+const banned = [
+  "game-changer",
+  "unlock",
+  "secrets",
+  "10x",
+  "crush it",
+  "skyrocket",
+  "revolutionary",
+  "in today's world",
+  "delve",
+  "as an ai",
+];
+
+const xPrompt = `You are a human writer who posts on X.
+
+Audience: ${audience}
+Tone: ${tone}
+
+Task: Write 15 X drafts derived from the canonical insights below.
+
+Hard constraints:
+- No invented facts. Only what is supported by the insights.
+- Avoid these phrases entirely: ${banned.map((x) => `"${x}"`).join(", ")}
+- Prefer specifics and mechanisms over abstract advice.
+- Use short lines and whitespace.
+- Make the hook earn the scroll.
+
+Output format (markdown):
+
+## Singles (6)
+### 1
+<tweet>
+
+...
+
+## Threads (9)
+### 1
+1) <hook>
+2) <support>
+3) <support>
+...
+(5–8 tweets)
+
+Canonical insights:
+${JSON.stringify(top, null, 2)}
+`;
 
 const xOut = await callOpenAI(xPrompt);
 fs.writeFileSync(path.join(outDir, "x_drafts.md"), xOut ?? "");
