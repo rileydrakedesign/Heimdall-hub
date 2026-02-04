@@ -1,0 +1,110 @@
+Top posts across all sections
+
+Pick set chosen by Riley
+
+Post 1
+
+GPU design is shifting to separate training and inference tasks.
+
+this change can lower costs for specific use cases.
+
+• new GPUs focus on inference efficiency
+• reduced operational costs for companies
+• specialized chips lead to better resource allocation
+
+companies can now optimize their investments.
+
+Post 2
+
+safety in robotics is often overlooked.
+
+this is a major concern for real-world applications.
+
+1/ failures in robotic systems can lead to severe consequences
+2/ the stakes are high when robots operate in homes and public spaces
+3/ ensuring safety must be a priority in design and deployment
+
+you cannot afford to fail in this area. focus on rigorous testing and validation.
+
+Post 3
+
+mixture of experts models offer efficiency benefits.
+
+this can significantly reduce compute costs.
+
+1/ MOE models are designed for large-scale generation tasks
+2/ their sparse nature allows for better resource utilization
+3/ startups can leverage this efficiency to maximize limited resources
+
+consider adopting MOE architectures.
+they can help you scale without breaking the bank.
+
+Post 4
+
+you learn faster with two passes.
+
+the pattern they describe
+1/ first pass offline, focus mode
+2/ second pass with an LLM for questions and context
+
+the benefit
+- you resist the internet rabbit hole
+- you let the chapter answer itself
+- you use the model to fill gaps, not replace thinking
+
+if you use the LLM as step one, you risk outsourcing understanding.
+
+Post 5
+
+claude code trains a different skill.
+
+it forces you to program in english.
+
+you stop micromanaging diffs.
+you guide the design space.
+
+two modes.
+two payoffs.
+
+1/ use cursor when you want tight control
+2/ use claude code when you want macro progress
+
+if you only use one, you miss the other skill.
+
+Post 6
+
+users do not switch models gradually.
+they switch when a threshold breaks.
+
+the pattern
+1/ you use a model until it fails on your job
+2/ you lose trust
+3/ you move your workflow to the next one
+
+if you ship a model product, retention depends on two things.
+- how often it breaks
+- how fast you fix the specific break
+
+generic improvements do not save you.
+fix the break that caused the switch.
+
+Post 7
+
+the speed vs intelligence trade off is not a debate.
+it is two different jobs.
+
+fast mode
+- quick lookups
+- simple explanations
+- low patience tasks
+
+slow mode
+- work queries
+- reference checking
+- higher stakes decisions
+
+1/ give users a toggle
+2/ default to fast
+3/ make slow feel worth the wait
+
+people do not want one model for every moment.
