@@ -1,0 +1,16 @@
+# Project list (edit this file)
+# status: idea | active | paused | done
+# priority: low | medium | high | urgent
+
+projects:
+  - id: hub
+    name: Heimdall Hub
+    status: active
+    priority: high
+    owner: Riley
+    next_action: "Decide hosting (GitHub Pages vs alternative)"
+    due: null
+    links:
+      - label: Repo
+        url: "(set once repo is created)"
+    notes: "GitHub-backed dashboard + knowledge base."
