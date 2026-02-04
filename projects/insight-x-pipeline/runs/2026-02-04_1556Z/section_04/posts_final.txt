@@ -1,0 +1,59 @@
+Post 1
+
+gpt-oss is a significant step forward in open-weight models.
+
+it is the first model designed with tool use in mind.
+
+1/ this allows real-time data retrieval.
+2/ it can reduce issues like hallucinations.
+3/ it enhances the reliability of outputs.
+
+if you want to improve your model's trustworthiness, consider integrating tool use.
+
+Post 2
+
+integrating external tools can solve common problems in LLMs.
+
+this approach addresses hallucinations effectively.
+
+- use web searches for accurate information.
+- call calculators for math tasks.
+- rely on real-time data instead of memory.
+
+this can make your model more reliable and useful in practice.
+
+Post 3
+
+open-source models let you run AI locally.
+
+this feature is crucial for users concerned about privacy.
+
+- no data sent to external servers.
+- full control over your information.
+- enhanced security for sensitive tasks.
+
+if you prioritize data security, local models are the way to go.
+
+Post 4
+
+gpu shortages are impacting US companies like openai.
+
+this limitation affects their ability to scale model releases.
+
+- companies may seek alternative models.
+- leveraging community resources can be a solution.
+- this shift could reshape the competitive landscape.
+
+if you’re in the AI space, keep an eye on how this evolves.
+
+Post 5
+
+ablation studies are vital for understanding model performance.
+
+they help determine the impact of architectural changes.
+
+- empirical evidence guides design decisions.
+- small tweaks can lead to significant improvements.
+- experimentation fosters innovation in development.
+
+if you’re developing models, prioritize these studies for better outcomes.
