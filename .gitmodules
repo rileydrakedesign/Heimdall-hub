@@ -1,0 +1,3 @@
+[submodule "skills/web-interface-guidelines/references/upstream"]
+	path = skills/web-interface-guidelines/references/upstream
+	url = https://github.com/vercel-labs/web-interface-guidelines.git
