@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BASE_PATH } from "@/lib/basePath";
 import { getProjectById, loadProjects } from "@/lib/projects";
 
 export const dynamic = "force-static";
@@ -15,9 +15,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       <main className="mx-auto max-w-3xl px-6 py-10">
         <h1 className="text-2xl font-semibold">Not found</h1>
         <p className="mt-2 text-white/60">Unknown project id: {params.id}</p>
-        <Link href="/projects" className="mt-6 inline-block text-sm text-white/60 hover:text-white">
+        <a href={`${BASE_PATH}/projects/`} className="mt-6 inline-block text-sm text-white/60 hover:text-white">
           ← Back to projects
-        </Link>
+        </a>
       </main>
     );
   }
@@ -29,9 +29,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
           <p className="mt-2 text-white/60">{project.notes ?? ""}</p>
         </div>
-        <Link href="/projects/" className="text-sm text-white/60 hover:text-white">
+        <a href={`${BASE_PATH}/projects/`} className="text-sm text-white/60 hover:text-white">
           ← Projects
-        </Link>
+        </a>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">

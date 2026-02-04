@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BASE_PATH } from "@/lib/basePath";
 import { loadProjects } from "@/lib/projects";
 
 export const dynamic = "force-static";
@@ -13,16 +13,16 @@ export default function ProjectsPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
           <p className="mt-2 text-white/60">Source of truth: data/projects.yaml</p>
         </div>
-        <Link href="/" className="text-sm text-white/60 hover:text-white">
+        <a href={`${BASE_PATH}/`} className="text-sm text-white/60 hover:text-white">
           ← Dashboard
-        </Link>
+        </a>
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-4">
         {projects.map((p) => (
-          <Link
+          <a
             key={p.id}
-            href={`/projects/${p.id}/`}
+            href={`${BASE_PATH}/projects/${p.id}/`}
             className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10"
           >
             <div className="flex items-center justify-between gap-4">
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
                 <span className="rounded-full bg-white/10 px-2 py-1">{p.priority}</span>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
     </main>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { BASE_PATH } from "@/lib/basePath";
 import { loadProjects } from "@/lib/projects";
 
 function StatCard({ title, value }: { title: string; value: string | number }) {
@@ -26,12 +26,12 @@ export default function Dashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Link
-            href="/projects/"
+          <a
+            href={`${BASE_PATH}/projects/`}
             className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
           >
             View projects
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -45,9 +45,9 @@ export default function Dashboard() {
       <section className="mt-10">
         <div className="flex items-end justify-between">
           <h2 className="text-lg font-semibold">Next actions</h2>
-          <Link href="/projects/" className="text-sm text-white/60 hover:text-white">
+          <a href={`${BASE_PATH}/projects/`} className="text-sm text-white/60 hover:text-white">
             All projects →
-          </Link>
+          </a>
         </div>
 
         <div className="mt-4 overflow-hidden rounded-xl border border-white/10">
@@ -55,9 +55,9 @@ export default function Dashboard() {
             {projects.map((p) => (
               <div key={p.id} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <Link href={`/projects/${p.id}/`} className="font-medium hover:underline">
+                  <a href={`${BASE_PATH}/projects/${p.id}/`} className="font-medium hover:underline">
                     {p.name}
-                  </Link>
+                  </a>
                   <div className="text-sm text-white/60">{p.next_action}</div>
                 </div>
                 <div className="flex gap-2 text-xs">
