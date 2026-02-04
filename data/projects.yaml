@@ -8,9 +8,23 @@ projects:
     status: active
     priority: high
     owner: Riley
-    next_action: "Decide hosting (GitHub Pages vs alternative)"
+    next_action: "Confirm GitHub Pages is publishing + review first UI pass"
     due: null
     links:
       - label: Repo
-        url: "(set once repo is created)"
-    notes: "GitHub-backed dashboard + knowledge base."
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+    notes: "GitHub-backed dashboard + shared knowledge base (Next.js static)."
+
+  - id: aistudybuddy-landing
+    name: AIStudyBuddy — Landing Page
+    status: active
+    priority: high
+    owner: Heimdall
+    next_action: "Read brief.md + README, then draft landing IA + page outlines"
+    due: null
+    links:
+      - label: Product repo
+        url: "https://github.com/rileydrakedesign/AIStudyBuddy"
+      - label: Live app
+        url: "https://app.classchatai.com"
+    notes: "High-converting, minimal SaaS landing site for Class Chat AI (AIStudyBuddy)."
