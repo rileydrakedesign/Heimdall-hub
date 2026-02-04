@@ -97,7 +97,16 @@ async function callOpenAI(prompt) {
     throw new Error(`OpenAI error ${res.status}: ${txt}`);
   }
   const json = await res.json();
-  const text = json.output_text ?? "";
+
+  // OpenAI Responses API: text lives under output[].content[].text
+  const parts = [];
+  for (const item of json.output ?? []) {
+    if (item?.type !== "message") continue;
+    for (const c of item.content ?? []) {
+      if (c?.type === "output_text" && typeof c.text === "string") parts.push(c.text);
+    }
+  }
+  const text = parts.join("\n").trim();
   return text;
 }
 
@@ -111,7 +120,10 @@ function safeJsonParse(text) {
 
 let candidates = [];
 
+console.log(`Chunks: ${chunks.length} (model: ${model})`);
+
 for (let i = 0; i < chunks.length; i++) {
+  console.log(`→ extracting chunk ${i + 1}/${chunks.length}`);
   const p = promptForChunk(chunks[i], i, chunks.length);
   const out = await callOpenAI(p);
 
@@ -123,7 +135,14 @@ for (let i = 0; i < chunks.length; i++) {
   }
 
   const parsed = safeJsonParse(out);
-  if (Array.isArray(parsed)) candidates.push(...parsed);
+  if (Array.isArray(parsed)) {
+    candidates.push(...parsed);
+  } else {
+    // If model wrapped JSON in fences, try to recover.
+    const m = out.match(/\[[\s\S]*\]/);
+    const recovered = m ? safeJsonParse(m[0]) : null;
+    if (Array.isArray(recovered)) candidates.push(...recovered);
+  }
 }
 
 // If no API key, stop after writing prompts.
