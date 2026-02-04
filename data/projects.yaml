@@ -43,10 +43,10 @@ projects:
 
   - id: rooted-content-agent
     name: Rooted Content Agent — Instagram Carousels
-    status: idea
+    status: paused
     priority: high
     owner: Heimdall
-    next_action: "Define carousel formats + style system; build first end-to-end prototype (one carousel)"
+    next_action: "TBD (tabled). When resumed: confirm Figma template + branding tokens + slide size, then build first prototype run"
     due: null
     links:
       - label: Hub repo
