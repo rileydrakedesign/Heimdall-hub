@@ -29,7 +29,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
           <p className="mt-2 text-white/60">{project.notes ?? ""}</p>
         </div>
-        <Link href="/projects" className="text-sm text-white/60 hover:text-white">
+        <Link href="/projects/" className="text-sm text-white/60 hover:text-white">
           ← Projects
         </Link>
       </div>

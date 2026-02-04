@@ -22,7 +22,7 @@ export default function ProjectsPage() {
         {projects.map((p) => (
           <Link
             key={p.id}
-            href={`/projects/${p.id}`}
+            href={`/projects/${p.id}/`}
             className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10"
           >
             <div className="flex items-center justify-between gap-4">

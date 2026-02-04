@@ -27,7 +27,7 @@ export default function Dashboard() {
         </div>
         <div className="flex gap-3">
           <Link
-            href="/projects"
+            href="/projects/"
             className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
           >
             View projects
@@ -45,7 +45,7 @@ export default function Dashboard() {
       <section className="mt-10">
         <div className="flex items-end justify-between">
           <h2 className="text-lg font-semibold">Next actions</h2>
-          <Link href="/projects" className="text-sm text-white/60 hover:text-white">
+          <Link href="/projects/" className="text-sm text-white/60 hover:text-white">
             All projects →
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default function Dashboard() {
             {projects.map((p) => (
               <div key={p.id} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <Link href={`/projects/${p.id}`} className="font-medium hover:underline">
+                  <Link href={`/projects/${p.id}/`} className="font-medium hover:underline">
                     {p.name}
                   </Link>
                   <div className="text-sm text-white/60">{p.next_action}</div>
