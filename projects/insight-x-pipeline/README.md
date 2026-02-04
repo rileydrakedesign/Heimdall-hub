@@ -19,3 +19,4 @@ Source of truth doc: `projects/insight-x-pipeline.md`
 ## Artifacts
 - Plan: `../insight-x-pipeline.md`
 - Prototype: `../../scripts/insight_x/README.md`
+- Runs: `runs/` (see `runs/LATEST.md`)

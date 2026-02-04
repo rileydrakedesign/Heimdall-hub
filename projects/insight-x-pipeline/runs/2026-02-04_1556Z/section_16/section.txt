@@ -1,0 +1,396 @@
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11199"
+(03:06:39)
+I think software engineering will be driven more to system design and goals of outcomes, where I do think software is largely gonna be. Come on. I think this has been happening over the last few weeks, where people have gone from a month ago of like, oh yeah, agents are kind of slop, which is a famous Karpathy quote, to like the m- what is a little bit of a meme of like the industrialization of software when anyone can just create software with their fingerprints. Like go I do think we are closer to that side of things, and it takes direction and like understanding how the systems work to extract that best from the language models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11234"
+(03:07:14)
+And I think its hard to like accept the gravity of how much is gonna change with software development and how many more people can do things without ever looking at it.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11242"
+(03:07:22)
+I think whats interesting is to think about whether these systems will be independent, like completely independent in the sense that while I, I have no doubt that LLMs will kind of at some point solve coding in a sense like calculators solve calculating, right? So a- at some point, humans developed a tool that, you know, you, you never need a human to calculate that number. You just type it in, and its an algorithm. You, you can do it in a, in that sense. And I, I think thats the same probably for coding. But the question isnt So I think what will happen is, yeah, you will just say, Build that website. It will make a really good website, and then you maybe refine it. But will it do things independently where
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11279"
+(03:07:59)
+So y- will you be still having humans asking the AI to do something? Like will there be a person to say, Build that website? Or will there be AI that just builds websites or something, or whatever?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11292"
+(03:08:12)
+I think using talking about building websites is the-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11295"
+(03:08:15)
+Mm-hmm, too simple.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11296"
+(03:08:16)
+Yeah. Sure.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11296"
+(03:08:16)
+Is just like the, theres the, the, the problem with websites and the problem with the web, you know, HTML and all that kinda stuff, its very resilient to just-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11304"
+(03:08:24)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11305"
+(03:08:25)
+slop.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11305"
+(03:08:25)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11305"
+(03:08:25)
+It, it will show you slop. Its good at showing slop. I would rather like think of like safety critical systems, like asking AI to end-to-end generate something that manages logistics-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11319"
+(03:08:39)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11320"
+(03:08:40)
+or manages cars-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11321"
+(03:08:41)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11321"
+(03:08:41)
+a fleet of cars, all that kinda stuff.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11323"
+(03:08:43)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11323"
+(03:08:43)
+So end-to-end generates that for you.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11325"
+(03:08:45)
+I think a more intermediate example is take something like Slack or Microsoft Word. I think if the organizations allow it, AI could very easily implement features end-to-end and do a fairly good job for like things that you want to try. You wanna add a new w- like tab in Slack that you want to use, and I think AI will be able to do that pretty well.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11346"
+(03:09:06)
+Actually, thats a really great example. How far away are we from that?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11349"
+(03:09:09)
+Like this year.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11351"
+(03:09:11)
+See, I dont I dont know. I dont know.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11354"
+(03:09:14)
+I, I guess I dont know-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11355"
+(03:09:15)
+I dont know
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11355"
+(03:09:15)
+how bad production code bases are, but I think that within Like on the order of low years, a lot of people are gonna be pushed to be more of like a designer and product manager, where you have multiple of these agents that can try things for you and they might take one to two days to implement a feature or attempt to fix a bug. And you have these dashboards, which I think Slack is actually a good dashboard where your agents will talk to you and youll then give feedback. But things like, like I make a website, its like, Do you wanna make a logo thats passable? Like I think these like cohesive design things and the s- style is gonna be very hard for models and deciding on what to add the next time.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11394"
+(03:09:54)
+I just Okay. So I hang out with a lot of programmers and some of them are- a little bit on the skeptical side in general, thats just vibe-wise there like that. I just think theres a lot of complexity involved in adding features to complex systems. Like, if you look at the browser, Chrome.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11412"
+(03:10:12)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11413"
+(03:10:13)
+If I wanted to add a feature, if I wanted to have tabs as a- as opposed to up top, I want them on the left side.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11420"
+(03:10:20)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11421"
+(03:10:21)
+Interface, right? Y- I think were not This is not a next year thing.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11426"
+(03:10:26)
+One of the Claude releases this year, one of their tests was we give it a piece of software and leave Claude to run to recreate it entirely, and it could already almost rebuild scra- like Slack from scratch, just given the parameters of the software and left in a sandbox environment to do that.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11441"
+(03:10:41)
+So from the scratch part, I like al- almost better.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11444"
+(03:10:44)
+Mm-hmm. So it might be that the smaller and newer companies are advantaged and theyre like, We dont have to have the bloat and complexity, and therefore this feature exists.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11453"
+(03:10:53)
+And I think this gets to the point that you mentioned that some people are you talk to are skeptical, and I think thats not because the LLM cant do X, Y, Z. Its because people dont want it to do it this way.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11465"
+(03:11:05)
+Some of that could be a skill issue on the human side. Unfortunately, we have to be- be honest with ourselves. And some of that could be an under specification issue. So, programming, like youre like, youre just assuming Th- this is like a, in- in relationships, in friendships, communication type of issue. Youre assuming the LLM somehow is supposed to read your mind. I think this is where spec driven design is really important. Like you just, using natural language specify like what you want.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11492"
+(03:11:32)
+I think thats like if you talk to people at the labs, they use these in their training and production code, like Claude Code is built with Claude Code, and they all use these things extensively. And Dario talks about how much of Claudes code Oh, and its like these people are slightly ahead in terms of the capabilities-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11509"
+(03:11:49)
+Yes
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11509"
+(03:11:49)
+they have and they probably spend on inference, they could spend 10 to 100 plus X as much as were spending, like were on a lowly 100 or $200 a month plan. Like they truly let it rip. And I think that that, like with the pace of progress that we have, it- it seems like- like where a year ago we didnt have Claude Code and we didnt really have reasoning models, and its like the difference between sitting here today and what we can do with these models, and it seems like theres a lot of like, theres a lot of low hanging fruit to improve them. The failure modes are pretty dumb.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11543"
+(03:12:23)
+Its like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11543"
+(03:12:23)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11543"
+(03:12:23)
+Claude, you tried to use the CLI command I dont have installed 14 times and then- then I sent you the command to run. Its like that thing from a modeling perspective is pretty fixable.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11553"
+(03:12:33)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11553"
+(03:12:33)
+So I- I dont know.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11554"
+(03:12:34)
+I agree with you. Ive been becoming more and more bullish in general. Speaking to what youre articulating, I think it is a human skill issue. So Anthropic is leading the way in or other companies in understanding how to best use the models for programming, therefore theyre effectively using them. I think theres a lot of programmers on the outskirts. Theyre like, they dont I mean, theres not a really good guide in how to use them.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11583"
+(03:13:03)
+People are trying to figure it out exactly, but just-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11584"
+(03:13:04)
+It might be very expensive. Like, it might be that the entry point for that is $2,000 a month, which is only tech companies and rich people. Just like, like that could be it.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11593"
+(03:13:13)
+But it might be worth it. I mean, if- if- if the final result is- is a working software system, it might be worth it. But by the way, its funny how we converged from the discussion of timeline to AGI to something more pragmatic and- and useful. Is there anything concrete and interesting and useful and profound to be said about timeline to AGI and ASI? Or are these discussions a bit too detached from the day to day?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11619"
+(03:13:39)
+Theres interesting bets. So theres a lot of people trying to do reinforce learning with verifiable rewards, but in real scientific domains where theres startups that are spending, like they have hundreds of millions of dollars of funding and they have wet labs where theyre having language models propose hypotheses that are tested in the real world.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11634"
+(03:13:54)
+And I- I would say that I think theyre very early, or theyre early but with the pace of progress its like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11639"
+(03:13:59)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11640"
+(03:14:00)
+maybe theyre early by six months and they make it because they were there first, or maybe theyre early by eight years, you dont really know. So I think that that type of moon shot to branch this momentum into other phy- other sciences is like, okay, like that would be very transformative if like AlphaFold moments happen in all sorts of other scientific domains by like a startup solving this. I think there are startups, I think maybe Harmonic is one, where theyre going all in on language models plus lean for map. I think you had another podcast guest where you talked about this recently, and its like we dont know exactly whats gonna fall out of spending $100 million on that model.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11681"
+(03:14:41)
+And most of them will fail, but a couple of them might be big breakthroughs that are very different than ChatGPT or Claude Code type software experiences. Like a tool thats only good for a PhD mathematician but makes them 100X effective, like
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11698"
+(03:14:58)
+Okay. Uh, I agree. I think this will happen in a lot of domains, especially also like domains that have a lot of you know, resources like finance and legal and pharmaceutical companies. But then again, is it really AGI again? Because we are now specializing it again. And then again, is it really that much different from back in the day how we had specialized algorithms? I think its just the same thing more, way more sus- sophisticated, but, I dont know, is there a threshold when we call it AGI? I guess I think the- the real cool thing is here that we have like the foundation models that we can specialize. I think that- thats like the breakthrough at some point.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11734"
+(03:15:34)
+Right now I think we are not there yet because, well, first its too expensive but also, you know, like ChatGPT doesnt just give away their ChatGPT to customize it. I think once thats gonna be true in some And I think I can imagine this as a business model that ChatGPT or OpenAI says at some point like, Hey, you know, Bank of America, for $100 million we will do your custom model, or something like that. And I think that will be the huge economic value add. The other thing though is alsoCompanies, I mean, right now, what is the differentiating factor? I mean, if everyone uses the same LLM, if everyone uses ChatGPT, they will all do the same thing. Again, I mean, then
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11773"
+(03:16:13)
+Well, its everyone is moving in lockstep, but usually companies, they want to have a competitive advantage, and I think that is the no way around using some of their private data and experimenting and maybe specializing. Its gonna be interesting, yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11786"
+(03:16:26)
+Sitting in the pace of progress, it does just feel like things are coming. I dont think the AGI and ASI thresholds are particularly useful.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11795"
+(03:16:35)
+I, I think, I guess, the real question, and this takes to the remote worker thing, is when are we going to see a, a big, obvious leap in e- economic impact? Cause currently theres not been an obvious leap in economic impact of LLM models for example. And thats, you know, aside from AGI or ASI, all that kinda stuff, theres a real question of, like, When are we gonna see a GDP, like
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11824"
+(03:17:04)
+Mm-hmm. Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11825"
+(03:17:05)
+jump.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11826"
+(03:17:06)
+Yeah, its like, what is the GDP made up of ? Like, a lot of it is, like, financial services, so, like, I dont, I dont know what this is.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11833"
+(03:17:13)
+Right, GDPs a-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11833"
+(03:17:13)
+Its just hard for me to think about the GDP bump but, like, I would say that software development becomes valuable in a different way, when you no longer have to look at the code then anymore. So when, when it is, like, Cloud will make you a small business. Which is essentially, Cloud can set up your website, your bank account, your email and your whatever else. And, like, you just have to express, like, w- what youre trying to put into the world. Like, thats not just a enterprise market, but it is a hard Like, I dont know how you get people to try doing that. I guess if ChatGPT can do it. Like, people are trying ChatGPT.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11869"
+(03:17:49)
+I think it boils down to the, the scientific question of, How hard is tool use to solve? Cause a lot of the stuff youre implying, the remote work stuff, is t- tool use. Its like how Computer use, like how you have an LLM that goes out there, this agentic system, and does something in the world, and only screws up 1% of the time.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11891"
+(03:18:11)
+Computer use-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11892"
+(03:18:12)
+Or less
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11892"
+(03:18:12)
+is a good e- example of what labs care about and we havent seen a lot of progress on. We saw multiple demos in 2025 of, like, Cloud can use your computer, or OpenAI had Kua, and they all suck.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11904"
+(03:18:24)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11904"
+(03:18:24)
+So, like, theyre also investing money in this, and I think thatll be a good example. Whereas actually something where it just seems pretty, like, taking over the whole screen seems a lot harder than having an API that they can call in the back end, and some of that is you have to then set up a different environment for them all to work in. Like, theyre not working on your MacBook, they are individually interfacing with Google and Amazon and Slack, and they handle all these things in a very different way than humans do. So some of this might be structural blockers.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11935"
+(03:18:55)
+Also, like, specification-wise, I think the problem is also for, you know, arbitrary tasks well, you still have to specify what you want your LLM to do, and how do you do that in a What is the environment? How do you specify? You can say what the end goal is, but i- if it cant solve the end goal, with LLMs, if you ask it for text, it can always, you know, clarify, do sub-steps. What is How, how do you put that information into a system that, lets say, books a travel trip for you? You can say, Well, you screwed up my credit card information, but, m- even to get it to that point, like, how do you, like, as a user, guide the model before, like, it can even attempt that? I, I think the interface is really hard.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11976"
+(03:19:36)
+Yeah, it has to learn a lot about you specifically.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11978"
+(03:19:38)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11979"
+(03:19:39)
+And about, this goes to conti- continual learning, about the general mistakes that are made throughout, and then mistakes that are made through you.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11988"
+(03:19:48)
+All the AI interfaces are getting set up to ask humans for input. I think Cloud Code we talked about a lot.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11994"
+(03:19:54)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11994"
+(03:19:54)
+It asks feedback and questions. If it doesnt have enough specification on your plan or youre desired, it starts to ask questions, Would you rather? Um, we talked about Memory, which saves across chats. Which its first implementation is kind of odd, where itd be like, itll mention my dogs name or something-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12011"
+(03:20:11)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12011"
+(03:20:11)
+like, in a chat. Im like- You dont need to be subtle about this. Like, I dont care. But like, things that are emerging, or ChatGPT has the Pulse feature.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12018"
+(03:20:18)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12019"
+(03:20:19)
+Which is, like a curated couple paragraphs with links to something to look at or to talk about, and people talk about how the language models are gonna ask you questions. Which I think is s- a very Its probably gonna work. The language model is like, it knows you had a doctor appointment or something, its like, Hey, how are you feeling after that?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12037"
+(03:20:37)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12037"
+(03:20:37)
+Which is like again, goes into the territory of humans are very susceptible to this and theres a lot of social change to come. But also, like, theyre experimenting with having the models engage. Some people really like this Pulse feature, which is, it processes your chats and automatically searches for information and puts it in the ChatGPT app. So theres a lot of things coming. Yeah.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12058"
+(03:20:58)
+I used that feature before, and I always feel bad because it does that every day, and I rarely check it out. Its like, how much money, like, I mean, compute is burned on something I dont even look at, you know? Where its like, its kind of like, Oh
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12071"
+(03:21:11)
+Theres also a lot of idle compute in the world-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12073"
+(03:21:13)
+Yeah. Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12073"
+(03:21:13)
+so dont feel too bad.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12076"
+(03:21:16)
+Okay. Do you think new ideas might be needed? Is it possible that the path to AGI, whatever that is, however we define that, to solve computer use more, more generally, to solve biology and chemistry and physics, sort of the Dario definition of AGI or powerful AI? Do you think its possible that totally new ideas are needed? Non-LLM, non-RL ideas. What might they look like? This is Were now going into philosophy land a little bit.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12110"
+(03:21:50)
+For something like a singularity to happen, I would say yes. And the new ideas could be architectures or training algorithms, which is like fundamental deep learning things. But theres, in that nature- pretty hard to predict. And I But I think we wont get very far even without those advances. Like, we might get this software solution, but it might stop at software and not do computer use without more innovation. So I think that its, like, a lot of progress will be coming, but in If youre gonna zoom out, like, theres still ideas in the next 30 years that are gonna look like that was a major, like, scientific innovation that enabled the next chapter of this. And I dont know if it comes in one year or in 15 years.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12152"
+(03:22:32)
+Yeah. I wo- I wonder if the bitter lesson holds true for the next 100 years what that looks like.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12157"
+(03:22:37)
+If scaling laws are fundamental in deep learning, I think the bitter lesson will always apply, which is compute will become more abundant, but even within abundant compute, the ones that have a steeper scaling loss slope or a better offset, like, this is a 2D plot of performance and compute. And like even if theres more compute available, the ones that get 100X out of it will win.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12181"
+(03:23:01)
+It might be something like literally computer clusters orbiting Earth with solar panels.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12189"
+(03:23:09)
+The problem with that is heat dissipation. So you get all the radiation from the sun and you dont have any air to hi- dissipate heat. But there is a lot of space to put clusters. Theres a lot of solar energy there and you could figure out the heat dissipation, but there is a lot of energy and there probably could be engineering will to solve the heat problem-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12206"
+(03:23:26)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12206"
+(03:23:26)
+so there could be.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12207"
+(03:23:27)
+Is it possible, and we should say that it definitely is possible Mm-hmm. Is the question, that were basically going to be plateauing this year? Not in terms of-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12219"
+(03:23:39)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12219"
+(03:23:39)
+the system capabilities, but what the system capabilities actually mean for human civilization. So on the coding front, really nice websites will be built. Very nice auto-complete.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12232"
+(03:23:52)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12233"
+(03:23:53)
+Very nice way to understand code bases and maybe help debug, but really just a, a very nice helper on the coding front. It can help research mathematicians do some math. It can help you with shopping. It can help you with It can help Its a nice helper. Its Clippy on steroids. What else? It may be a good education tool and all that kind of stuff, but computer use turns out extremely difficult to solve. So Im trying to be Im trying to frame the cynical case in all these domains where it kind of Theres not a really huge economic impact, but realize how costly it is to train these systems at every level, both the pre-training on the inference, how costly the inference is, the reasoning, all of that. Like, is that possible? And how likely is that do you think?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=12287"
+(03:24:47)
+When you look at the models, theres so much obvious things to improve and it takes a long time to train these models and to do this art and that itll take us with the ideas that we have multiple years to actually saturate in terms of whatever benchmark or performance we are searching for. It might serve very narrow niches, like the average ChatGPT 800 million user might not get a lot of benefit out of this, but it is going to serve different populations by getting better at different things.

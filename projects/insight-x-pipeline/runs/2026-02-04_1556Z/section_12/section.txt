@@ -1,0 +1,56 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9525"
+(02:38:45)
+So, continual learning this is a longstanding topic, important problem. I think that increases in importance as the cost of training of the models goes up. So can you explain what continual learning is and how important it might be this year and in the coming years to make progress?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9543"
+(02:39:03)
+This relates a lot to this kind of SF get- zeitgeist of, what is AGI? What is which is Artificial General Intelligence, and what is ASI, Artificial Superintelligence, and what are the language models that we have today capable of doing? I think the language models can solve a lot of tasks, but a key milestone among the AI community is essentially when AI could replace any remote worker, taking in information and solving digital tasks and doing them. And I the limitation thats highlighted by people is thatA language model will not learn from feedback the same way that an employee is. So if you hire an editor, the editor will mess up, but you will tell them. And if you hired a good editor, they dont do it again.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9583"
+(02:39:43)
+But language models dont have this ability to modify themselves and learn very quickly. So the idea is, if we are gonna actually get to something that is a true, like, general adaptable intelligence that can go into any remote work scenario, it needs to be able to learn quickly from feedback and on-the-job learning. Im personally more bullish on language models by being able to just provide them with very good context. You said like, you maybe offline said that, like, you can write extensive documents to models where you say, I have all this information. Heres all the blog posts Ive ever written. I like this type of writing. My voice is based on this. But a lot of people dont provide this to models, and the models werent designed to, like, take this amount of context previously.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9624"
+(02:40:24)
+Like, the agentic models are just starting. So its this kind of trade-off of, do we need to update the weights of this model with this continual learning thing to make them learn fast? Or the counterargument is we just need to provide them with more context and information, and they will have the appearance of learning fast by just having a lot of context and being very smart.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9643"
+(02:40:43)
+So we should mention the terminology here. So continual learning refers to changing the weights continuously so that the model adapts, adjusts based on n- the new incoming information, does so continually and rapidly and frequently and so on. And then the thing you mentioned on the other side of it is d- generally will be referred to as in-context learning. As you learn stuff, theres a huge context window. You can just keep loading it with extra information every time you prompt the system, which I think both are legitimately can be seen as learning.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9681"
+(02:41:21)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9681"
+(02:41:21)
+Its just a different place where youre doing the learning.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9684"
+(02:41:24)
+I think, to be honest with you, continual learning, the con- uh, the updating of weights, we already have that in different flavors. I mean, if you think about how So th- I think the, the distinction here is do you do that on a personalized custom model for each person, or do you on a global model scale? And I think we have that already with going from GPT-5 to 5.1 and 5.2. Its maybe not immediate, but it is like a curated update, a quick created update where there was feedback by the, you know things they couldnt do, feedback by the community. They updated the weights, next model and so forth. So it is, I mean, kind of like a flavor of that. Other even finer great exam- uh, finer grained example is like RLVR, you run it, it updates.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9728"
+(02:42:08)
+The problem is you cant just do that for each person because it would be too expensive to update the weights for each person, and, and I think thats the problem. So unless you get I th- I mean, even at OpenAI scale, building the data centers, it would be too expensive. I think that is only feasible once you have something on the device where the cost is on the consumer. Like what Apple tried to do with the Apple Foundation models, putting them on the phone, and then they learn from the experience.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9753"
+(02:42:33)
+A bit of a related topic, but this kind of uh, may be anthropomorphized term, but memory.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9761"
+(02:42:41)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9762"
+(02:42:42)
+D- what are different ideas of the mechanism how to add memory to these systems as youre increasingly seeing? So, so personalized memory especially?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9769"
+(02:42:49)
+So right now, its mostly like context basically s- stuffing things into the context and then just recalling that. But again it is I think, well, its expensive because you have to l- I mean, you can cache it, but still you spend tokens on that. And the second one is you can only do so much. I think its more like a preference and, or style. I mean, a lot of people do that when they solve math problems. You say its way so you can add previous knowledge and stuff, but you also give it certain preference, prompts, do what I preferred last time, whatever, like something like that. But it does, I, it doesnt unlock new capabilities. So for that o- one thing people do use still is LoRA LoRA adapters.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=9812"
+(02:43:32)
+These are basically instead of updating the whole weight matrix, there are two smaller weight matrices that you kind of have in parallel or overlays like the delta. But yeah, you, you can do that to some extent, but then again, it is economics. You so there were also papers, for example, LoRA learns less but forgets less. Its like, you know, its no free lunch. If you wanna learn more, you need to use more weights, but it gets more expensive. And then again, if you learn more, you forget more, and its like you have to find that Goldilocks zone basically.

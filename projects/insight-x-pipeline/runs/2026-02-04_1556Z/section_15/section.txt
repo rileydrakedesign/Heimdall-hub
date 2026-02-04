@@ -1,0 +1,80 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10771"
+(02:59:31)
+Lets talk about timelines specifically timelines to AGI or ASI. Is it fair, like, as a starting point, to say that nobody really agrees on the definitions of AGI and ASI?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10786"
+(02:59:46)
+I kinda think theres a lot of disagreement, but among I- Ive been getting pushback where a lot of people kind of say the same thing, which is like a, a thing that could reproduce most digital economic work. So, like, the remot- remote worker is a fairly reasonable example. And I think OpenAIs definition is somewhat related to that, which is like an AI that can do a lot of econ- like a certain number of economically valuable tasks, which I dont really love as a definition, but I think it could be a, a grounding point because language models today, while immensely powerful, are, are not this remote worker drop-in, and there are things that you could think of that are could be done by an AI that are way harder than remote work, which are, like, solving a
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10829"
+(03:00:29)
+finding an unexpected scientific discovery that you couldnt even posit, which would be an example of something that somebody says is, like, an artificial superintelligence problem. Or, like, sol- taking in all medical records and finding linkages across certain illnesses that people didnt know or figuring out that some common drug can treat some niche cancer. Like, they would say that that is, like, a superintelligence thing. So these are kind of natural tiers. My problem with it is that it becomes deeply entwined with, like, the quest for meaning of AI and this religious aspects to it. So theres kind of different theres different paths you can take it.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10866"
+(03:01:06)
+And I dont even know if the remote work is a good definition cause w- what exactly is that? Its, like, perfect to use? I actually, I mean, I like I dont know if you like the originally titled AI27 report. They focus more on code and research taste, so the, the target there is the superhuman coder. So they have several, several milestone systems. Superhuman coders, superhuman AI researcher, then super intelligent AI researcher, and then the full ASI, artificial superintelligence, but the after you develop the superhuman coder, everything else follows quickly. There, the task is to f- have a fully autonomous, like, automate coding. So, so any kind of coding you need to do in order to perform research is fully automated.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10918"
+(03:01:58)
+And from there, humans would be doing AI research together with that system, and they will quickly be able to develop a system thats actually can do the research for you. Thats the idea. And then and initially their prediction was 2027, 28, and now theyve pushed it back by three to four years to, to 2031, mean prediction. Probably my prediction is even beyond 2031, but i- at least you can, in a concrete way, think about how difficult it is to fully automate programming.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10951"
+(03:02:31)
+Yeah, I disagree with some of their presumptions and dynamics on how it would play out um, but I think they did a good like, they did good work in the scenario defining milestones that are concrete and to tell a useful story, which is why the reach for this AI 2027 document w- well transcended Silicon Valley. Its cause they told a good story and they did a lot of rigorous work to do this.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10972"
+(03:02:52)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=10973"
+(03:02:53)
+I think the camp that I fall into is that, like, AI is, like, so-called jagged, which will be excellent at some things and really bad at some things. I think that when theyre close to this s- automated software engineer, what it will be good at is that traditional ML systems and front end, the model is excellent at, but the distributed ML, the models are actually really quite bad at cause theres so little training data on doing large-scale distributed learning and things. And this is something that we already see, and I think this will just get amplified. And then its kind of messier in these trade-offs, and then theres, like, how do you think AI research works and so on.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11008"
+(03:03:28)
+So you think basically superhuman coder is almost unachievable, meaning, like, because of the jagged nature of the thing, youre just always going to have gaps in capabilities.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11018"
+(03:03:38)
+Its I think its assigning completeness to something, where the models are kind of superhuman at some types of code, and I think that will continue. And people are creative, so theyll utilize this, like, incredible abilities and, like to fill in the weaknesses of the models and move really fast, theyll always kind of be this ever so for a long time, this dance between the humans are enabling this thing that the model cant do, and the best, the best AI researchers are the ones that can enable this superpower.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11043"
+(03:04:03)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11044"
+(03:04:04)
+And I think those lines like, d- to what we already see, I think like cloud code for building a website, you can stand up a beautiful website in a few hours or do data analysis. But the whole thing is, is gonna keep getting better at these things, and well pick up some new s- code skills and stuff thatll get along the way, and kind of linking to whats happening in, in big tech is like this AI 2027 report is like it leans into the singularity idea where I think research is messy and social and largely in the data in ways that AI models cant process. But like what we do have today is really powerful and these tech companies are all collectively buying into this with tens of billions of dollars of investment.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11083"
+(03:04:43)
+So like we are gonna get some much better version of ChatGPT, a much better version of cloud code than we already have.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11090"
+(03:04:50)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11090"
+(03:04:50)
+I think that its just like hard to predict where that is going, but theyre like bright clarity of that future is why some of the most powerful people in the world are putting so much money into this. And I think its just kind of small differences between like we dont actually know what a better version of ChatGPT is, but also like can it automate AI research? I would say probably not, at least in this timeframe. Like big tech is gonna spend $100 billion much faster than we get a automated AI researcher that enables a AI research singularity.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11122"
+(03:05:22)
+So you think y- y- your prediction will be what, like if this is even a useful milestone or more than 10 years out?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11130"
+(03:05:30)
+I would say less than that on the software side, but I think longer than that on the things like research.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11136"
+(03:05:36)
+Well, lets just like for fun try to imagine a world where all software writing is fully automated. Like can you imagine that world?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11146"
+(03:05:46)
+By the end of this year, the amount of software thatll be automated will be so high. But its like itll be the things of like youre trying to train a model with RL and you need to have multiple bunches of GPUs communicating with each other. Thatll still be hard, but I think itll be much easier.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=11162"
+(03:06:02)
+One of the ways to think about this, so the full automation of programming, is just think of like lines of useful code written, the fraction of that to the number of humans in the loop. So presumably therell be for a long time humans in the loop of software writing. Itd just be fewer and fewer relative to the amount of code written. Right? And that the, the SC superhuman coder I think the, the, the presumption there is it goes to zero, the number of humans in the loop. What is that world look like when the number of humans in the loop is in the hundreds, not in the hundreds of thousands?

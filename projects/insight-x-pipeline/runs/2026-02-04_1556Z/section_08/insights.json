@@ -1,0 +1,184 @@
+[
+  {
+    "insight": "Models can self-correct and explain their reasoning, mimicking human problem-solving behaviors.",
+    "why_it_matters": "This feature enhances user trust and provides a more transparent interaction with AI systems.",
+    "evidence_quote": "the model itself recognized it made a mistake and then said, Ah, I did something wrong.",
+    "evidence_timestamp": "01:43:03",
+    "tags": [
+      "self-correction",
+      "transparency",
+      "trust"
+    ],
+    "novelty": 5,
+    "usefulness": 5
+  },
+  {
+    "insight": "Scaling RL HF lacks a clear performance improvement model, contrasting sharply with RL VR's predictable scaling behavior.",
+    "why_it_matters": "This difference highlights the need for a reevaluation of training strategies and resource allocation in LLM development.",
+    "evidence_quote": "there's no scaling lot for RLHF where if you log increase the compute, you get some performance.",
+    "evidence_timestamp": "01:56:06",
+    "tags": [
+      "scaling",
+      "training strategy",
+      "resource allocation"
+    ],
+    "novelty": 5,
+    "usefulness": 5
+  },
+  {
+    "insight": "The pressure to deliver in startups can lead to significant burnout among employees.",
+    "why_it_matters": "Understanding this trade-off is crucial for founders aiming to sustain their teams in a high-pressure environment.",
+    "evidence_quote": "people are definitely burning out.",
+    "evidence_timestamp": "02:23:20",
+    "tags": [
+      "burnout",
+      "employee well-being",
+      "startups"
+    ],
+    "novelty": 5,
+    "usefulness": 5
+  },
+  {
+    "insight": "The balance between passion and health is delicate in high-stakes environments like LLM development.",
+    "why_it_matters": "Sustaining innovation requires attention to mental and physical health, not just productivity.",
+    "evidence_quote": "I had back issues, I had neck issues, because I did not take the breaks.",
+    "evidence_timestamp": "02:24:46",
+    "tags": [
+      "health",
+      "innovation",
+      "sustainability"
+    ],
+    "novelty": 5,
+    "usefulness": 5
+  },
+  {
+    "insight": "Reinforcement Learning with Verifiable Rewards (RLVR) enables significant scaling in language model training.",
+    "why_it_matters": "This allows models to learn complex behaviors and improve inference times, which is crucial for practical applications.",
+    "evidence_quote": "the biggest one from 2025 is learning this reinforcement learning with verifiable rewards.",
+    "evidence_timestamp": "01:37:31",
+    "tags": [
+      "RLVR",
+      "scaling",
+      "training"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "The effectiveness of RLHF is closely tied to the model's training data and its ability to handle complex problem-solving.",
+    "why_it_matters": "This relationship underscores the importance of data curation in training processes, especially for reasoning tasks.",
+    "evidence_quote": "what is called reasoning traces, which is just the model generating words in a forward process that is reflecting, like breaking down a problem into intermediate steps.",
+    "evidence_timestamp": "01:48:27",
+    "tags": [
+      "data curation",
+      "reasoning",
+      "training"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "The choice of problems during post-training can significantly influence model learning and performance.",
+    "why_it_matters": "Selecting harder problems can yield better learning signals, pushing models to develop more robust skills.",
+    "evidence_quote": "they're finding harder problems, which is why you hear about things like scientific domains, which is like that's so hard, like getting anything right there.",
+    "evidence_timestamp": "01:49:09",
+    "tags": [
+      "problem selection",
+      "model performance",
+      "learning"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Model accuracy can vary drastically with minor changes in problem formatting, revealing underlying complexities.",
+    "why_it_matters": "This sensitivity highlights the need for rigorous testing and validation in model evaluations.",
+    "evidence_quote": "if you just change the format slightly like, I don't know, you use paren- a dot instead of a parenthesis or something like that, the model accuracy will vastly differ.",
+    "evidence_timestamp": "01:47:04",
+    "tags": [
+      "model evaluation",
+      "accuracy",
+      "testing"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "The debate around RLVR's effectiveness stems from concerns about data contamination and benchmark validity.",
+    "why_it_matters": "Addressing these concerns is essential for establishing trust in RLVR methodologies and their reported outcomes.",
+    "evidence_quote": "there's been multiple papers talking about contamination... how much can you believe them?",
+    "evidence_timestamp": "01:46:22",
+    "tags": [
+      "RLVR",
+      "data contamination",
+      "benchmarking"
+    ],
+    "novelty": 5,
+    "usefulness": 4
+  },
+  {
+    "insight": "The increasing complexity of tasks necessitates a shift towards more sophisticated training techniques and benchmarks.",
+    "why_it_matters": "As models become more capable, the challenges they tackle must evolve to ensure continued improvement.",
+    "evidence_quote": "the frontier models are all pushing into these harder domains when they can train on more problems and the model will learn more skills at once.",
+    "evidence_timestamp": "01:49:09",
+    "tags": [
+      "training techniques",
+      "task complexity",
+      "model evolution"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Reinforcement Learning with Value Representation (RL VR) allows for more flexible and extended training compared to Reinforcement Learning from Human Feedback (RL HF).",
+    "why_it_matters": "This flexibility can lead to better performance in complex problem-solving scenarios, making RL VR a more viable long-term strategy.",
+    "evidence_quote": "RL VR is more, let's say, un-unlimited how much you can train or get still benefit.",
+    "evidence_timestamp": "01:53:07",
+    "tags": [
+      "reinforcement learning",
+      "flexibility",
+      "long-term strategy"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Reverse engineering existing models can be an effective way to learn about LLM architectures.",
+    "why_it_matters": "This approach allows builders to gain practical insights and verify their understanding through unit testing against established implementations.",
+    "evidence_quote": "What’s beautiful about it is you have a working implementation and so you can work backwards from it.",
+    "evidence_timestamp": "02:02:06",
+    "tags": [
+      "learning",
+      "reverse engineering",
+      "LLMs"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Character training, which focuses on how to make models exhibit specific traits like humor or seriousness, is an underexplored area in LLM research.",
+    "why_it_matters": "Delving into character training could enhance user engagement and model effectiveness, making it a promising research direction.",
+    "evidence_quote": "I think that’s why I liked your book, is like I came to language models from this RL and robotics field.",
+    "evidence_timestamp": "02:03:23",
+    "tags": [
+      "character training",
+      "user engagement",
+      "LLMs"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Quantifying human preferences in reinforcement learning is inherently messy and poses challenges in model training.",
+    "why_it_matters": "Understanding these complexities can lead to better methodologies in RLHF, ultimately improving model performance and alignment with user expectations.",
+    "evidence_quote": "the core pref- of RLHF is like how messy preferences are.",
+    "evidence_timestamp": "02:08:33",
+    "tags": [
+      "RLHF",
+      "preferences",
+      "model training"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  }
+]

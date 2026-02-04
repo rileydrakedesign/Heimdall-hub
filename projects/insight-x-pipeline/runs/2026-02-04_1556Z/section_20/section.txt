@@ -1,0 +1,248 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13261"
+(03:41:01)
+You think 10 years from now some of the frontier model companies are still around? Anthropic, OpenAI?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13268"
+(03:41:08)
+I definitely dont see it to be a winner-takes-all unless there truly is some algorithmic secret that one of them finds that lets this flywheel. Cause the development path is so similar for all of them. Google and OpenAI have like all the same products and then, like, Anthropics more focused, but when you talk to people it sounds like theyre solving a lot of the same problems. So I think And theres offerings thatll spread out. Theres a lot of Its a very big cake thats being made that people are gonna take money out of.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13296"
+(03:41:36)
+I- I- I dont want to trivialize it, but so OpenAI and Anthropic are primarily LLM service-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13303"
+(03:41:43)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13303"
+(03:41:43)
+providers. And some of the other companies like Google and xAI, Link to X does other stuff-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13311"
+(03:41:51)
+Yeah
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13311"
+(03:41:51)
+too. And so its very possible if AI becomes more commodified that the companies that are just providing LLM will die.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13320"
+(03:42:00)
+I think they will The pro- the advantage they have, they have a lot of users, and I think they will just pivot. I think then if they figure out And so, like, Anthropic, I think, pivoted. I dont think they originally planned to work on code, but it happened that they found, Okay, this is like a nice niche and now we are comfortable in this niche and we push on this niche. And I can see the same thing once Maybe, lets say hypothetically speaking, I- Im not sure if it will be true, but lets say Google takes all the market share of the general chatbot.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13347"
+(03:42:27)
+Maybe OpenAI will be then focused on some other sub-topic-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13351"
+(03:42:31)
+Mm-hmm.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13351"
+(03:42:31)
+Like the They have too many users to go away in foreseeable future, I think.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13357"
+(03:42:37)
+I think Google is always ready to say, Hold my beer with AI mode.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13360"
+(03:42:40)
+I think that the question is if the companies can support the valuations. I think Id see the AI companies being looked at in some ways like AWS, Azure and GCP are all competing in the same space and all very successful businesses. Theres a chance that the API market is so unprofitable that they go up and down the stack to products and hardware. They have so much cash that they can build power plants and build data centers, which is a durable advantage now. But theres also just a reasonable outcome that these APIs are so valuable and so flexible for developers that they become the likes of like a, something like AWS. But AWS and Azure are also gonna have these APIs, so theres some Like, thats a, like, five or six people competing in the API market is hard.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13404"
+(03:43:24)
+So maybe, like, thats why they get squeezed out.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13407"
+(03:43:27)
+You mentioned RIP LLaMA. Is there a path to winning for Meta?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13412"
+(03:43:32)
+I think nobody knows. Theyre moving a lot, so theyre signing licensing deals with Blackforest Labs, which is a image generation or Midjourney or M- minus. So I think in some ways its on the product and, like, consumer facing AI front, its too early to tell. I think they have some people that are excellent and very motivated being close to Zuckerberg. So I think that theres still a story to unfold there. LLaMA is a bit different, where LLaMA was the most focused expression of the organization. And I dont see LLaMA being supported to that extent. I think it was a very successful brand for them. So they still might do some part of participation in the open- open ecosystem or continue the LLaMA brand into a different service. Cause people know what LLaMA is.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13461"
+(03:44:21)
+You think theres a LLaMA 5?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13464"
+(03:44:24)
+Not an open weight one.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13466"
+(03:44:26)
+Its interesting. I think also just to recap a bit, I think, I mean, LLaMA was the, I would say, pioneering open weight model and then LLaMA 1, 2, 3, a lot of love. But I think then, I think what happened just hypothesizing or speculating, I think the leaders at Meta, like the upper executives, they I think they got very excited about LLaMA because they saw how popular it was in the community. And then I think the problem was trying to, lets say, monetize the open s- or not monetize the open source, but, like, kind of use the open source to make a bigger splash in a se- Like, to kind of force it. Almost it- it felt forced, like, developing these very big LLaMA 4 models to have, like, the best, like, to be on the top of the benchmarks.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13509"
+(03:45:09)
+But I dont think the goal of LLaMA models is to be on top of the benchmarks beating, lets say, ChatGPT or other models. I think the goal was to have a model that people can use, trust modify, understand it. So that includes having smaller models. They dont have to be the best models. And what happened was just these models were, of course Like, the benchmarks suggests that they were better than they were by Because I think they had, like, specific models trained on preferences that they performed well on the benchmarks. Thats kind of, like, this overfitting thing to kind of force it to be the best. But then at the same time, well, they didnt do the small models that people could use. And I think that no one could run these big models then.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13545"
+(03:45:45)
+And then there was kind of, like, a weird thing. And I think its just because people got too excited about headlines pushing the frontier. I think, I think thats it.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13554"
+(03:45:54)
+And too much, like, on the benchmark sync side.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13556"
+(03:45:56)
+Yeah. Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13556"
+(03:45:56)
+Yeah.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13556"
+(03:45:56)
+Its too much work.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13557"
+(03:45:57)
+I- I think it imploded under political pre- like, internal political fighting and misaligned incentives. So, like, the researchers want to build the best models, but theres a layer of organization-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13567"
+(03:46:07)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13567"
+(03:46:07)
+and manager that is trying to demonstrate that they do these things. And then theres lots of Theres a lot of pieces and rumors where how, like, some horrible technical decision was made and how that comes in. And it just seems like it kind of got too bad where it all just crashed out.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13584"
+(03:46:24)
+Yeah, but we should, we should also, like, give huge props to Mark Zuckerberg. I think it comes from Mark, actually. from Mark Zuckerberg, from the top of the leadership, saying open source is important. I think thats, like, that If the The fact that that exists means there could be a LLaMA 5, where they learn the lessons from the benchmaxing and say, Were gonna be GPT-SS-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13606"
+(03:46:46)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13607"
+(03:46:47)
+and provide really awesome library of open source.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13611"
+(03:46:51)
+What people say is that theres a debate between Mark and Alexander Wang, who is very bright, but much more against open source. And to the extent that he has a lot of influence over the AI org, it seems much less likely, because it seems like Mark brought him in for, like, a fresh leadership aide and directing AI. And if the, like, opened-or-closed is no longer the defining nature of the model, I dont expect that to be a defining argument between Mark and Alex. So, like, theyre both very bright, but I just, like I have a hard time understanding all of it because Mark wrote this piece in July of 2024, maybe, which was, like, probably the best blog post at the time, saying the case for open source AI.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13654"
+(03:47:34)
+And then July 2025 came around and it was like, Were reevaluating our relationship with open source. So its just kinda, like
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13662"
+(03:47:42)
+But I think, also, the the, the problem Not the problem, but I think, well, we may have been a bit also too harsh, I think, and that caused some of that. Because I think I mean, we as open source developers or the open source community Because I think even though the model was maybe not what everyone hoped for, it got a lot of backlash. And I think that was a bit unfortunate because I can see that as a company, now they were hoping for positive headlines. And in- instead of just getting no headlines or not these positive headlines, in, in, in turn they got negative headlines. And then all It kind of reflected bad on the company, and I think that is also something, like, where you
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13699"
+(03:48:19)
+Its maybe a spite reaction, almost like, Okay, we have n- We, we tried to do something nice, we tried to gave, give you something cool, like an open source model, and now you are, like, you know, mm, kind of, like, being negative about us, even, like, like, for the company. So in that sense, it looks like, Well, maybe then well change our mind, I guess. I dont know.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13718"
+(03:48:38)
+Yeah, thats, thats where the the dynamics of discourse on-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13723"
+(03:48:43)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13724"
+(03:48:44)
+X can lead us, as a community astray. Cause sometimes it feels random. People pick the thing they like and dont like. I mean, you can see the same thing with Grok 4.1 and Grok Code Fast 1.0. I dont think, vibe-wise, people l- love it publicly.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13745"
+(03:49:05)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13746"
+(03:49:06)
+But a lot of people use it. So if you look to Reddit and X, they dont really give it praise from the programming community-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13755"
+(03:49:15)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13755"
+(03:49:15)
+but, like, they use it.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13757"
+(03:49:17)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13757"
+(03:49:17)
+And the same thing with probably LLaMA. I dont understand I dont understand the dynamics of either positive hype or negative hype. I dont understand it.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13765"
+(03:49:25)
+I mean, the story of One of the stories of 2025 is the US filling the gap of LLaMA, which is, like, all the rise of these Chinese open-weight models-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13773"
+(03:49:33)
+Mm-hmm. Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13774"
+(03:49:34)
+to the point where I was like, That was the single issue Ive spent a lot of energy on in the last five months, is, like, trying to do policy work-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13779"
+(03:49:39)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13779"
+(03:49:39)
+to get the US to invest in this. Its like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13781"
+(03:49:41)
+So just tell me the story of Adam.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13783"
+(03:49:43)
+Adam Project is It started as me calling it the American Deep Seek Project, which doesnt really work for DC audiences, but its the story of, like, what is the most impactful thing I can do with my career, which is that these Chinese open-weight models are cultivating a lot of power and there is a lot of demand for building on these open models, especially in enterprises in the US that are very cagey about these Chinese models.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13806"
+(03:50:06)
+Going to Perplexity, The Adam Project, American Truly Open Models is a US-based initiative to build and host high-quality, genuinely open-weight AI models and supporting infrastructure explicitly aimed at competing with, and catching up, to Chinas rapidly advancing open source AI ecosystem.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13825"
+(03:50:25)
+I think the one-sentence summary would be that Or two sentences. One is a proposition that open models are going to be an engine for AI research because that is what people start with, therefore its important to own them. And the second one is, therefore, the US should be building the best models so that the best researcher happens in the US and those US companies take the value from being the home of where AI research is happening. And without more investment in open models, we have all the plots on the website where its like, Qwen, Qwen, Qwen, Qwen, and its all these models that are excellent from these Chinese companies that are cultivating influence in the US and China and internationally.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13867"
+(03:51:07)
+And I think the US is spending way more on AI, and the ability to create open models that are half a generation or a generation beyond what the cutting edge of a closed labs is costs orders of, like, $100 million, which is a lot of money, but not a lot of the money to these companies. So therefore, we need a centralizing force of people who want to do this. And I think we got signed engagement from people pretty much across the full stack, whether its policy.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13893"
+(03:51:33)
+So there has been support from the administration?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13896"
+(03:51:36)
+I dont think anyone in the, like, technically in government, has like, signed it publicly, but I know that people that have worked in AI policy, both in Biden and Trump administration, are very supportive of trying to promote open source models in the US. I think, for example, AI2 got a grant from the NSF for $100 million over four years, which is, like, a The biggest CS grant the NSF has ever awarded, and its for AI2 to attempt this, and I think its a starting point.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13925"
+(03:52:05)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13925"
+(03:52:05)
+But the best thing happens when there are multiple organizations building models, because they can cross-pollinate ideas and kind of build this ecosystem. Like, I dont think it just works if its just LLaMA releasing models to the world, because then you can see LLaMA can go away. The same thing applies for AI2 where its like, I cant be the only one building models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13943"
+(03:52:23)
+And I think thats like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13944"
+(03:52:24)
+Mm-hmm. Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13944"
+(03:52:24)
+that It becomes a lot of time spent on talking to people, whether theyre in policy I know NVIDIA is very excited about this. I think Jensen Huang has been specifically talking about the urgency for this, and theyve changed, theyve done a lot more in 2025, where the Nematron models are more of a focus.Theyve started releasing some data along with NVIDIAs open models and, like, very few companies do this, especially of NVIDIAs size, so, like, there is, there is signs of progress in there. We hear about Reflection AI where they say their two billion dollar fundraise is dedicated to building US open models, and I feel like their announcement tweet is like, it reads like a blog post sound, right? And I think that that cultural tide is starting to turn.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=13989"
+(03:53:09)
+I think in, in July was when we had, like, four or five DeepSeek-caliber Chinese open-weight models and zero from the US, and thats, thats the moment where I Hmm. where I was released this and was like, Oh, I guess I have to spend energy on this because nobody else is gonna do it. Mm-hmm. So it takes a lot of, it takes a lot of people contributing together, and I dont say that, like, the Adam Project isnt, like, the thing thats helping to move the ecosystem, but its people like me doing this sort of thing to get- Mm-hmm the word out.

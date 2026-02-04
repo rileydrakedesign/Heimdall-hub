@@ -1,0 +1,144 @@
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14015"
+(03:53:35)
+Do you like the, the 2025 Americas AI Action Plan? That includes open source stuff. The White House AI Action Plan includes a dedicated section titled Encourage Open-Source and Open-Weight AI, defining such models and arguing they have unique value for innovation and start-ups.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14032"
+(03:53:52)
+Yeah. I mean, like, the AI Action Plan is a plan, but largely, I think its, like, maybe the most coherent policy document that has come out of the administration, and I hope that it largely succeeds. And I know people that have worked on the AI Action Plan and the challenges taking policy and making it real, and I have no idea how to do this as an AI researcher- but, like, like, largely a lot of things in that were very real, and theres a huge build-out of AI in the country and its, like, there are a lot of issues that people are hearing about from water use to whatever and, like, we should be able to build things in this country , but also, we need to not ruin places in our country in the process of building it, and its worthwhile to spend energy on.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14075"
+(03:54:35)
+I think thats a role at the federal government place. Its like they set the agenda. And with AI setting the agenda that open-weight should be a first consideration is, like, thats a large part of what they can do and then people think about it.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14089"
+(03:54:49)
+Also, for education and talent for these companies, its, I think, very important because otherwise, you know, if there are only closed models, how do you get the next generation of people contributing at some point? Because, otherwise, you will at some point only be able to learn w- after you joined a company, but then at th- that point, like, how do you hire talented people, how do you e- identify ha- talented people? And I think open source is, lets say, even for a lot of things, but also even just for educating the population and training the next generation of researchers. Its the way or the only way.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14124"
+(03:55:24)
+The way that I couldve gotten this more, go more viral is, was to tell a story of Chinese AI integrating with an autorit- authoritarian state in being ASI and taking over the world and, therefore, we need our own American models, but its very intentional for why I talk about innovation and science in the US because I think its both more realistic as an outcome, but just, like, its, like, its a world that is I would like to manifest.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14147"
+(03:55:47)
+I would say, though, also even, like, lets say any open-weight model I do think is a valuable model.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14155"
+(03:55:55)
+Yeah. And my argument is that we should be in a leading position.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14158"
+(03:55:58)
+Yep, yep.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14158"
+(03:55:58)
+But I think that its worth saying it so simply because there are still voices in the AI ecosystem that s- say we should consider banning releasing open models-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14167"
+(03:56:07)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14167"
+(03:56:07)
+due to the safety risks.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14169"
+(03:56:09)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14169"
+(03:56:09)
+And I think its worth adding that, I think, effectively, thats impossible without making the US, like, have its own great firewall, which is also known to not work that well because the cost for training these models, whether its one to a hundred million dollars, is attainable to a huge amount of people in the world that want to have influence, so these models will be getting trained all over the world. And these, we want the f- models especially when, like, I mean, there are safety concerns, but we want these information and tools to flow freely across the world and into the US so that we, people can use them and learn from them, and we
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14207"
+(03:56:47)
+Like, stopping that would be such a restructuring of our internet-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14210"
+(03:56:50)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14210"
+(03:56:50)
+that it seems impossible.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14211"
+(03:56:51)
+Do you think maybe in that case the big open-weight models from China are actually a good thing in a sense, like, for the US companies because maybe the US companies you, you mentioned earlier, they are usually one generation behind in terms of what they release open source versus what they are using? For example, GPTOS- OS might not be the cutting-edge model. Gemma 3 might not be but they do that because they know this is safe to release, but then when they see, these companies see, for example, there is DeepSeek Version 3.2, which is really awesome, and it gets used and there is no backlash, there is no security risk, that could then, again, encourage them to release better models. Maybe that, that, in a sense, is a very positive thing.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14250"
+(03:57:30)
+A hundred percent. These Chinese companies have set things into motion that I-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14253"
+(03:57:33)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14253"
+(03:57:33)
+think would potentially not-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14255"
+(03:57:35)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14255"
+(03:57:35)
+have happened if they were not all releasing models.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14257"
+(03:57:37)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14258"
+(03:57:38)
+So I think it was like-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14259"
+(03:57:39)
+Hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14260"
+(03:57:40)
+Im, Im almost sure that those discussions have been had-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14264"
+(03:57:44)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14264"
+(03:57:44)
+by leadership.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14265"
+(03:57:45)
+Is there a possible future where the dominant models, AI models in the world are all open source?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14270"
+(03:57:50)
+Depends on the trajectory of progress that you predict. If you think saturation in progress is even coming within a few years, so essentially, within the time where financial support is still very good, then open models will be so optimized and so much cheaper to run that theyll win out. Essentially, this goes back to open source ideas where so many more people will be putting money into optimizing this serving of these open-weight common architectures that they will become standards, and then you could have chips dedicated to them and itll be way cheaper than the offerings from these closed companies that are custom.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14305"
+(03:58:25)
+We should say that AI27 report kinda predicts one of the things it does from a narrative perspective is that there will be a lot of centralization. As the AI system gets smarter and smarter, the national security concerns will come to be, and youll centralize the labs, and youll become super secretive, and therell be this whole race.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14325"
+(03:58:45)
+from a military perspective of how do you Between China and the United States. And so all of this fun conversations were having about LLMs, all The generals, the soldiers will come into the room and be like, All right. Were now in the Manhattan Project stage of this whole thing.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14342"
+(03:59:02)
+I think 2025, 6, 7, 27, I dont think something like that is even remotely possible. I mean, you, you can make the same argument for computers, right? You can say, Okay. Computers are capable and we dont want the general public to get them. Or chips, even AI chips, but you see how, like, you know, Huawei makes chips now. You know, it took a few years, but And I think I dont think there is a way you can contain something like that, like knowledge like that. I, I think in this day and a- age, it is impossible, like the internet. Uh, I dont think this is a possibility.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14377"
+(03:59:37)
+On the Manhattan Project thing, one of my funny things making at em is I think that, like, a Manhattan Project-like thing for open models would actually be pretty reasonable, because it wouldnt cost that much. But I think that that will come. It seems like culturally, the companies are changing. But I agree with Sebastian on all of the stuff that he just said. Its just like, I dont see it happening nor being helpful.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14398"
+(03:59:58)
+Yeah. I mean, the, the motivating force behind the Manhattan Project is, there was civilizational risk. How do you I- its harder to motivate that for open-source models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=14408"
+(04:00:08)
+Theres not civilizational risk.

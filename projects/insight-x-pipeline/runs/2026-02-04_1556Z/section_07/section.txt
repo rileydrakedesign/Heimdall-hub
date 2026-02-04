@@ -1,0 +1,524 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3853"
+(01:04:13)
+I think this might be a good place to define pre-training, mid-training, and post-training.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3858"
+(01:04:18)
+So, pre-training is the classic training one next token prediction at a time. You have a big corpus of data. And Nathan probably also has very interesting insights there because of OMO3. I- its a big portion of the paper focuses on the right data mix. So, pre-training is essentially just, you know, training across entropy loss, training on next token prediction on a, a vast corpus of internet data, books, papers and so forth. It has changed a little bit over the years in the sense people used to throw in everything they can. Now, its not just raw data. Its also synthetic data where people re- lets say rephrase certain things. So synthetic data doesnt necessarily mean purely AI made up data.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3898"
+(01:04:58)
+Its also taking something from an article, Wikipedia article, and then rephrasing it as a Q&A question or summarizing it, rewarding it, and, and making a better data that way. Cause I think of it also, like, with humans. If someone, lets say, reads a book compared to a messy I dont know, no offense, but, like, Reddit post or something like that.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3920"
+(01:05:20)
+I do think you learn- You n- No offense but I think-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3925"
+(01:05:25)
+Theres gonna be a post about this, Serashi.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3927"
+(01:05:27)
+Yeah. Well, I-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3928"
+(01:05:28)
+Some Reddit data is very coveted and excellent for training.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3931"
+(01:05:31)
+Yeah. Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3931"
+(01:05:31)
+You just have to filter it.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3932"
+(01:05:32)
+Yeah.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3933"
+(01:05:33)
+And, and, and I think thats the idea. Uh, I, I think i- its like if someone took that and rephrases that in a st- lets say more concise and structured way-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3942"
+(01:05:42)
+Mm-hmm
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3942"
+(01:05:42)
+I think its higher quality data that gets the LLM maybe the same You get the same LLM out of it at the end, but it gets there faster. It trains faster, because the Lets say, if the grammar and the punctuation is correct, it already learns the correct way versus getting information from a messy way and then learning later how to correct that and stuff like that. So, I think that is how pre-training evolved and how why sc- how still while w- why scaling still works is that its not about just the amount of data, its also the tricks to make that data better for you, in a sense. And then mid-training is I mean, it used to be called pre-training. Its
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=3981"
+(01:06:21)
+I think its called mid-training because it was awkward to have pre-training and post-training, but nothing in the middle, right? It sounds a bit weird. You have pre-training and post-training, but whats the actual training? So, the mid-training is usually similar to pre-training, but, you know, its a bit more, I would say, specialized than pre-training. Its the same algorithm, but what you do is you focus, for example, on non-cont Like I said, one example, you have long context documents. The reason you dont do that during just p- pre-training is because you dont have that many long context documents. We have a specific phase. And one problem of LLMs is also still Its a neural network. It has the problem of catastrophic forgetting.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4016"
+(01:06:56)
+So, you teach it something, it forgets other things. And you wanna I mean, its not 100% forgetting, but, you know, its like no free lunch, you cant Its also the same with humans. If you ask me some math I learned 10 years ago, I dont know, I would have to look at it again.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4029"
+(01:07:09)
+Uh, Nathan was actually saying that hes consuming so much content that theres a catastrophic forgetting issue.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4034"
+(01:07:14)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4034"
+(01:07:14)
+Oh, my Yeah, Im- Im, like, trying to learn so much- about AI, and its like I was learning about pre-training parallelism. Im like, I lost something and I dont know what it was.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4042"
+(01:07:22)
+I dont want to anthropomorphize LLMs, but its, I think, the same kind of in that sense how humans learn. I mean-The m- quantity is not always better because, yeah, you, i- its like being selective. And I, and the mid-training is being selective in terms of quality content at the end. So the last thing the LMS seen is the quality stuff. And then post-training is all the fine-tuning, supervised fine-tuning DPO reinforcement learning with verifiable rewards. With hu- with human feedback and so forth. So the refinement stages. And its also interesting, its like the cost thing, right? I mean, its like pre-training, you spend a lot of money on that right now. RL a bit less. RL, you dont really, I would say, teach it knowledge. Its more like unlocking the knowledge.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4083"
+(01:08:03)
+Its, its more like a skill learning, like how to solve problems with the knowledge that it has from pre-training. There are pap- actually three papers this year, or last year, 2025, on RL for pre-training. But I, I mean, I dont think anyone does that in production.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4097"
+(01:08:17)
+Toy, toy examples for now.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4098"
+(01:08:18)
+Um Toy examples, right? But to generalize RL post-training is more like the skill unlock, where pre-training is like soaking up the knowledge essentially. Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4106"
+(01:08:26)
+A few things that could be helpful for people. A lot of people get like, have, think of synthetic data as being bad for training the models. You mentioned like the DeepSeq got almos- OCR, which is Optical Character Recognition paper. A lot of labs did. AI2 had one, m- look, had multiple. And the reason that each of these labs haves these is because theres vast amounts of PDFs and other digital documents on the web that are in formats that are encoded with text easily. So you use these Almost CR, these, or DeepSeq OCR, that we called our Almost CR, to extract what can be trillions of tokens of candidate data for pre-training. And pre-training dataset size is on the order of trillions, is measured in trillions of tokens.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4150"
+(01:09:10)
+Smaller models from researchers can be something like five to 10 trillion. Um, Qwen is documented going up to like 50 trillion, and theres rumors that these closed labs can go to like 100 trillion tokens. And just getting this potential data to put in, I think they, they have a very big funnel, and then the data you actually train the model on is a small percentage of this. Like the syn- this character recognition data would be described as synthetic data for pre-training in a lab. And then theres also the things like ChatGPT now gives wonderful answers, and you can train on those best answers, and thats synthetic data. Its very different than, like early ChatGPT, lots of hallucinations data when people became grounded in synthetic data.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4188"
+(01:09:48)
+One interesting question is, if I recall correctly, OLMo-3 was trained with less data than uh, specifically some other open weight models, maybe even OLMo-2. But you still got better performance, and that might be one of the examples how the data helped.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4201"
+(01:10:01)
+Its mostly down to data quality.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4202"
+(01:10:02)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4202"
+(01:10:02)
+I think if we had more compute, we would train for longer. I think wed ultimately see that as a, like just like something we would want to do. And especially with big models, you need to have more compute, because we talked about having more parameters and we talked about knowledge. And essentially, theres a ratio where big models can absorb more from data, and then youre gonna, you get more benefit out of this. Its a, its like one of these. Any logarithmic graph in your mind is like a small model will level off sooner if youre measuring tons of tokens, and bigger nu- bigger models need more. But mostly, its we arent training that big of models right now at AI2, and getting the highest quality data we can is the natural starting point.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4238"
+(01:10:38)
+Is there something to be said about the topic of data quality? Is there some low-hanging fruit there still where the quality could be improved?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4246"
+(01:10:46)
+Its like turning the crank. So I think historically, in the open, theres been like a canonical best pre-training dataset that has moved around between who has the most recent one or the best recent effort. Like AI2s Dolmo was very early with the first OLMo and Hugging Face had FineWeb. And theres a DCLM project, which has been kind of like a, which is, it stands for Data Comp Language Model. Theres been Data Comp for other machine learning projects, and they have a v- had a very strong dataset. And a lot of it is the internet is becoming fairly closed off, so we have Common Crawl, which I think is hundreds of trillions of tokens, and you filter it.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4281"
+(01:11:21)
+And it looks like being a lot of scientific work where youre training classifiers and making decisions based on, how do you prune down this deci- this dataset into the highest quality stuff and the stuff that suits your tasks? So previously, language models were tested a lot more on, like knowledge and just kind of conversational things, but now theyre expected to do math and code. So to train a reasoning model, you need to remix your whole dataset. And theres a lot of actually wonderful scientific methods here where you can, you can like take your gigantic dataset, you sample a lot of really tiny things from different sources. So you say you have GitHub, Stack Exchange, Reddit, Wikipedia.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4316"
+(01:11:56)
+You can sample small things from them, and you train small models on each of these mixes and measure their performance on your evaluations. And you can just do like basic linear regression, and its like, Heres your optimal dataset. But if your evaluations change, your dataset changes a lot. So a lot of OLMo-3 was new sources for reasoning to be better at math and code to, and then you do this mixing procedure and it gives you the answer. And I think thats a lot of thats happened at labs this year, is like theres new hot things, whether its like coding environments or web navigation, and you just need to bring in new data, you need to change your whole pre-training so that your post-training can work better, and stuff like this.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4348"
+(01:12:28)
+And thats like the constant re- re-evolution and the re-determining of what they care about as their, for their models.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4355"
+(01:12:35)
+Are there fun anecdotes of what sources of data are particularly high quality that we wouldnt expect? You mentioned Reddit sometimes can be a source.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4365"
+(01:12:45)
+Reddit was very useful. I think that like PDFs is definitely one.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4371"
+(01:12:51)
+Oh, especially arXiv.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4372"
+(01:12:52)
+Yeah, so like AI2 has run Semantic Scholar for a long time, which is a like a, what you can say is a competitor to Google Scholar with a lot more features. And to do this, AI2 has found and scraped a lot of PDFs for openly accessible papers that might not be like behind the c- closed paid garden of a certain publisher. So like truly open scientific PDFs. And if you, like, you sit on all of these and you process it, and you can get value out of it. And I think that, like, a lot of that style of work has been done by the frontier labs much earlier. And its just like you need to have a pretty skilled researcher that understands how things change models, and they bring it in, and they clean it, and its, its a lot of labor that
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4414"
+(01:13:34)
+Like, I think of a lot of frontier labs when they scale researchers, a lot more goes into data.You have people, like if you wanna be, if you join a frontier lab and you wanna have impact, the best way to do it is just make, find new data thats better. And then, like, the fancy, glamorous algorithmic things, like figuring out how to make O1 is like the sexiest thought of a scientist.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4432"
+(01:13:52)
+Its like, Oh, I figured out to scale RL. Theres a group that did that, but I think most of the contributions is like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4438"
+(01:13:58)
+On the dataset
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4438"
+(01:13:58)
+Im gonna make the data better, or, Im gonna make the infrastructure better so that everybody in my team can run experiments 5% faster.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4444"
+(01:14:04)
+At the same time, I think its also one of the closest guarded secrets, what your training data is, for legal reasons. And so theres also, I think, a lot of work that goes into hiding what your training data was essentially. Like trying the model to not give away the sources because you have legal reasons.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4459"
+(01:14:19)
+The other thing, to be complete, is that some people are trying to train on only licensed data, where Common Crawl is a scrape of, like, the whole internet. So if I, I host multiple websites, Im happy to have them train language models, but Im not explicitly licensing what governs it. And therefore, this lic- like Common Crawl is largely unlicensed, which means that your consent really hasnt been provided for how to use the data. Theres another idea where you can train language models only on data that has been licensed explicitly, so that the kind of governing contract is provided, and Im not sure if Apertis is the copyright thing or the license thing.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4493"
+(01:14:53)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4493"
+(01:14:53)
+I know that the reason that they did it was for an EU compliance thing, where they wanted to make sure that their model fit one of those checks.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4501"
+(01:15:01)
+Mm-hmm. And so on that note, also, for example, theres also the distinction between the licensing. So some people, like you said, they just purchase the license. Lets say they buy a book online, lets say an Amaz- Amazon Kindle book, or lets say a Manning book or something, and then use that in the training data, and that is like the gray zone cause you paid for the content and you might wanna train it. But then there are also restrictions where even that shouldnt be allowed. And so that, that is like where, where it gets a bit fuzzy.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4528"
+(01:15:28)
+And yeah, I think that is right now still a hot topic, and also big companies like OpenAI, they approached private companies for their proprietary data and private companies, they become more and more, lets say protective of their data because they know, Okay, this is gonna be my mode in, in a few years. And I do think thats like the interesting question, where if LLMs become more commoditized, and I think a lot of people learn about LLMs, there will be a lo- a lot more people able to train LLMs. Of course, there are infrastructure challenges.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4560"
+(01:16:00)
+But if you think of big industries like pharmaceutical industries, law, finance industries, I do think they, at some point, will hire people from other frontier labs to build their in-house models on their proprietary data, which will be then, again, another unlock with pre-training that is currently not there. Because even if you wanted to, you cant get that data. You cant get access to clinical trials most of the time and these types of things. So, I, I do think scaling, in that sense, might be still pretty much alive if you also look in domain-specific applications, because we are still right now, in this year, just looking at general purpose LLMs on, on ChatGPT, Anthropic and so forth.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4597"
+(01:16:37)
+They are just general purpose, theyre not even, I think, scratching the surface of what an LLM can do if it is really specifically trained and designed for a specific task.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4607"
+(01:16:47)
+I think on the data thing some- this is one of the things where like this happened in 2025, and we totally forget it, is Anthropic lost in court and was owed $1.5 billion to authors. Anthropic, I think, bought thousands of books and scanned them and was cleared legally for that because they bought the books, and that is kind of going through the system. And then the other side, they also torrented some books, and I think this torrenting was the path where the court said that they were then culpable to pay this billions of dollars to authors, which is just like such a mind-boggling lawsuit that kinda just came and went.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4637"
+(01:17:17)
+Like, that is so much money-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4639"
+(01:17:19)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4639"
+(01:17:19)
+from the VC ecosystem.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4642"
+(01:17:22)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4642"
+(01:17:22)
+These are court cases that will define the future of human civilization, cause l- its clearly that data drives a lot of this, and theres this very complicated human tension of I mean, you can empathize. Youre both authors.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4653"
+(01:17:33)
+Yeah. Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4654"
+(01:17:34)
+And theres some degree to which, I mean, you put your heart and soul and your, your sweat and-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4659"
+(01:17:39)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4659"
+(01:17:39)
+tears into the, the writing that you do. It feels a little bit like theft for somebody to train your data without giving you credit.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4669"
+(01:17:49)
+And there are, like Nathan said, also two layers to it. Someone might buy the book and then train on it, which is could be argued fair or not fair, but then there are the three straight-up companies who use pirated books where its not even compensating the author. Its, that is, I think, where people got a bit angry about it specifically, I would say.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4686"
+(01:18:06)
+Yeah, but there has to be some kind of compensation scheme. This is like moving towards-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4690"
+(01:18:10)
+Yep
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4691"
+(01:18:11)
+towards something like Spotify streaming did-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4693"
+(01:18:13)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4693"
+(01:18:13)
+originally for music. You know, what does that-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4695"
+(01:18:15)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4695"
+(01:18:15)
+compensation look like? You have to define those kinds of models. You have to think through all of that. One other thing I think people are generally curious about, Id love to get your thoughts, as LLMs are used more and more, if you look at even arXiv, but GitHub, more and more of the data is generated by LLMs. What do you do in that kind of world? Is How big of a problem is that?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4718"
+(01:18:38)
+Largest problems the infrastructure and systems, but from an AI point of view, its kind of inevitable.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4725"
+(01:18:45)
+So its basically LLM-generated data thats curated by humans essentially, right?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4729"
+(01:18:49)
+Yes, and I think that a lot of open source contributors are legitimately burning out. If you have a popular open source repo, somebodys like, Oh, I wanna do open source AI. Its good for my career, and they just vibe code something just, and they throw it into the f- you might get more of this-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4744"
+(01:19:04)
+I, I have a-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4745"
+(01:19:05)
+than I do.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4745"
+(01:19:05)
+Yeah, so I have actually- a case study here. Um-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4749"
+(01:19:09)
+Yeah
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4749"
+(01:19:09)
+I have a, a repository called ml-extend that I developed as a student, around 15 years, 10 years ago, and it is a reasonably popular library still for certain algorithms, I think especially like frequent data mining stuff. And there was recently I think two or three people who submitted a lot of PRs in a very short amount of time. I do think LLMs have been involved in submitting these PRs. Me, as the maintainer, there are two things. First, Im a bit overwhelmed. Like I dont have time to read through it because especially its an older library, that is not a priority for me. At the same time, I kind of also appreciate it because I think something people forget is its not just using the LLM.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4786"
+(01:19:46)
+Theres still a human, you have a human layer that verifies something, and and that is in a sense also how data is labeled, right? So thats like one of the most expensive things is get- getting labeled data for RL back in human feedback phases. And, and this is kind of like that where i-It goes through phases, and then you get actually higher quality data out of it, you know. And so I- I dont mind it in a sense. It- it can feel overwhelming, but I do think there is also value in it.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4811"
+(01:20:11)
+It feels like theres a fundamental difference between raw LLM-generated data and LLM-generated data with human in the loop-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4819"
+(01:20:19)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4819"
+(01:20:19)
+that does some kind of verification, even if that verification is a small percent-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4823"
+(01:20:23)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4823"
+(01:20:23)
+of the lines of code.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4825"
+(01:20:25)
+Mm-hmm. I think this goes with anything on like where the people think also sometimes, Oh, yeah. I can just use an LLM to learn about XYZ, which is true. You can, but there might be a person who is an expert who might have used an LLM to write su- su- specific code. There is kind of like this human work that went into it to make it nice and throwing out the not so nice part to make it To kind of like pre-digest it for you and that saves you time. And I think thats its that- thats the value-add where you have someone filtering things or even using the LLMs correctly. I think this is still labor that- that you get for free with you. For example, read an article. Lets say a Substack article.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4865"
+(01:21:05)
+I could maybe ask an LLM to give me opinions on that, but I wouldnt even maybe know what to ask. And I think there is still value in reading that article compared to me going to the LLM because you are the expert. You select what knowledge is actually spot on, should be included, and you give me this very This- this executive summary. An- and this is kind of a huge value-add because now I dont have to waste three, five hours to go through this myself, maybe get some incorrect information and so on. And so I think thats also where the future still is for writers even though there are LLMs that expert Can kind of like save you time.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4903"
+(01:21:43)
+Its kinda fascinating to actually watch and did- Im sure you guys do this, but for me to look at the difference between a summary and the original content. Even if its a page-long summary of a page-long content, its interesting to see how the summary, LLM-based summary, takes the edge off. Like what- what is the signal it removes from the thing?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4927"
+(01:22:07)
+The voice is what I talk about a lot.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4929"
+(01:22:09)
+Voice? Well, voice Uh, I would love to hear what you mean by voice thats really powerful, but sometimes theres like literally insights.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4935"
+(01:22:15)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4936"
+(01:22:16)
+Like in removing an insight, youre actually fundamentally changing the meaning of the thing. So Im continuously disappointed how bad LLMs are at really getting to the core insights, which is what a great summary does. Yet even if you go and I have these extensive extremely elaborate prompts where Im like really trying to dig for the insights, and its still not quite there which, um I mean, thats a whole deep philosophical question about what is human knowledge and wisdom and what does it mean to be insightful and so on. But when you talk about the voice, what do you mean?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4972"
+(01:22:52)
+So when I write, I think a lot of what Im trying to do is take what you think as a researcher which is very raw. Which a researcher is trying to encapsulate an idea at the frontier of their understanding and theyre trying to put what is a feeling into words. And I think that my writing, I try to do this as the writing which makes it come across as raw but also high information in- in a way that is like some people will get it and some wont. And thats kind of the nature of research.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4998"
+(01:23:18)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=4999"
+(01:23:19)
+And I think this is something that language models dont do well. Particularly, theyre all trained with this reinforcement learning from human feedback which is designed to take feedback from a lot of people and in a way average how the model behaves from this.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5010"
+(01:23:30)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5010"
+(01:23:30)
+And I think that theres Its going to be hard for a model to be very incisive when theres that sort of filter in it. And I think this is kind of a wonderful fundamental problem for researchers in RLHF is like this provides so much utility in making the models better, but also the f- problem formulation is kind of like There- theres this knot in it that you cant get past. So thats what I think of is like these language models dont have this prior in their deep expression that theyre trying to get at. I dont think it- its impossible to do. I think theres stories of models that really shock people. Like, I think of Like, I would love to have tried Bing Sydney and does like Does that have more voice? Cause it would so often go off the rails on people and effect
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5053"
+(01:24:13)
+And what- what is historically obviously a scary way like telling a reporter to leave his wife is a crazy model to potentially put in general general adoption. But thats kind of like a trade-off like is this RLHF process like in some ways adding limitations.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5068"
+(01:24:28)
+Thats a terrifying place to be as one of these frontier labs and- and companies cause millions of people are using them.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5075"
+(01:24:35)
+There was a lot of backlash last year with the GPT-4O getting removed and Ive personally never used the model but Ive talked to people at OpenAI where theyre to the point where they like get emails from users that might be detecting subtle di- differences in the deployments in the middle of the night. And they email them and theyre like, My friend is different. And they like find these peop- employees emails and send them things because they are so attached to this set What is a set of model weights and a configuration that is deployed to the users. We see this with TikTok. You open it I- I dont use TikTok. Supposedly, in like five minutes the mod- algorithm gets you. Its like its locked in. And I dont s- like those are language models doing recommendations.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5115"
+(01:25:15)
+Like I think there are ways that you can do this with a language model. Within like five minutes of chatting with it, the model just gets you. And that is something that people arent really ready for. Like I think that if- like kid- like dont give that to kids. Like dont give that to kids-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5128"
+(01:25:28)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5128"
+(01:25:28)
+at least until we know whats happening.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5130"
+(01:25:30)
+But there- theres also going to be this mechanism Whats going to happen with these LLMs as theyre used more and more Unfortunately, the nature of the human condition is such that people commit suicide. And so what journalists would do is they will report extensively on the people who commit suicide. And they would very likely link it to the LLMs because they have that data about the conversations. If youre really struggling in your life, if youre depressed, if youre thinking about suicide, youre going to probably talk to LLMs about it. And so what journalists will do is they will say, Well, the suicide was committed because of the LLM. And thats going to lead to the companies- because of legal issues and so on, more and more and more taking the edge off of the LLM.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5173"
+(01:26:13)
+So its going to be as generic as possible. Its so difficult to operate in this space because, of course, you dont want an LLM to cause harm to humans at that level, but also, this is also the nature of the human experience, is to have a rich conversation, a fulfilling conversation, one that challenges you from which you grow. You need that edge. And that- that- thats something extremely difficult for AI researchers on the RLHF front to actually have to solve cause youre actually dealing with the human condition.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5207"
+(01:26:47)
+Like, a lot of researchers at these companies are so well-motivated, and, definitely, like, so anthropic and open AI are culturally so want to do good through this for the world. And there is- Its such a, like Im like, Ooh, I dont wanna work on this, because, on the one hand, a lot of people see AI as a health ally, as somebody they can talk to about their health confidentially, but then it bleeds all the way into this, like, talking about mental health and things, where, at this, its heartbreaking that this will push, like, be the thing where somebody goes over the edge, but other people might be saved.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5242"
+(01:27:22)
+And Im like, I dont Like, theres things that as a researcher training models, its like, I dont wanna train image generation models and release them openly cause I dont wanna enable somebody to have a tool on their laptop that can harm other people.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5254"
+(01:27:34)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5254"
+(01:27:34)
+Like, I dont have the infrastructure in my company to do that safely. But, like Like, theres a lot of areas like this where its just, it needs people that will approach it with the complexity and just kind of conviction of, like, its just such a hard problem.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5267"
+(01:27:47)
+But also, we as a society, as users of these technologies, need to make sure that were having the complicated conversation about it versus just fearmongering. Big tech is- is causing harm to humans, or stealing your data, all that kind of stuff. Like, its- its more complicated than that. And youre right. Theres a very large number of people inside these companies, many of which you know, many of which I know, that deeply care about helping people. They are considering the full human experience of people from across the world, not just Silicon Valley. People across the United States, people across the world, what that means, what their needs are.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5299"
+(01:28:19)
+Its really difficult to design this one system that is able to help all these different kinds of people across the different age groups, cultures, mental states, mental conditions, all that kind of stuff.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5311"
+(01:28:31)
+I wish that the timing of AI was different with the relationship of big tech to the average person. So, like, big techs reputation was so low, and with how AI is so expensive, its, like, inevitably gonna be a big tech thing, where it takes so many resources and people say the US is, quote-unquote, betting the economy on AI with this build-out. And its, like, to have these be intertwined at the same time is just- makes for such a hard communication environment. It would be good for me to go talk to more people in the world that hate big tech and see AI as a continuation of this.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5342"
+(01:29:02)
+And one of the things you actually recommend One of the antidotes that you- you talk about is to find agency in this whole system. As opposed to sort of sitting back in a powerless way and consuming the AI slop as it quickly, rapidly takes over the internet. More fine agency by using AI to build stuff, build apps, build So, one, that actually helps you build intuition, but, two, its empowering because you- you can understand how it works, what the weaknesses are. It allows- It gives your voice power to say, like, This is fucked up. This is bad. This is bad use of the technology, and this is good use of technology. And youre more plugged into the system then, so you can understand it better and you can steer it better as- as a- as a consumer.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5388"
+(01:29:48)
+I think thats a good point you brought up agency. Instead of ignoring it and saying, Okay, Im not gonna use it, I think its probably long term healthier to say, Okay, its out there. I cant put it back. You know, like internet computers back then when they came out. How do I make best use of it, and how does it help me to up-level myself? The one thing I worry here, though, is, like, if you just fully use it for something you love to do, the- the thing you love to do is not- not- no longer there. And that could potentially, I feel, like, lead to burnout. For example, if I use an LM to do all my coding for me, now theres no coding. Im just managing something that is coding for me.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5424"
+(01:30:24)
+Two years, lets say, later, if I just do that eight hours a day, have something code for me, do I feel fulfilled still? Like, is this like Yeah, I mean, is this, like, hurting me in terms of being excited about my job, excited about what Im doing? Am I still proud to build something?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5443"
+(01:30:43)
+So theres on that topic of enjoyment, its- its quite interesting. We should just throw this in there, that theres this recent survey of about 791 professional developers, professional meaning 10 plus years of experience.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5455"
+(01:30:55)
+Thats a long time.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5457"
+(01:30:57)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5458"
+(01:30:58)
+As a junior developer?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5461"
+(01:31:01)
+Yeah, in this day and age. So theres- theres also on many fronts are surprising. So they break it down by junior and senior developers. But, I mean, it just shows that both junior and senior developers use AI-generated code in code they ship. So this is not just for fun, sort of intermediate kind of learning things. This is code they ship. And so 25%, like, most of them use around 50% or more. And whats interesting is, for the category of over 50% of your code that you ship is AI generated, senior developers are much more likely to do so. But you dont want AI to take away the thing you love.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5505"
+(01:31:45)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5506"
+(01:31:46)
+I think this speaks to my experience, these particular results Im about to say. So together, about 80% of people find it either somewhat more enjoyable or significantly more enjoyable to use AI as part of the work.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5519"
+(01:31:59)
+I think it depends on the task. From my personal usage, for example, I have a website where I sometimes tweak things on the website. I personally dont enjoy this. So in that sense, if the AI can help me to implement something on my website, Im all here for it. Its- its great.But then, at the same time, when I solve a complex problem, well, if theres a bug, and I hunt this bug, and I find the bug, its the best feeling in the world. Its like you get so much joy, like, oh, its like you feel, like, great. But now if you dont even think about thinking about the bug, you just go directly to the LLM, well, you never have this kind of feeling, right?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5558"
+(01:32:38)
+But then there could be the middle ground where, well, you try yourself, you cant find it, you use the LLM, and then you dont get frustrated because it helps you and you move on to something that you enjoy. And so I think looking at these statistics, I think also the difference is w- what is not factored in, its averaging over all the different scenarios, where we dont n- so we dont know if its for the core task or if its for something mundane that people would not have enjoyed otherwise. So, in a sense, AI is really great for doing mundane things that take a lot of work.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5589"
+(01:33:09)
+So for example, my wife the other day she has like a podcast for like book like book discussions, a book club, and she was like transferring the show notes from Spotify to YouTube, and then the links somehow broke. And she had in some episodes, because it is so many books, like 100 links or something, and it would have been really painful to go in there and fix each link manually. And so I suggested, Hey, lets try ChatGPT. We copied the text into ChatGPT, and it fixed them. And in- instead of two hours going from link to link fixing that, you know, it made that type of work much more seamless. There was no frustration fixed. I think everyone has the use case where AI is useful for something like that, that would be really boring, really mundane.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5631"
+(01:33:51)
+I, for me personally, since were talking about coding and you mentioned debugging would A lot of the source of the enjoyment for me on the, more on the cursor side than the cloud code side, is the, I have a friend, I have a co- whats that called? A pair programmer. Like its less l- lonely. You- you made debugging sound like this great joy.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5655"
+(01:34:15)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5655"
+(01:34:15)
+No, I would say, I would say debugging is like a drink of water after youve been going through a desert for-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5661"
+(01:34:21)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5661"
+(01:34:21)
+for, for, for days . So, like, youre- you skip the whole desert part where youre suffering. So, like, there, sometimes its nice to have a friend whos- whos cant really find the bug, but can give you some intuition about the code, and youre together the, with that friend going through the desert, and then together find that drink of water. So, at least for me maybe it speaks to the loneliness of the programming experience. Its- that is a source of joy.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5688"
+(01:34:48)
+Its maybe also related to delayed gratification. Im a person who, you know even as a kid, I liked the idea of Christmas presents, having them, getting them, better than actually getting the presents. I would look forward to the day I get the presents, but then its over and Im disappointed. And maybe its something like also with, lets say, food. I think food tastes better when youre really hungry and- and with, yeah, youre right with debugging, it is not always, you know great. Its like often frustrating, but um, then if you can solve it, then its great. But theres also like a sweet Goldilocks zone where if its too hard, then its, you know, m- wasting your time. But I think that is another challenge, though, how will people learn?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5733"
+(01:35:33)
+I mean, the chart we looked at we saw that more senior developers are shipping more AI generated code than the junior ones, and I think its very interesting because intuitively you would think its the junior developers because they dont know, lets say, how to do the thing yet because they are more junior, and so they use AI to do that thing. It could either mean the AI is not good enough yet to solve that task, but it could also mean experts are more effective at using it. They know where and better how to use it and review the code and they trust the code then more. And so I think one issue in the society in the future will be though, how do you become an expert if you never try to do the thing yourself?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5772"
+(01:36:12)
+And I think one way, its always like, for me, how I learned is by trying things myself. Like math textbooks, if you look at the solutions, yeah, you learn something, but I think you learn actually better if you try first and then you appreciate the solution differently because you know how to put it into your mental framework. And if LMs are here all the time, would you actually go through the length at struggling? Would you be willing to struggle? Because struggle is not nice, right? I mean, its struggling, and if you use the LM to do everything, at some point you will never really take the next step and then you will maybe not get that unlock that you would get as an expert using an LLM.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5813"
+(01:36:53)
+So, its like, you know, its like, I think theres like a Goldilocks sweet spot where maybe- maybe the trick here is you make dedicated offline time where you study two hours a day, and the rest of the day use LMs. But I- I think its important also for people to still invest in themselves, in my opinion, to not just, you know, LLM everything.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5830"
+(01:37:10)
+Yeah, there is an we together as a civilization, that we each individually have to find that Goldilocks zone.

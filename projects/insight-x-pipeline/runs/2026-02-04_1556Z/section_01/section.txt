@@ -1,0 +1,80 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=117"
+(00:01:57)
+So I think one useful lens to look at all this through is the DeepSeek, so-called DeepSeek moment. This happened about a year ago in January 2025, when the open weight Chinese company DeepSeek released DeepSeek R1 that I think its fair to say surprised everyone with near or at state-of-the-art performance, with allegedly much less compute for much cheaper. And from then to today, the AI competition has gotten insane, both on the research level and the product level. Its just been accelerating.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=152"
+(00:02:32)
+Lets discuss all of this today, and maybe lets start with some spicy questions if we can. Whos winning at the international level? Would you say its the set of companies in China or the set of companies in the United States? And Sebastian, Nathan, its good to see you guys. So Sebastian, who do you think is winning?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=173"
+(00:02:53)
+So winning is a very broad you know, term. I would say you mentioned the DeepSeek moment, and I do think DeepSeek is definitely winning the hearts of the people who work on open weight models because they share these as open models. Winning, I think, has multiple timescales to it. We have today, we have next year, we have in 10 years. One thing I know for sure is that I dont think nowadays, 2026, that there will be any company who is, lets say, having access to a technology that no other company has access to. And that is mainly because researchers are frequently changing jobs, changing labs. They rotate. So I dont think there will be a clear winner in terms of technology access.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=217"
+(00:03:37)
+However, I do think there will be the differentiating factor will be budget and hardware constraints. So I dont think the ideas will be proprietary, but the way, or the resources that are needed to implement them. And so I dont see currently a take-it-all scenario where a winner takes it all. I cant see that at the moment.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=239"
+(00:03:59)
+Uh, Nathan, what do you think?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=240"
+(00:04:00)
+You see the labs put different energy into what theyre trying to do, and I think to demarcate the point in time when were recording this the hype over Anthropics Claude Opus 4.5 model has been absolutely insane, which is just I mean, Ive used it and built stuff in the last few weeks, and its Its almost gotten to the point where it feels like a bit of a meme in terms of the hype. And its kind of funny because this is very organic, and then if we go back a few months ago, we can get the release date, and the notes as Gemini 3 from Google got released, and it seemed like the marketing and just, like, wow factor of that release was super high. But then at the end of November, Claude Opus 4.5 was released and the hype has been growing, but Gemini 3 was before this.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=284"
+(00:04:44)
+And it kind of feels like people dont really talk about it as much, even though when it came out, everybody was like, this is Geminis moment to retake kind of Googles structural advantages in AI. And Gemini 3 is a fantastic model, and I still use it. Its just kind of differentiation is lower. And I agree with Sebastian, what youre saying with all these, like, the idea space is very fluid, but culturally Anthropic w- is known for betting very hard on code, which is Claude code thing, is working out for them right now. So I think that even if the ideas flow pretty freely, so much of this is bottlenecked by human effort and kind of culture of organizations where Anthropic seems to at least be presenting as the least chaotic.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=323"
+(00:05:23)
+Its, its, its a bit of an advantage, and if they can keep doing that for a while. But on the other side of things, theres a lot of ominous technology from China where theres way more, more labs than DeepSeek. So DeepSeek kicked off a movement within China, I say kind of similar to how ChatGPT kicked off a movement in the US where everything had a chat bot. Theres now tons of tech companies in China that are releasing very strong frontier open weight models, to the point where I would say that DeepSeek is kind of losing its crown as the preeminent open model maker in China, and the likes of Z.AI with their GLM models, Minimaxs models Kimi Moonshot, especially in the last few months, has shown more brightly.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=364"
+(00:06:04)
+The new DeepSeek models are still very strong, but thats kind of a It, it could look back as a big narrative point where 2025 DeepSeek came and then all And it kind of provided this platform for way more Chinese companies that are releasing these fantastic models to kind of have this new type of operation. So these models from these Chinese companies are open weights, and depending on this trajectory of business models that these American companies are doing could be at risk. But currently, a lot of people are paying for AI software in the US, and historically in China and other parts of the world, people dont pay a lot for software.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=397"
+(00:06:37)
+So some of these models like DeepSeek have the love of the people because they are open weight. How long do you think the Chinese companies keep releasing open weight models?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=407"
+(00:06:47)
+I would say for a few years. I think that, like in the US, theres not a clear business model for it. I have been writing about open models for a while, and these Chinese companies have realized it. So I get inbound from some of them. And theyre smart and realize the same constraints, which is that a lot of US top tech companies and other IT companies wont pay for a API subscription to Chinese companies for security concerns. This has been a long-standing habit in tech, and the people at these companies then see open weight models as an ability to influence and take part of a huge growing AI expenditure market in the US. And theyre very realistic about this, and its working for them.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=444"
+(00:07:24)
+And I think that the government will see that that is building a lot of influence internationally in terms of uptake of the technology, so theres gonna be a lot of incentives to keep it going. But building these models and doing the research is very expensive, so at some point, I expect consolidation, but I dont expect that to be a story of 2026, where there will be more open model builders throughout 2026 than there were in 2025. And a lot of the notable ones will be in China.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=470"
+(00:07:50)
+You were gonna say something?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=471"
+(00:07:51)
+Yes. You mentioned DeepSeek losing its crown. I do think to some extent, yes, but we also have to consider though, they are still, I would say, slightly ahead. And the other ones, its not that DeepSeek got worse, its just like the other ones are using the ideas from Deep- DeepSeek. For example, you mentioned KIMI, same architecture, theyre training it. And then again, we have this leapfrogging where they might be at some point in time a bit better because they have the more recent model. And I think this comes back to the f- the fact that there wont be a clear winner. Its w- it will just be like, like that. One person releases something, the other one comes in, and the, the recent The most recent model is probably always the best model.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=510"
+(00:08:30)
+Yeah. Well also see the Chinese companies have different incentives. So, like, DeepSeek is very secretive, whereas some of these startups are like the MiniMaxs and z.AIs of the world. Those two literally have filed IPO paperwork, and theyre trying to get Western mindshare and do a lot of outreach there. So I dont know if these incentives will kind of change the model development cause DeepSeek famously is built by a hedge fund-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=532"
+(00:08:52)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=533"
+(00:08:53)
+Highflyer Capital, and we dont know exactly what they Like, we dont know what they use the models for or if they care about this.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=539"
+(00:08:59)
+Theyre secretive in terms of communication, theyre not secretive in terms of the technical reports that describe how their models work. Theyre still open on that front. And we should also say on the Opus 4.5 hype, theres the layer of something being the darling of the X echo chamber, on Twitter echo chamber, and the actual amount of people that are using the model. I think its probably fair to say that ChatGPT and Gemini are focused on the broad user base that just want to solve problems in their daily lives, and that user base is gigantic. So the hype about the coding may not be representative of the actual use.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=578"
+(00:09:38)
+I would say also a lot of the usage patterns are, like you said, name recognition, brand and, and stuff, but also muscle memory almost, where you know, like, ChatGPT has been around for a long time. People just got used to using it, and its kind of like almost like a flywheel, they recommend it to other users and that stuff. One interesting point is also the customization of LLMs. For example, ChatGPT has a memory feature, right? And so you may have a subscription and you use it for personal stuff, but I dont know if you want to use that same thing at work. You know, because its a boundary between private and work. If youre working at a company, they might not allow that or you may not want that.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=616"
+(00:10:16)
+And I think thats also an interesting point where you might have multiple subscriptions. One, one is just clean code. It keeps N- has nothing of your personal images that you, or hobby projects in there. Its just like the work thing. And then the other one is your personal thing. So I think thats also something where two different use cases, and it doesnt mean you only have to have one. Its, its I think the future is also multiple ones.

@@ -1,0 +1,220 @@
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1709"
+(00:28:29)
+All right. So we just talked about a bunch of the closed-weight models. Lets talk about the open ones. So tell me about the landscape of open LLM models. Which are interesting ones? Which stand out to you and why? We already mentioned DeepSeek.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1724"
+(00:28:44)
+Do you wanna see how many we can name off the top of our head?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1727"
+(00:28:47)
+Yeah, yeah. Without looking at notes.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1728"
+(00:28:48)
+DeepSeek, Kimi, MiniMax, z.ai, Antlang. Were just going Chinese.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1736"
+(00:28:56)
+Yeah.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1737"
+(00:28:57)
+Lets throw in Mistral AI, Gemma, um-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1740"
+(00:29:00)
+Yeah
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1741"
+(00:29:01)
+GPT-OSS, the open source model by ChatGPT. Actually, NVIDIA Nemotron had a, or NVIDIA had a really cool one Nemotron 3. There, theres a lot of stuff especially at the end of the year. Qwen might be the one-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1752"
+(00:29:12)
+Oh, yeah. Qwen was the n- the obvious name I was gonna say. I was trying to get through the You can get at least 10 Chinese and at least 10 Western. I think that I mean, OpenAI released their first open model-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1761"
+(00:29:21)
+Mm. A long time
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1762"
+(00:29:22)
+since GPT-2. That was, when I, when I meant, talked, when I was writing about OpenAIs open model release, they were all like, Dont forget about GPT-2, which I thought was really funny cause its just such a different time. But GPT-OSS is actually a very strong model and does some things that the other models dont do very well. And I think that selfishly Ill promote a bunch of, like, Western companies. So both in the US and Europe have these, like, fully open models. So I work at Allen Institute for AI where weve been building OLMo, which releases data and code and all of this. And now we have actual competition for people that are trying to release everything so that other people can train these models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1797"
+(00:29:57)
+So theres the Institute for Foundation Models/LM360, which has, like, had their K2 models of various types. Apertus is a Swiss research consortium. Hugging Face has SmallLM, which is very popular. And NVIDIAs Nemotron has started releasing data as well. And then Stanfords Marin Community Project, which is kind of making it so theres a pipeline for people to open a GitHub issue and implement a new idea and then have it run in a stable language modeling stack.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1826"
+(00:30:26)
+So this space, that list was way smaller in 2024-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1831"
+(00:30:31)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1831"
+(00:30:31)
+so I think it was, like, just AI2. So thats a great thing for more people to get involved and to understand language models, which doesnt really have a, like, a Chinese company that is, has an analog. While Im talking, Ill say that the Chinese open language models tend to be much bigger and that gives them this higher peak performance as MoEs, where a lot of these things that we like a lot, whether it was Gemma and Nemotron, have tended to be smaller models from the US, which is, which is starting to change from the US and Europe. Uh, Mistral Large 3 came out, which was a giant MoE model, very similar to DeepSeek architecture in December. And then a startup, RCAI and both Nemotron have
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1870"
+(00:31:10)
+Nemotron and NVIDIA, have teased MoE models of the s- way bigger than 100 billion parameters-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1875"
+(00:31:15)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1876"
+(00:31:16)
+like this 400 billion parameter range coming in this, like, Q1 2026 timeline. So I think this kind of balance is set to change. this year, in terms of what people are using the Chinese versus US open models for. Which will be a, which Im personally s- like gonna be very excited to watch.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1892"
+(00:31:32)
+First of all, huge props for being able to name so many of these. Did you actually name LLaMA?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1898"
+(00:31:38)
+No.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1899"
+(00:31:39)
+I feel like
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1900"
+(00:31:40)
+RIP.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1901"
+(00:31:41)
+This was not on purpose.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1903"
+(00:31:43)
+RIP LLaMA.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1904"
+(00:31:44)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1905"
+(00:31:45)
+All right. Can you mention what are some interesting models that stand out? So you mentioned Qwen3 is, is, is obviously a standout.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1911"
+(00:31:51)
+So I would say the years almost book-ended by both DeepSeek Version 3 and R1. And then on the other hand, in December DeepSeek Version 3.2. Because what I like about those is they always have an interesting architecture tweak-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1923"
+(00:32:03)
+Mm-hmm
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1923"
+(00:32:03)
+that others dont have. But otherwise, if you wanna go with you know, like the familiar but really good performance, Qwen3 and like Nathan said, also, GPT-oss. And I think GPT-oss, whats interesting about it is kind of like the first public or like open weight model that was really trained with tool use in mind, which I do think is kind of a little bit of a paradigm shift where the ecosystem was not quite ready for it. So with tool use, I mean that the LLM is able to do a web search, to call a Python interpreter.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1952"
+(00:32:32)
+Mm-hmm.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1953"
+(00:32:33)
+And I do think this its a standout because I think its a huge unlock. Because one of the most common complaints about LLMs are, for example, hallucinations, right?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1963"
+(00:32:43)
+Mm-hmm.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1963"
+(00:32:43)
+And so, in my opinion, one of the best ways to solve hallucinations is to not try to always remember information or make things up. For math, why not use a calculator app or Python?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1974"
+(00:32:54)
+Mm-hmm.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=1974"
+(00:32:54)
+If I ask the LLM, Who won the, I dont know, soccer World Cup in 1998? Uh, instead of just trying to memorize, it could go do a search. I think mostly its usually still a Google search. So ChatGPT and GPT-oss, they would do a tool call to Google, maybe find the FIFA website. Find okay, it was France. It would get you that information r- reliably instead of just trying to memorize it. So I think its a huge unlock which I think right now is not fully utilized yet by the open source, open weight ecosystem. A lot of people dont use tool call modes because I think its first, its a trust thing. You dont wanna run this on your computer where it has access to tools, could wipe your hard drive or whatever. So you wanna maybe contain- containerize that.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2017"
+(00:33:37)
+But I do think, you know, that, that is like a really important step for the upcoming years to have this ability. Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2024"
+(00:33:44)
+So a few quick things. First of all, thank you for defining what you mean by tool use. I think thats a great thing to do in general for the concepts were talking about. Even things as sort of well-established as MOEs.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2037"
+(00:33:57)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2037"
+(00:33:57)
+You have to say that means mixture of experts and y- you kinda have to build up an intuition for people what that means, how its actually utilized, what are the different flavors. So w- what does it mean that theres just such an explosion of open models? Whats your intuition?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2053"
+(00:34:13)
+If youre releasing an open model, you want people to use it, is the first and foremost thing. And then after that comes things like transparency and trust. I think when you look at China, the biggest reason is that they want people around the world to use these models, and I think a lot of people will not. If you look outside of the US, a lot of people will not pay for software, but they might have computing resources where you can put a model on it and run it. I think there can also be data that you dont want to send to the cloud. So this, the, the number one thing is getting people to use models, use AI, or use your AI that might not be able to do it without having access to the model.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2086"
+(00:34:46)
+I guess we should state explicitly, so weve been talking about these Chinese models and open weight models. Oftentimes, the way theyre run is locally. So its not like youre sending your data to China or to whoever developed to Silicon Valley, whoever developed the model.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2104"
+(00:35:04)
+A lot of American startups make money by hosting-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2106"
+(00:35:06)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2107"
+(00:35:07)
+these models from China and selling them, selling to- its called like selling tokens, which means somebody will call the model to do some see- some piece of work.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2115"
+(00:35:15)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2115"
+(00:35:15)
+I think the other reason is for US companies like ChatG- OpenAI is so GPU deprived. Like theyre so, theyre at the limits of the GPUs. Whenever they make a release, theyre always talking about like, our GPUs are hurting. And I think theres like again, one of these like GPT-oss release sessions, Sam Altman said like, Oh, were releasing this because we can use your GPUs. We dont have to use, we dont have to use our GPUs and OpenAI can still get distribution out of this, which is a- another very real thing, cause it doesnt cost them anything.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2143"
+(00:35:43)
+And for the user, I think also, I mean, there are users who just use the model locally how they would use ChatGPT. But also for companies I think its a huge unlock to have these models because you can customize them, you can train them, you can add post-training add more data. Like specialize them into, lets say, law, medical models, whatever you have. And the appeal, you mentioned LLaMA, the appeal of the open weight models from China is that the open weight models are also, the licenses are even friendlier. I think they are just unrestricted open source licenses where if we use something like LLaMA or Gemma, there are some strings attached. I think its like an upper limit in terms of how many users you have.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2181"
+(00:36:21)
+And then if you exceed, I dont know, so and so many million users, you have to report your finance situation to, lets say, Meta or something like that. And I think while it is a free model, but there are strings attached and people do like s- things where strings are not attached. So I think thats also one of the reasons besides performance, why the open weight models from China are so popular, because you, you can just use them. Theres no, theres no catch in that sense. Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2206"
+(00:36:46)
+The ecosystem has gotten better on that front, but mostly downstream of these new providers providing such open licenses. That was funny when you pulled up Perplexity and said, Kimi-K2 Thinking hosted in the US. Which is just like an exact Ive never seen this, but its an exact example of what were talking about where people are sensitive to this. But Kimi-K2 Thinking and Kimi-K2 is a model that is very popular. People say that has very good, like creative writing and also in doing some software things. So its just these little quirks that people pick up on with different models that they like.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2234"
+(00:37:14)
+What are some interesting ideas that some of these models have explored that you can speak to, like that are particularly interesting to you?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2241"
+(00:37:21)
+Maybe we can go chronologically. I mean, there was, of course, DeepSeek. Um, DeepSeek R1 that came out in January of 2023, if we just focus on 2025. However, this was based on DeepSeek Version 3, which came out the year before in December 2024. There are multiple things on the architecture side. What is fascinating is you- you can still I mean, thats what I do with my from-scratch coding projects. You can still start with GPT-2, and you ge- can add things to that model to make it into this other model. So it- its all still kind of like the same lineage, the same It is a very close relationship between those. But top of my head, DeepSeek, what was unique there is the Mixture of Ex- uh, not- I mean, they were not inventing Mixture of Experts.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2280"
+(00:38:00)
+We can maybe talk a bit more what Mixture of Experts means. But just to list these things first before we dive into detail. Mixture of Experts, but then they also had a multi-head latent attention, which is a tweak to the attention mechanism, where this was, I would say, 2025, the main distinguishing factor be- kind of between these open weight models. Different tweaks to make inference or KV cache size. We can also define KV cache in a few moments. But to kind of make it more economical to have long context, to shrink the KV cache size. So what are tweaks that we can do? And most of them focused on the attention mechanism. There is multi-head latent attention in- in DeepSeek. There is a group query attention, which is still very popular.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2324"
+(00:38:44)
+Its not invented by any of those models. It goes back a few years. But that- that would be the other option. Sliding window attention, I think OLMo-3 uses it if I remember correctly. So there are, like- like these different tweaks that make the models different. Otherwise I put them all together in an article once, where I just compared them. They are very surprisingly similar. Its just different numbers in terms of how many repetitions of the transformer block you have in the center. And- and, like, just little, little knobs that people tune. But- but whats so nice about it is its- it- it works no matter what. You can tweak things. You can move the normalization layers around to get some performance gains.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2363"
+(00:39:23)
+And OLMo is always very good in ablation studies, showing what actually what it does to the model if you move something around. Ablation studies, does it make it better or worse? But there are so many, lets say, ways you can implement a transformer and make it still work. The big ideas that are still prevalent is Mixture of Experts, multi-head latent attention sliding window attention, group query attention. And then at the end of the year, we saw a focus on making the attention mechanism scale lineally with inference token prediction. So there were QuEN3-neXt, for example, which added a gated delta net. Its- its like kind of like inspired by state space models, where you have a fixed state that you keep updating.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=2403"
+(00:40:03)
+But it makes essentially this attention cheaper, or it replaces attention with a cheaper operation.

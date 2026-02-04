@@ -1,0 +1,119 @@
+[
+  {
+    "insight": "Codex offers a balance of assistance without full automation, appealing to those who prefer control.",
+    "why_it_matters": "For developers who are not ready to relinquish control, Codex serves as a supportive tool rather than a replacement.",
+    "evidence_quote": "Codex is kind of, like, right now, for me, like, the sweet spot where it is helping me, but it is not taking completely over.",
+    "evidence_timestamp": "00:22:03",
+    "tags": [
+      "Codex",
+      "automation",
+      "control"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Building an LLM from scratch is a highly effective learning method for understanding coding intricacies.",
+    "why_it_matters": "This hands-on approach ensures a deeper comprehension of underlying principles and eliminates misunderstandings.",
+    "evidence_quote": "Building an LLM from scratch is a lot of fun... you know it's correct.",
+    "evidence_timestamp": "00:24:27",
+    "tags": [
+      "LLM",
+      "learning",
+      "hands-on"
+    ],
+    "novelty": 4,
+    "usefulness": 5
+  },
+  {
+    "insight": "Different strategies for using LLMs can cater to individual learning preferences.",
+    "why_it_matters": "Adapting the use of LLMs to personal workflows can optimize learning and retention, making them more effective tools.",
+    "evidence_quote": "I suggest doing it in multiple passes... for me, it's more structured this way.",
+    "evidence_timestamp": "00:25:54",
+    "tags": [
+      "LLM",
+      "learning strategies",
+      "personalization"
+    ],
+    "novelty": 3,
+    "usefulness": 5
+  },
+  {
+    "insight": "Cloud Code can automate tedious tasks, freeing developers to focus on higher-level work.",
+    "why_it_matters": "This efficiency can dramatically reduce the time spent on routine tasks, allowing for more innovation.",
+    "evidence_quote": "Claude was just like, Yeah, I've made use of that data, no problem. And I was like, That would’ve taken me days.",
+    "evidence_timestamp": "00:28:19",
+    "tags": [
+      "automation",
+      "efficiency",
+      "innovation"
+    ],
+    "novelty": 3,
+    "usefulness": 5
+  },
+  {
+    "insight": "Using both Cursor and Cloud Code provides complementary benefits for programming.",
+    "why_it_matters": "This dual approach allows developers to balance control with automation, catering to different aspects of the coding process.",
+    "evidence_quote": "I use basically half-and-half Cursor and Cloud Code, because they're... fundamentally different experience and both useful.",
+    "evidence_timestamp": "00:21:38",
+    "tags": [
+      "Cursor",
+      "Cloud Code",
+      "programming"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  },
+  {
+    "insight": "Cloud Code promotes a macro-level approach to programming, which can enhance skill development.",
+    "why_it_matters": "This method encourages thinking in broader design spaces rather than getting lost in minute details, which can foster creativity.",
+    "evidence_quote": "You're... just guiding it at this macro level, which I think is another way of thinking about the programming process.",
+    "evidence_timestamp": "00:22:29",
+    "tags": [
+      "Cloud Code",
+      "skill development",
+      "macro thinking"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  },
+  {
+    "insight": "Using multiple AI tools side by side can enhance understanding and efficiency in coding.",
+    "why_it_matters": "This practice allows developers to compare outputs and leverage the strengths of different models for better results.",
+    "evidence_quote": "You can have Cloud Code open, you can have Cursor open, you can have VSCode open, and you can select the same models on all of them.",
+    "evidence_timestamp": "00:23:18",
+    "tags": [
+      "AI tools",
+      "efficiency",
+      "comparison"
+    ],
+    "novelty": 2,
+    "usefulness": 5
+  },
+  {
+    "insight": "The use of LLMs can significantly enhance the programming experience by increasing 'aha' moments.",
+    "why_it_matters": "This can lead to more effective learning and problem-solving, making coding more enjoyable and productive.",
+    "evidence_quote": "The rate of aha moments for me in a small scale is really high with LLMs.",
+    "evidence_timestamp": "00:25:48",
+    "tags": [
+      "LLM",
+      "learning",
+      "aha moments"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  },
+  {
+    "insight": "Cloud Code offers a more engaging and user-friendly interface compared to Codex.",
+    "why_it_matters": "A better user experience can lead to increased productivity and enjoyment in coding tasks.",
+    "evidence_quote": "Claude Code... just feels kind of warm and engaging, where Codex can often be... rough around the edges.",
+    "evidence_timestamp": "00:27:45",
+    "tags": [
+      "Cloud Code",
+      "Codex",
+      "user experience"
+    ],
+    "novelty": 2,
+    "usefulness": 4
+  }
+]

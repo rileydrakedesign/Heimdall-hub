@@ -1,0 +1,742 @@
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5836"
+(01:37:16)
+Yeah.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5836"
+(01:37:16)
+And in the programming context as developers. Now, weve had this fascinating conversation that started with pre-training and mid-training. Lets get to post-training. A lot of fun stuff in post-training. So, what are some of the interesting ideas in post-training?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5851"
+(01:37:31)
+The biggest one from 2025 is learning this reinforcement learning with verifiable rewards. You can scale up the training there, which means doing a lot of this kind of iterative generate grade loop, and that lets the models learn both interesting behaviors on the tool use and software side. This could be searching, running commands on their own and seeing the outputs, and then also that training enables this inference time scaling very nicely. And it just turned out that this paradigm was very nicely linked in this, where its this kind of RL training enables inference time scaling. But inference time scaling could have been found in different ways. So, it was kind of this perfect storm of the models change a lot, and the way that theyre trained is a major factor in doing so.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5895"
+(01:38:15)
+And this has changed how people approach post-training. dramatically.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5900"
+(01:38:20)
+Can you describe RLVR, popularized by DeepSeek R1? Can you describe how it works?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5905"
+(01:38:25)
+Yeah. Fun fact I was on the team that came up with the term RLVR, which is from our Tulu 3 work before DeepSeek, which is We dont take a lot of credit for the, being the people to popularize the scaling RL, but as fun as, what, academics get, as an aside, is the ability to name and influence-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5923"
+(01:38:43)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5923"
+(01:38:43)
+the discourse because the closed labs can only say so much. That one of the things you can do as an academic is like you might not have the compute to train the, the model, but you can frame things in a way that ends up being, I describe it as like a community can come together ar- around this RLVR term, which is very fun. And then DeepSeek is the people that did the training breakthrough, which is, they scaled the reinforcement learning, which was, you have the model generate answers and then grade the completion if it was right, and then that accuracy is your reward for reinforcement learning. So reinforcement learning is classically an agent that acts in an environment, and the environment gives it a state and the, and a reward back, and you try to maximize this reward.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=5966"
+(01:39:26)
+In the case of language models, the reward is normally accuracy on a set of verifiable tasks, whether its math problems, coding tasks. And it starts to get blurry with things like factual domains. Like that is also, in some ways, verifiable or constraints on your instruction, like respond only with sent words that start with A. Like all of these things are verifiable in some way, and the core idea of this is you find a lot more of these problems that are verifiable and you let the model try it many times while taking these RL steps, these RL gradient updates, the infrastructure evolved from this reinforced learning from human feedback, where in that era, the score they were trying to optimize was a learned reward model of aggregate human preferences.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6013"
+(01:40:13)
+So you kind of changed the problem domains and that let the optimization go on to much bigger scales, which kind of kickstarted a major change in what the models can do and how people use them.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6024"
+(01:40:24)
+What kind of domains is RLVR amenable to?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6028"
+(01:40:28)
+Math and code are the famous ones, and then theres a lot of work kind of ons, what is called the rubrics, which is related to a word people might have heard is LLM-as-a-judge, which is like for each problem, Ill have a set of problems in my training dataset. I will then have another language model and ask it, What would a good answer to this problem look like? And then you could try the problem a bunch of times over and over again and assign a score based on this rubric.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6053"
+(01:40:53)
+So thats not necessarily verifiable like a math and code domain, but this rubrics idea and other scientific problems that it might be a little bit more vague is where a lot of the attention is, where theyre trying to push this set of methods into these kind of more open-ended domains so the models can learn a lot more.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6071"
+(01:41:11)
+I think thats called reinforcement learning with AI feedback, right?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6074"
+(01:41:14)
+Thats the older term from it that was coined in Anthropics Constitutional AI paper. So its like a lot of these things come in cycles.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6081"
+(01:41:21)
+Also, just one step back for the RLVR. So I think the interesting beautiful thing here is that you ju- you ask the LLM a, lets say a math question, and then you know the correct answer, and you let the LLM, like you said, figure it out, but how it does it I mean, you dont really constrain it much. There are some constraints you can add like use the same language dont switch between Spanish and English. But lets say youre pretty much hands off.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6104"
+(01:41:44)
+You only give the question and the answer, and then the LLM has to, you know, just the task to arrive at the right answer, but the beautiful thing here is what happens in practice is that the LLM will do a step by step description, like, you know, like as a student or like as a yeah, mathematician, how you would derive the solution. It will give you, or it will use those steps and that helps actually the model to improve its own accuracy. And then like you said, the inference scaling. So inference scaling loosely means basically spending more compute during using the LLM during inference, and here the inference scaling is that the model would use more tokens. And, and also I think in the R1 paper, they showed the longer they train the model, the longer the responses are.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6148"
+(01:42:28)
+They, they grow over time. They use more tokens, so it becomes more expensive. It becomes more expensive for simple tasks, but these explanations, they help the model with the accuracy. There are also interesting do- uh, a lot of papers showing what the model explains does not necessarily have to be correct or maybe its even unrelated to the answer, but s- for some reason, it still helps the model. Like this is the fact that it is explaining. And I think its also, again, I dont want to anthropomorphize these LLMs, but its kind of like how we humans operate, right? If theres a complex math problem, lets say in a math class, y- you usually have a note paper and you do it step by step. You cross out things.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6183"
+(01:43:03)
+And the model also self-corrects and that, that was, I think the aha moment in the R1 paper. They called it the aha moment because the model itself recognized it made a mistake and then said, Ah, I did something wrong, and so let me try. And I think thats just so cool that this falls out of just giving it the correct answer and having it figure out how to do it, that it kind of does in a sense what a human would do. Although LLMs dont think like humans, its kind of like an interesting coincidence and it And the, the other si- nice side effect is its great for us humans often to see these steps. It builds trust, but also we learn we can double check things.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6220"
+(01:43:40)
+Theres a lot in here. I think-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6221"
+(01:43:41)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6221"
+(01:43:41)
+some of the debate Theres been a lot of debate this year on if the language models like these aha m- I think the aha moments are kind of fake because in pre-training you essentially have seen the whole internet.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6231"
+(01:43:51)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6231"
+(01:43:51)
+So you have definitely seen people explaining their work, even, even verbally like a transcript of a math lecture. You try this, oh, I messed this up. And what reinforced learning is, this RLVR is very good at doing, is amplifying-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6242"
+(01:44:02)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6242"
+(01:44:02)
+these behaviors cause theyre very useful in enabling the model to think longer and to check its work. And-I agree that it is very beautiful that this training kind of The model learns to amplify this in a way that is just so useful at the final answers being better.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6256"
+(01:44:16)
+I can give you also a hands-on example. I was training the QuEN 3 base model with RLVR on Math 500. The base model had an accuracy of about 15%. Just 50 steps, like in a few minutes with RLVR, the model went from 15% to 50% accuracy. And the model You cant tell me its learning anything about, fundamentally about math in-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6278"
+(01:44:38)
+The QuEN example is weird cause theres been two papers this year, one of which I was on that talks about data contamination in QuEN-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6284"
+(01:44:44)
+Mm-hmm. Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6284"
+(01:44:44)
+and specifically that they train on a lot of this special mid-training phase that we-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6288"
+(01:44:48)
+Exactly. Exactly
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6288"
+(01:44:48)
+chime like a minute on because its weird-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6290"
+(01:44:50)
+And so-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6290"
+(01:44:50)
+cause they train on problems that are almost identical to math.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6293"
+(01:44:53)
+Exactly. And so you can see that basically the RL, its not teaching the model any new knowledge about math. You cant do that in 50 steps. So the knowledge is already there, in the pre-training, youre just unlocking it.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6303"
+(01:45:03)
+I still disagree with the kind of premise cause theres a lot of weird complexities that you cant prove because one of the things that points to weirdness is that if you take the QuEN 3 so-called base model and you cont- you could Google on the screen You could Google like math dataset, hugging face, and you could take a problem and what you do if you put it into QuEN 3 base, the All these math problems have words so itd be like Alice has five apples and takes one And gives three to whoever, and there are these word problems.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6331"
+(01:45:31)
+With these QuEN based models, why people are suspicious of them is if you change the numbers but keep the words-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6336"
+(01:45:36)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6336"
+(01:45:36)
+QuEN will produce like a very high de- w- without tools will produce a very high accuracy like decimal representation-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6343"
+(01:45:43)
+Mm-hmm. Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6343"
+(01:45:43)
+of the answer, which means theres some like At some time, it was shown problems that were almost identical to the test set, and it was using tools to get a very high precision answer, but a language model without tools will never actually have this. So its kind of been this big debate in the research community is like how much of these reinforcement learning papers that are training on QuEN and measuring specifically on this like math benchmark where theres been multiple papers talking about contamination is like, how much can you believe them? And I think this is what caused the reputation of RLVR being about formatting, because you can get these gains so quickly and therefore it must already be in the model. But theres a lot of complexity here that we
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6382"
+(01:46:22)
+Its not really like controlled experimentation-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6385"
+(01:46:25)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6385"
+(01:46:25)
+so we dont really know.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6386"
+(01:46:26)
+But if it werent- werent true I would say distillation wouldnt work, right? I mean, distillation can work to some extent but the- the thing is that is, I think the biggest problem, and Im research this contamination because we dont know whats in the data. Its r- unless you have re- a new dataset, i- it is really impossible. And the same, you mentioned math the math dataset which is you have a question and then answer and an explanation is given, but then also even something simpler like MMLU which is a multiple choice benchmark. If you just change the format slightly like, I dont know, you use paren- a dot instead of a parenthesis or something like that, the model accuracy will vastly differ.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6424"
+(01:47:04)
+I think that that could be like a model issue rather than a general issue.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6429"
+(01:47:09)
+Its not even malicious by the developers of the LNM, like, Hey, we wanna cheat at that benchmark. Its just it has seen something at some point, and I think the only fair way to evaluate an NM is to have a new benchmark that is after the cut-off date when the NM was deployed.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6442"
+(01:47:22)
+Can we lay out what would be the sort of the recipe of all the things that will be going to post-training? And you mentioned R- RLVR was a really exciting effective thing.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6452"
+(01:47:32)
+Mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6452"
+(01:47:32)
+Maybe we should elaborate. RLHF still has a really important component to play. What kind of other ideas are there on post-training?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6460"
+(01:47:40)
+I think you can kinda take this in order. I think you could v- view it as what made O1, which is this first reasoning model possible or what will the latest model be, and they actually have Youre gonna have similar interventions at these, where you start with mid-training and the thing that is rumored to enable O1 and similar models is really careful data curation where youre providing a broad set of like what is called reasoning traces, which is just the model generating words in a forward process that is reflecting, like breaking down a problem into intermediate steps and trying to solve them. So at mid-training you need to have data that is similar to this to make it so that when you move into post-training primarily with these verifiable rewards, it can learn.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6507"
+(01:48:27)
+And then what is happening today is youre figuring out which problems to give the model and how long you can train it for and, like, how much inference you can enable the model to use when solving these verifiable problems. So as models get better, certain problems are no longer Like the model will solve them 100% of the time, and therefore theres very little signal in this. If we pull- If we look at the GRPO equation, this one is famous for this because essentially the reward given to the agent is based on how good a given action, a- action is a completion, is relative to the other answers to that same problem. So if all the problems get the same answer, theres no signal in these types of algorithms.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6549"
+(01:49:09)
+So what theyre doing is theyre finding harder problems, which is why you hear about things like scientific domains, which is like thats so hard, like getting anything right there. If you have a lab or something, it just generates so many tokens or much harder software problems. So the frontier models are all pushing into these harder domains when they can train on more problems and the model will learn more skills at once. The RLHF link to this is kind of like RLHF has been and still is kind of like the finishing touch on the models, where it makes the models more useful by improving the organization or style or tone.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6582"
+(01:49:42)
+Theres different things that resonates to different audiences, like some people like a really quirky model and RLHF could be good at enabling that personality, and some people hate this like markdown bulleted list thing that the models do, but its actually really good for quickly parsing information. In RLHF, this human feedback stage is really great for m- just g- putting this into the model at the end of the day. So its what It made ChatGPT so magical for people. And that use has actually remained fairly stable. This formatting can also help- the models get better at math problems, for example.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6617"
+(01:50:17)
+So its like the border between style and formatting, and like the method that you use to answer a problem is actually theyre all very closely linked in terms of when youre training these models, which is why RL HF can still say make a model better at math, but these verifiable domains are a much more direct process to doing this because this kind of makes more sense with the problem formulation, which is why it kind of ends up all forming together. But to summarize, its like mid-training is give the model the skills it needs to then learn. RL unverifiable rewards is let the model try a lot of times, so put a lot of compute into trial and error learning across hard problems. And then RL HF would be like finish the model, make it easy to use and kind of just round the model out.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6662"
+(01:51:02)
+Can you comment on the amount of compute required for RL VR?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6666"
+(01:51:06)
+Its only gotten up and up, so I think Brock For was famous for saying they use a similar amount of compute for pre-training and post-training. Back to the scaling discussion, they involve very different hardware for scaling. Pre-training is very compute bound, which is like this flops discussion, which is just how many matrix multiplications can you get through in one time. And because RL, youre generating these answers, youre trying the model in the real world environments, it ends up being much more memory bound because youre generating long sequences and the attention mechanisms have this behavior where you get a quadratic increase in memory as youre getting to longer sequences. So the compute becomes very different. So you
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6704"
+(01:51:44)
+When in pre-training we would talk about a model, I think if we go back to like the Biden administration executive order, its like 10 to the 25th flops to train a model. If youre using flops in post-training, its a lot weirder because the reality is just like how many hours are you allocating how many GPUs for? And I think in terms of time, the RL compute is getting much closer because you just cant put it all into one system. Like pre-training is so computationally dense where all the GPUs are talking to each other and its extremely efficient, where RL has all these moving parts and it can just take a long time to generate a sequence of a hundred thousand tokens. It could
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6737"
+(01:52:17)
+Like, if you think about GTT 5.2 pro taking an hour, its like what if your training run has a sample for an hour and you have to make it so thats handled efficiently? So I think in GPU hours or just like wall clock hours, the RL runs are probably approaching the number of days as pre-training, but they probably arent using as many GPUs at the same time. Theres rules of thumb where in labs its like you dont want your pre-training runs to last more than like a month because they fail catastrophically. And if you are planning a huge cluster to be held for two months and then it fails on day 50, the opportunity costs are just so big. So you kind of dont wanna just You
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6774"
+(01:52:54)
+People dont wanna put all their eggs in one basket, which is like GPT-4 was like the ultimate YOLO run and nobody ever wanted to do it before where it took like three months to train and everybody was shocked that it worked or I think people are a little bit more cautious and incremental now.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6787"
+(01:53:07)
+So RL VR is more, lets say, un-unlimited how much you can train or get still benefit, where RL HF, because its a preference tuning, it You reach a certain point where it doesnt really make sense to spend more RL budget on that. So just a step back with preference tuning. So there are multiple people that can give multiple, lets say, explanations for the same thing and they can both be correct, but at some point you learn a certain style and it doesnt make sense to, you know, iterate on it. My favorite example is like if re- relatives ask me what laptop they should buy, I give them an explanation or ask them like, Yeah, what is your use case? Like they, for example, m- prioritize battery life and storage.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6826"
+(01:53:46)
+Other people like us for example, we would prioritize RAM and compute. And so But both, both answers are correct, eh, but different people require different answers. And with preference tuning while youre trying to average somehow, like you are asking the data labelers to give you the right or not the right, the preferred answer and then you train on that. But at some point, yeah, you learn that average preferred answer. A- a- and theres no, I think, reason to keep training longer on it because, you know, its just a style, where with RL VR you literally give the model Well, you let the lo- model solve more and more complex difficult problems. And so I think that it makes more sense to allocate more budget long-term to RL VR and i- also that
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6867"
+(01:54:27)
+Right now we are in RL VR 1.0 blend where its still like that simple thing where we have a question and answer, but we dont do anything with the one stuff in between. So there was a, I mean, multiple research papers also by Google for example on process reward models that also give scores for the explanation, how correct is the an- explanation. And I think that will be the next thing, lets say RL VR 2.0 for this year, focusing in between question and answer, like how to leverage that information, the explanation to improve the explanation and help it to get better accuracy. But then So that, thats one angle. And there was a Deep Seek math version two paper where they also had interesting inference scaling there where
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6911"
+(01:55:11)
+Well, first they had developed models that grade themselves a separate model. And I think that that will be one aspect. And the other, like Nathan mentioned, it will be for R- LR VR branching into other domains.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6923"
+(01:55:23)
+The place where people are excited are value functions-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6926"
+(01:55:26)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6926"
+(01:55:26)
+which is ver- pretty similar. So process reward models are kind of like Process reward models assign how good something is to each kind of intermediate step in a reasoning process, where value functions apply value to every token the language model generates. Both of these have been largely unproven in the language modeling and this reasoning model era. People are more optimistic about value functions forever, for whatever reason now. I think process reward models were tried a lot more in this pre 01, pre-reasoning model era, and a lot of people had a lot of headaches with them. So I think a lot of it is the human nature of like Value models have a very deep history in reinforcement learning.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6966"
+(01:56:06)
+Theyre one of the first things that were core to like deep reinforced learning existing is like training value models in this. So right now the literature people are excited about trying value models, but theres very little proof in it. And there are negative examples in trying to scale up process reward models.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6981"
+(01:56:21)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=6982"
+(01:56:22)
+These things dont always hold in the future. I think-We came to this discussion by talking about scaling and the simple way to summarize what youre saying with like you dont want to do too much RLHF, which is essentially the signal scales, is people have worked on RLHF for language models for years, especially an intense interest after ChatGPT, and this, the first release of a reasoning model trained with RLVR, OpenAIs 01, had a scaling plot where if you increase the training compute logarithmically, you get a linear increase in evaluations and this has been reproduced multiple times. I think DeepSeek had a plot like this. But theres no scaling lot for RLHF where if you log increase the compute, you get some performance. In fact, the seminal scaling paper for RLHF is scaling
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7022"
+(01:57:02)
+loss for reward model over optimization . So its like thats a big line to draw with RLVR and the methods we have now and in the future, like they will follow this scaling paradigm which is like the best runs you can let to run for an extra 10X and you get a few X performance, but you cant do this with RLHF. And that is just going to be field defining in how people approach them, where Im a shill for people academically to do RLHF, and thats a good way to describe it is like to do the best RLHF you might not need the extra 10 or 100X of compute, but to do the best RLVR you do, so I think theres a what I say is a seminal paper from what was a meta internship. Its called, its like the art of scaling reinforcement learning with language models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7067"
+(01:57:47)
+Their, what they describe as a framework is scale RL. And their incremental experiment was like 10,000 V200 hours, which is like thousands or tens of thousands of dollars per experiment and they do a lot of them, which is just like this cost is not accessible to the average academic, which is a hard equilibrium where its trying to figure out how to learn from each community.
+Advice for beginners on how to get into AI development & research
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7091"
+(01:58:11)
+I was wondering if we could take at this point a bit of a tangent and talk about education and learning. If youre somebody listening to this whos a smart person interested in programming, interested in AI, so I presume building something from scratch is a good beginning. So can you just take me through like what you would recommend people do?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7112"
+(01:58:32)
+So I would personally start, like you said implementing a simple model from scratch that you can run on your computer. The goal is not if you built a model from scratch to have like something you use every day for your personal projects. Like its not going to be your personal assistant replacing an existing open weight model or ChatGPT. Its to see what exactly goes into the LLM, what exactly comes out of the LLM, how the pre-training works in that sense on your own computer preferably. And then you learn about the pre-training, the supervised fine-tuning, the attention mechanism.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7143"
+(01:59:03)
+You get a solid understanding of how things work, but at some point you will reach a limit because more models can only do so much and the problem with learning about LLMs at scale is I would say its exponentially more complex to make a larger model because its not that the model just becomes larger. You have to now think about sharding your parameters across multiple GPUs. Even for the KV-cache, there are multiple ways you can implement it. One is just to understand how it works, just to grow the cache. Theres like a cache you grow step by step by lets say concatenating lists on growing it, but then that wouldnt be optimal in GPUs. You wouldnt do that. You would pre-allocate a tensor and then fill it in. But that adds again another 20, 30 line- lines of code.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7185"
+(01:59:45)
+And for each thing, you add so much code, and I think the trick with the book is basically to understand how the LLM works. Its not going to be your production level LLM, but once you have that, you can understand the production level LLM.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7196"
+(01:59:56)
+So youre trying to always build an LLM thats going to fit on one GPU?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7200"
+(02:00:00)
+Yes. The, most of them I have, theyve, I have some bonus materials on some MOE models. I think one or two of them, they may require multiple GPUs but the goal is to have it on one GPU. And the beautiful thing is also you can self-verifying . Its almost like RLVR. When you code these from scratch, you can take an existing model from the Hugging Face Transformers library. So the Hugging Face Transformers library is great, but if you want to learn about LLMs, I think thats not the best place to start because the code is so complex because it has to full- it has to fit so many use cases. Also, some people use it in production. It has to be really sophisticated and its really intertwined and really hard. Its not linear to read.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7239"
+(02:00:39)
+It was started as a fine-tuning library, and then it grew to be like the standard representation of every model architecture and the way it is loaded. So Hugging Face is like the default place to get a model and Transformers is the software that enables it-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7252"
+(02:00:52)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7253"
+(02:00:53)
+so people can easily load a model-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7255"
+(02:00:55)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7255"
+(02:00:55)
+and do something basic with it.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7256"
+(02:00:56)
+And all Frontier labs that have open weight models have a Hugging Face Transformers version of it, like from DeepSeek to GPT-oss, thats like the canonical weight that you can load there. But again, also even Transformers, the library is not used in production. People use then sglang or VLLM and it adds another layer of complexity.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7275"
+(02:01:15)
+We should say that the Transformers library has like 400 models.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7279"
+(02:01:19)
+So its the one library that tries to implement a lot of LLMs and so you have a huge code base, basically. Its like huge. Its like its, I dont know, maybe millions-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7290"
+(02:01:30)
+Thats crazy
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7290"
+(02:01:30)
+hundreds of thousands of lines of code and find, its like understanding the part that you want to understand is finding the needle in the haystack. But whats beautiful about it is you have a working implementation and so you can work backwards from it. What I would recommend doing or what I also do is if I want to understand, for example how Almost There is implemented, I would look at the weights in the model hub, the config file, and then you can see, oh, they used so many layers. They use, lets say, group query attention or multi-head attention in that case. Then you see all the components in like a human readable, I dont know, 100 lines of config file. And then you start, lets say, with your GPT-2 model and add these things, you know?
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7326"
+(02:02:06)
+And the cool thing here is you can then load the pre-train weights and see if they work in your model. And you want to match the same output that you get with a Transformer model, and then you can use that as a, basically as a verifiable reward to make your architecture correct. And then its kind of, sometimes it takes me a day to with Almost Three, the challenge was rope for the position embeddings. They had a yarn extension and there was some custom scaling there and I couldnt quite match the- these things and in this struggle you kind of understand things. But the cool thing is at the end you know you have it correct because you can unit test it. You can check against the reference implementation and I think thats maybe one of the best ways to learn really.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7367"
+(02:02:47)
+Like, to basically reverse engineer something, yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7371"
+(02:02:51)
+I think that that is something that everybody thats interested in getting to AI today should do, and I think thats why I liked your book, is like I came to language models from this RL and robotics field. Like, I never had taken the time to just like learn all the fundamentals, and this transformer architecture I described as being like so fundamental as like deep learning was a thing that I had to learn in the past, and people need to do this. I think that where a lot of people kind of get overwhelmed is how do I apply this to have impact or find like a career path?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7403"
+(02:03:23)
+Because like AI language models make this fundamental stuff so accessible and people with motivation will learn it, and then its like, How do I get the cycles on goal to contribute to research? And I think that Im actually fairly optimistic in this because the field moves so fast that a lot of times the best people, like dont fully solve a problem because theres a bigger lower ha- like a bigger problem to solve thats very low hanging fruit so they move on. And I think that a lot of what I was trying to do in this RLHF book is like take post-training techniques and just describe how people think about them influencing the model and what people are doing, and then its remarkable how many things I just think are just like people stop studying them or dont.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7446"
+(02:04:06)
+So I think people trying to get narrow after doing the fundamentals is good and then reading the relevant papers and being engaged in the ecosystem, its like you actually The proximity that random people have online from the leading researchers, like n- no one knows who all the Like the anonymous account on X and ML is very popular for whatever reason, and no one knows who all these people are. Like it could just be random people that study the stuff deeply, especially with the AI tools to just be like ke- I dont understand this, keep digging into it, I think is a very useful thing. But theres a lot of research areas that just like are maybe three papers that you need to read and then one of the authors will probably email you back.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7485"
+(02:04:45)
+But you have to put in a lot of effort into these emails to understand the field. Like I think it would be for a newcomer easily weeks of work to feel like they can truly grasp, like what is a very narrow era- area, but I think going narrow after you have the fundamentals will be very useful to people because its like Ive became very interested in, like character training, which is like how you make the model funny or sarcastic or serious and like what do you do to the data to do this? And its like a student at Oxford reached out to me and was like, Hey, Im interested in this, and I advised him. And its like that paper now exists, and its like, I dont know, theres like two or three people in the world that were very interested in this.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7525"
+(02:05:25)
+Hes a PhD student which gives you an advantage, but like, for me that was a topic I was waiting for someone to be like, Hey, I have time to spend cycles on this, and Im sure theres a lot more very narrow things where youre just like, Oh, it doesnt make sense that there was no answer to this, and I think that its just like theres so much information coming that people are like, I cant grab onto any of these, but if you just actually stick in an area, I think theres a lot of interesting things to learn.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7548"
+(02:05:48)
+Yeah, I think you cant do- try to do it all because it would be very overwhelming and you would burn out if you tried to keep up with everything. For me, for example, I havent kept up with computer vision in a long time just focused on LMs. But coming back to your book for example, I think this is also a really great book and a really good bang for the buck because you wanna learn about RLHF.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7565"
+(02:06:05)
+I wouldnt go out there and read RLHF papers because I would be, you would be spending two years-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7570"
+(02:06:10)
+Some of them contradict.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7571"
+(02:06:11)
+Yeah, yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7571"
+(02:06:11)
+Theres- Ive just edited the book, and I was like theres no chapter where I had to be like, X papers say one thing and X papers say another thing, and well see what comes out to be true.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7581"
+(02:06:21)
+What- what are some of the, just to go through some of the table of contents, some of the ideas we might have missed in the bigger picture of the post-training. So first of all you did the problem set-up, training overview, what are preferences, preferences data and the optimization tools, reward modeling, regularization, instruction tuning, rejection sampling, reinforcement learning . Then constitutional AI and AI feedback, reasoning and inference time scaling to use in function calling, synthetic data and distillation, evaluation and then open questions section, over-optimization, style and information, and then product UX, character and post-training. So what are some ideas worth mentioning that connect both the educational component and the research component?
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7626"
+(02:07:06)
+You mentioned the character training, which is pretty interesting.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7628"
+(02:07:08)
+Character training is interesting cause theres so little out of it, but we talked about how people engage with these models and like, like we feel good using them because theyre positive but that can go too far, it can be too positive. And its like essentially its how do you change your data and, or decision-making to make it exactly what you want and, like OpenAI has this thing called a model spec which is essentially their internal guideline for what they want the model to do, and they publish this to developers. So essentially you can know what is a failure of OpenAIs training which is like they have the intentions and they havent met it yet, versus what is something that they like actually wanted to do and that you dont like.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7666"
+(02:07:46)
+And that transparency is very nice, but all the methods for curating these documents and how easy it is to follow them is not very well known. I think the way the book is designed is that the reinforcement learning chapter is obviously what people want because everybody hears about it with RLVR, and its the same algorithms and the same math, but its just like you can use it in- in very different documents. So I think the core pref- of RLHF is like how messy preferences are. Its essentially rehash of a paper I wrote years ago, but this is essentially the chapter thatll tell you why RLHF is never ever fully solvable because like the way that even RL is set up is that um, it assumes that preferences can be quantified and that multiple preferences can be reduced to single values.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7713"
+(02:08:33)
+And I think it relates in the economics literature to the Von Neumann-Morgenstern utility theorem, and like that is the chapter where all of that philosophical, economic, and like psychological context, it tells you what gets compressed into doing RLHF. So its like you have all of this and then at the- and later in the book its like you use this RL map to make the number go up, and I think that thats why I think itll be very rewarding for people to do research on is because its, like quantifying preferences is something that is just like- humans have designed the problem in order to make preferences study-able. But theres kind of fundamental debates on like, an example is in a language model response you have different things you care about, whether its accuracy or in style.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7753"
+(02:09:13)
+And when youre collecting the data they all get compressed into like a, I like this more than another. And its like, like that is happening and theres a lot of philosop- theres a lot of research in other areas of the world that go into like how should you actually do this. I think social choice theory is the subfield of economics around how you should aggregate preferences. And theres like I was, I went to a workshop that published a white paper on like, How can you think about using social choice theory for RLHF? So I mostly would want people that get excited about the math to come and have things where they could stumble into and learn this kind of broader context. I think theres a fun thing, I just keep a list of all the tech reports that I like of reasoning models.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7793"
+(02:09:53)
+So in the, in chapter 14 where theres, its kind of like a short summary of RLVR, theres just like a gigantic table where I just, like, list every single reasoning model that I like. So theres just like I think in education a lot of it needs to be like, at this point, its like what I like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7808"
+(02:10:08)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7808"
+(02:10:08)
+because the language models are so good at the math, where its like famous paper, direct preference optimization, which is like a much simpler way of pro- solving the problem than RL. The derivations and the appendix skip steps of math. And its like, I tried for this book, like I redid the derivations and Im like, What the heck is this log trick that they use to change the math? But doing it with language models, theyre like, This is the log trick. And Im like, I dont know if I like this, that the math is so commoditized. I think, like, some of the struggle in reading this appendix-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7838"
+(02:10:38)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7838"
+(02:10:38)
+and following the math I think is good for learning. And I
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7843"
+(02:10:43)
+Yeah, so were actually returning to this often, just on the topic of education. You bo- both have brought up the word struggle quite a bit. So there is value. If youre not struggling as part of this process, youre not fully following the, the proper process for learning, I suppose.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7862"
+(02:11:02)
+Some of the providers are starting to work on models for education, which are designed to not give Actually, I havent used them, but I would guess theyre designed to not give all the information at once-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7871"
+(02:11:11)
+Right
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7872"
+(02:11:12)
+and make people work to do this. So I think you could train models to do this, and it would be a wonderful contribution. Where like all of the stuff in the book, you had to reevaluate every decision for it-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7880"
+(02:11:20)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7880"
+(02:11:20)
+Which is such a great example. I, I think theres, theres a chance we work on it at AI too, which I, which I was like, Oh, I think this will be so fun.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7886"
+(02:11:26)
+It makes sense. I do something like that did that the other day for video games, for example. I sometimes for my pastime play video games, like I like video games with puzzles. You know, like Zelda and Metroid. And theres this new game where I got stuck, and I really got stuck and was okay. I, you know, I dont wanna struggle for, like, two two days and so I used an LLM. But then you say, Hey, please dont add any spoilers. Just, you know, Im here and there. What do I have to do next? And the same thing you can do, I guess, for math where you say, Okay, Im here at this point. Im getting stuck. Dont give me the full solution, but w- what is something I could try? You know, like, where you kind of carefully probe it.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7922"
+(02:12:02)
+But the problem here is I think it requires discipline. And a lot of people do math for Like, you mean a lot of people who enjoy math, but there are also a lot of people who need to do it for their homework and then its like this shortcut. And yeah, we kinda develop an educational LLM, but the other LLM is still there, and theres still a temptation to use the other LLMs.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7940"
+(02:12:20)
+I think a lotta people, especially in college, they, they understand the stuff theyre passionate about-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7944"
+(02:12:24)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7944"
+(02:12:24)
+theyre self-aware about it, and they understand it shouldnt be easy.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7947"
+(02:12:27)
+Mm-hmm, mm-hmm.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7947"
+(02:12:27)
+Like, I think we just have to develop a good taste-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7950"
+(02:12:30)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7951"
+(02:12:31)
+talk about research taste, like school taste about stuff that you should be struggling on-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7957"
+(02:12:37)
+Mm-hmm
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7957"
+(02:12:37)
+and, and, and stuff you shouldnt be struggling on. Which is tricky to know, cause sometimes you dont have good long-term vision about what would be actually useful to you in your career. But you have to, you have to b- develop that taste, yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=7971"
+(02:12:51)
+I was talking to maybe my fiance or friends about this, and its like theres this brief 10-year window where all of the homework and all the exams could be digital. But before that, everybody had to do all the exams in bluebook cause there was no other way. And now after AI, everybodys gonna need to be in bluebooks and oral exams cause everybody could cheat so easily. Its like this brief generation that had a different education system that, like, everything could be digital, but you still couldnt cheat. And now its just gonna go back. Its just very funny.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8000"
+(02:13:20)
+You mention character training. Just zooming out on, on a more general topic, for that topic how much compute was required? And in general, to contribute as a researcher, are there places where not too much compute is required where you can actually contribute as an individual researcher?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8019"
+(02:13:39)
+For only character training thing, I think this research is built on fine tuning about seven billion parameter models with Laura, which is like a Essentially youre only fine tuning a small subset of the weights of the model. I dont know exactly how many GPU hours that would take.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8035"
+(02:13:55)
+But its doable.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8035"
+(02:13:55)
+Not doable for every academic. So the situation for some academics is, like, so dire that the only work you can do is doing inference where you have closed models or open models and you get completions from them and you can look at them and understand the models. And thats very well-suited to evaluation, which you become ex- you want to be the best at creating representative problems that the models fail on or show certain abilities, which I think that you can break through with this. So Ive Like, I think that the top end goal for researcher working on evaluation, if you want to have career momentum, is the Frontier Labs pick up your evaluation. So its like you dont need to have every project do this.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8073"
+(02:14:33)
+But if you go from a small university with no compute and you figure out something that Claude struggles with and then the next Claude model has it in the blog post, like, theres, theres your career rocket ship. I think that thats hard but its, like, if you wanna scope the maximum possible impact with minimum compute, its something like that, which is just get very narrow and it takes learning of where the models are going. So you need to, like, build a tool that tests where not Claude 4.5 will fail. If youre gonna do a res- If Im gonna start a research project, I need to think where the models in eight months are gonna be struggling.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8105"
+(02:15:05)
+But what about developing totally novel ideas?
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8108"
+(02:15:08)
+This is a trade-off. I think that if youre doing a PhD, you could also be like, Its too risky to work in language models. Im going way longer term, which is like what is-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8118"
+(02:15:18)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8119"
+(02:15:19)
+what is the thing thats gonna define language model development in 10 years? Which I think that I end up being a person thats pretty practical. I mean, I went to my PhD where it was like, Eh, I got into Berkeley. Worst case, I get a masters, and then I go work in tech. And so like Im very practical about it, so Im like the life afforded to people to work at these AI companies, the amount of Like OpenAIs average compensation is over a million dollars in stock a year per employee. Any normal person in the US, to get into this AI lab is transformative for your life.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8149"
+(02:15:49)
+So Im pretty practical of like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8150"
+(02:15:50)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8150"
+(02:15:50)
+theres still a lot of upward mobility working in language models if youre focused. And the outcomes, its like look at these jobs. But from a research perspective, the transformative impact in these academic awards, its like be the next Yann LeCun is from not working on- not caring about language model development very much.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8167"
+(02:16:07)
+Its a big financial sacrifice in that case.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8169"
+(02:16:09)
+So I get to work with some awesome students, and theyre like, Should I go work at an AI lab? And Im like like, Youre getting a PhD at a top school. Are you gonna leave to go to a lab? Im like, I dont know. Like, if you go work at a top lab, I dont blame you. Dont go work at some random startup that might go to zero. But if youre going to OpenAI, Im like, It could be worth leaving a PhD for.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8190"
+(02:16:30)
+Lets more rigorously think through this. So where would you give a recommendation for people to do a research contribution? So the options are academia, so get- get a PhD. Spend five years publishing. C- compute resources are constrained. Theres theres research labs that are more focused on open-weight models, and so working there. Or closed frontier labs, research labs.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8221"
+(02:17:01)
+The-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8221"
+(02:17:01)
+So OpenAI, Anthropic, xAI, so on.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8224"
+(02:17:04)
+The two gradients are the more closed, the more money you tend to get, and but also the l- le- you get less credit. So in terms of building a, like a portfolio of things that youve done, like its very clear of what you have done as an academic, and you have done this. And versus if you are gonna go be, like trade this fairly reasonable progression for being a cog in the machine, which could also be very fun. So I think its very different career paths. But the, like the opportunity cost for being a researcher is very high cause PhD students are paid essentially nothing. So I think it ends up rewarding people that have a fairly stable safety net, and they realize that they can operate in the long term, which is they want to do very interesting work and get a very interesting job.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8270"
+(02:17:50)
+So it is a fairly, like it is a privileged position to be like, Im gonna see out my PhD and figure it out after because I- I want to do this. And I think a lot of acad- like at the same time, the academic ecosystem is getting bombarded by funding getting cut and stuff. So theres just, like, so many different trade-offs where I understand plenty of people that are like, I dont enjoy it. I cant deal with this funding search. My grant got cut for no reason by the government, or, I dont know whats gonna happen. So I think theres a lot of uncertainty and trade-offs that, in my opinion, favor just, like, take the, take the well-paying job with meaningful impact. So its like not also like youre getting paid to sit around at OpenAI.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8307"
+(02:18:27)
+Youre building, like, the cutting edge of things that are-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8310"
+(02:18:30)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8311"
+(02:18:31)
+changing mi- millions of peoples relationship to tech.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8314"
+(02:18:34)
+But publication-wise, theyre being more secretive, increasingly so. So youre publishing less and less and less and less. And so youre- you are having a positive impact at scale, but its- youre a cog in the machine.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8327"
+(02:18:47)
+I think its b- honestly, it hasnt changed that much. So I, I have been i- i- academia. Im not in academia anymore. At the same time, I wouldnt want to miss my time in academia. But what I wanted to say before I get to that part, I think it hasnt changed that much. I was working in like I was using AI or machine learning methods for applications and computational biology with collaborators, and a lot of people went from academia directly to Google. And I- I think its the same thing. Back then, professors were like, you know, sad that their students went into industry w- because they couldnt carry on their legacy in that sense. And I- I think its the same thing. Its like it- it hasnt changed, I think, that much. The only thing that has changed is the scale.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8372"
+(02:19:32)
+But, you know, cool stuff was always developed in industry that was closed. You couldnt- couldnt talk about it. And I think the difference now is well, your preference. Do you like to talk about your work, publish or, you know, youre- you are more in a closed lab? The o- thats one difference, the compensation, of course. But its always been like that, I think. So it really depends on, you know, where you feel comfortable. And its also nothing is forever. The only thing right now is theres a third option, which is starting a startup. Thats a lot of people doing startups. Very risky move. But can be high- is a high-risk, high-reward type of situa- situation where joining an industry lab, I think, is pretty safe. You know, also upward mo- mobility.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8416"
+(02:20:16)
+Honestly, I think if once you have been at a industry lab, it will be easier to find future jobs. But then again, you know, you know, its like, yeah, how much do you en- enjoy the team and working on propriety things versus how do you like the publishing work? I mean, publishing is stressful. It is you know, like acceptance rate at conferences can be arbitrary, can be very frustrating, but also high reward if you have a paper publ- published, you feel good because your name is on there. You have a high accomplishment, and you know.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8448"
+(02:20:48)
+I feel like my friends who are professors seem on average happier than my friends who work at-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8452"
+(02:20:52)
+Mm-hmm
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8452"
+(02:20:52)
+a frontier lab. To be totally honest. Cause thats just grounding and-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8457"
+(02:20:57)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8457"
+(02:20:57)
+the frontier labs definitely do this 9/9/6-
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8460"
+(02:21:00)
+Exactly
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8460"
+(02:21:00)
+which essentially is shorthand for work all the time.
+Work culture in AI (72+ hour weeks)
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8463"
+(02:21:03)
+Yep.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8463"
+(02:21:03)
+Can you describe 9/9/6 as culture thats, I believe you could say invented in China and adopted in Silicon Valley? Whats- whats 9/9/6? Its 9:00 AM to 9:00 PM.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8474"
+(02:21:14)
+Six days a week.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8475"
+(02:21:15)
+Six days a week. What is that, 72 hours? Okay. So what Is this basically the standard in AI companies in Silicon Valley? more and more this kinda grind mindset.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8486"
+(02:21:26)
+Yeah, I mean not maybe not exactly like that, but I think there is a trend towards it. And its interesting. I think it almost flipped because when I was in academia, I felt like that because as a professor, you had to write grants. You had to do te- uh, you had to teach and you had to do your research. Its like three jobs in one, and it is more than a full-time job if you wanna be successful.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8506"
+(02:21:46)
+And I feel like now, like Nathan just said, the professors in comparison to a lab, I think they have less, like, even maybe pressure or workload than at a frontier lab because-
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8517"
+(02:21:57)
+I think they work a lot. Theyre just so fulfilled.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8519"
+(02:21:59)
+Yeah. Yeah. Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8519"
+(02:21:59)
+By, like, working with students-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8520"
+(02:22:00)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8520"
+(02:22:00)
+and having a constant runway of mentorship and, like, a mission that is very people-oriented, I think in a era when things are moving very fast and are very chaotic, its very rewarding to people.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8531"
+(02:22:11)
+Yeah, and I think at a startup, I think i- its this pressure. Its like you have to make it. And its, like, it is really important that people put in the time, but while it is really hard because you have to deliver constantly, and Ive been at a startup. I had a good time, but I dont know if I could do it forever. Its like a interesting pace and its exactly like we talked about in the beginning. These models are leapfrogging each other, and they are j- just constantly, like, trying to take the next step compared to their competitors. Its just ruthless, I think, right now.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8562"
+(02:22:42)
+I think this leapfrogging nature and having multiple players is actually an underrated driver of language modeling process where competition is so deeply ingrained to people, and these companies have intentionally created very strong culture. Like, Anthropic is known to be so culturally, like, deeply committed and organized. I mean, like, we hear so little from them, and everybody at Anthropic seems very aligned. And its like being in a culture that is super tight and having this competitive dynamic is, like, talk about a thing thats gonna make you work hard and create things that are better.
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8599"
+(02:23:19)
+Mm-hmm.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8600"
+(02:23:20)
+So I think that this but that comes at the cost of human capital, which is like you can only do this for so long, and people are definitely burning out. I think Ive I wrote a post on burnout as I, like, Ive tread in and out of this myself, especially trying to, like, be a manager, full-mode training. Its crazy job doing this. The book Apple in China by Patrick McGee, he talked about the how hard the Apple engineers worked to set up the supply chains in China, and he was like they had saving marriage programs, and he told in a, a podcast, he was like, People died from this level of working hard. So I think that its just like its a perfect environment for creating progress based on human expense, and Im its theres gonna be a lot of theres a lot of
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8643"
+(02:24:03)
+the human expense is the 996 that we started this with, which is like-
+Lex Fridman
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8646"
+(02:24:06)
+Yeah
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8646"
+(02:24:06)
+people do really grind.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8648"
+(02:24:08)
+I also read this book. I think they had a code word for if someone had to go home to spend time with their family to save the marriage, and its crazy. Then the colleagues said, Okay, this is like red alert for this situation. We have to let that person go home this weekend. And but at the same time, I dont think they were forced to work. Its really they were so passionate about the product, I guess, that it is, it is you, you get into that mindset. And I, I had that sometimes as an academic, but also as an independent person, I have that sometimes. I overwork, and its unhealthy. I had, you know I had back issues, I had neck issues, because I did not take the breaks that I maybe should have taken.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8682"
+(02:24:42)
+But its not because no one forced me to, its because I wanted to work, because its exciting stuff.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8686"
+(02:24:46)
+Thats what OpenAI and Anthropic are like.
+Sebastian Raschka
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8687"
+(02:24:47)
+Yeah.
+Nathan Lambert
+\*HYPERLINK "https://youtube.com/watch?v=EV7WhVT270Q&t=8687"
+(02:24:47)
+They want to do this work.

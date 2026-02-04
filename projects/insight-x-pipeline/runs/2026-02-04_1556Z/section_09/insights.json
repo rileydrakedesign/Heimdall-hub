@@ -1,0 +1,93 @@
+[
+  {
+    "insight": "Being physically in San Francisco offers unique opportunities but comes with significant trade-offs.",
+    "why_it_matters": "Founders must weigh the benefits of access to resources against the risks of insularity.",
+    "evidence_quote": "if youre really passionate about wanting to have a impact in AI, like, being physically in SF is the most likely place.",
+    "evidence_timestamp": "02:27:02",
+    "tags": [
+      "location",
+      "trade-offs",
+      "AI"
+    ],
+    "novelty": 3,
+    "usefulness": 5
+  },
+  {
+    "insight": "The allure of Silicon Valley can lead to a narrow worldview, potentially alienating diverse perspectives.",
+    "why_it_matters": "Recognizing this limitation is crucial for building products that resonate with a broader audience.",
+    "evidence_quote": "you might miss some fundamental aspects of the human experience, including Silicon Valley.",
+    "evidence_timestamp": "02:26:05",
+    "tags": [
+      "worldview",
+      "diversity",
+      "audience"
+    ],
+    "novelty": 4,
+    "usefulness": 4
+  },
+  {
+    "insight": "Silicon Valley's echo chamber can foster productivity but may also distort reality.",
+    "why_it_matters": "Understanding the dual nature of this bubble can help founders navigate its benefits and pitfalls.",
+    "evidence_quote": "I think it's fair to say that Silicon Valley is a kind of echo chamber a kind of silo and bubble.",
+    "evidence_timestamp": "02:24:49",
+    "tags": [
+      "Silicon Valley",
+      "echo chamber",
+      "productivity"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  },
+  {
+    "insight": "The 'reality distortion field' can accelerate innovation but risks detachment from practical realities.",
+    "why_it_matters": "This concept highlights the tension between visionary thinking and the need for grounded decision-making.",
+    "evidence_quote": "It could be the, the Steve Jobs reality distortion field, cause you just convince each other the breakthroughs are imminent.",
+    "evidence_timestamp": "02:25:34",
+    "tags": [
+      "innovation",
+      "reality distortion",
+      "visionary"
+    ],
+    "novelty": 4,
+    "usefulness": 3
+  },
+  {
+    "insight": "The perception of a fleeting window to build value in AI startups reflects a broader anxiety in the tech community.",
+    "why_it_matters": "This urgency can drive innovation but may also lead to hasty decisions and missed opportunities.",
+    "evidence_quote": "the last six months of 2025 was the only time to build durable value in a AI startup or model.",
+    "evidence_timestamp": "02:27:02",
+    "tags": [
+      "AI",
+      "startup",
+      "urgency"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  },
+  {
+    "insight": "Silicon Valley's cultural and historical context is often overlooked by its current inhabitants.",
+    "why_it_matters": "A deeper understanding of the region's past can inform better decision-making and foster a more inclusive perspective.",
+    "evidence_quote": "I lived there and I didn’t appreciate this context, and it’s just, like, so recent.",
+    "evidence_timestamp": "02:28:01",
+    "tags": [
+      "culture",
+      "history",
+      "perspective"
+    ],
+    "novelty": 4,
+    "usefulness": 3
+  },
+  {
+    "insight": "Bubbles in Silicon Valley can drive both innovation and speculation, creating a complex landscape for builders.",
+    "why_it_matters": "Understanding the nature of these bubbles can help founders navigate funding and development challenges.",
+    "evidence_quote": "one of them is financial bubbles, which is like speculation, which is bad, and the other one is like... for build-outs.",
+    "evidence_timestamp": "02:25:48",
+    "tags": [
+      "bubbles",
+      "innovation",
+      "speculation"
+    ],
+    "novelty": 3,
+    "usefulness": 4
+  }
+]

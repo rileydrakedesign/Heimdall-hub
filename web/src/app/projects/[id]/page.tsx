@@ -1,4 +1,5 @@
 import { BASE_PATH } from "@/lib/basePath";
+import { githubFileUrl } from "@/lib/runs";
 import { githubTreeUrl, githubUploadUrl } from "@/lib/repo";
 import { getProjectById, loadProjects } from "@/lib/projects";
 
@@ -85,6 +86,30 @@ export default async function ProjectPage({
           </a>
         </div>
       </div>
+
+      {project.id === "insight-x-pipeline" ? (
+        <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
+          <div className="text-sm font-semibold">Latest outputs</div>
+          <div className="mt-1 text-sm text-white/60">
+            Section-by-section summaries + X drafts are saved under
+            <span className="ml-2 font-mono text-white/70">projects/insight-x-pipeline/runs/</span>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a
+              href={githubFileUrl("projects/insight-x-pipeline/runs/LATEST.md")}
+              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
+            >
+              Open latest index
+            </a>
+            <a
+              href={githubTreeUrl("projects/insight-x-pipeline/runs")}
+              className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
+            >
+              View runs folder
+            </a>
+          </div>
+        </div>
+      ) : null}
 
       {project.links?.length ? (
         <div className="mt-8">
