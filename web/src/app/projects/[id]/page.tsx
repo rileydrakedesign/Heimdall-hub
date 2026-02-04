@@ -7,14 +7,19 @@ export function generateStaticParams() {
   return loadProjects().map((p) => ({ id: p.id }));
 }
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = getProjectById(params.id);
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const project = getProjectById(id);
 
   if (!project) {
     return (
       <main className="mx-auto max-w-3xl px-6 py-10">
         <h1 className="text-2xl font-semibold">Not found</h1>
-        <p className="mt-2 text-white/60">Unknown project id: {params.id}</p>
+        <p className="mt-2 text-white/60">Unknown project id: {id}</p>
         <a href={`${BASE_PATH}/projects/`} className="mt-6 inline-block text-sm text-white/60 hover:text-white">
           ← Back to projects
         </a>
