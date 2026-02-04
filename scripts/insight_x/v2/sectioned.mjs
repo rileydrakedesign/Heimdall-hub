@@ -115,37 +115,66 @@ function chunkText(text, maxChars = 12000, overlap = 1200) {
   return chunks;
 }
 
-async function callOpenAI(prompt) {
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function callOpenAI(prompt, { label = "" } = {}) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY not set");
 
-  const res = await fetch("https://api.openai.com/v1/responses", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model,
-      input: prompt,
-      temperature: 0.35,
-    }),
-  });
+  const maxAttempts = 6;
+  let attempt = 0;
 
-  if (!res.ok) {
-    const txt = await res.text();
-    throw new Error(`OpenAI error ${res.status}: ${txt}`);
-  }
+  while (true) {
+    attempt++;
+    try {
+      const res = await fetch("https://api.openai.com/v1/responses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model,
+          input: prompt,
+          temperature: 0.35,
+        }),
+      });
 
-  const json = await res.json();
-  const parts = [];
-  for (const item of json.output ?? []) {
-    if (item?.type !== "message") continue;
-    for (const c of item.content ?? []) {
-      if (c?.type === "output_text" && typeof c.text === "string") parts.push(c.text);
+      if (!res.ok) {
+        const txt = await res.text();
+        const retryable = [408, 429, 500, 502, 503, 504].includes(res.status);
+        if (retryable && attempt < maxAttempts) {
+          const backoff = Math.min(60000, 1000 * 2 ** (attempt - 1));
+          console.log(`OpenAI ${res.status} (${label}) attempt ${attempt}/${maxAttempts} → retry in ${backoff}ms`);
+          await sleep(backoff);
+          continue;
+        }
+        throw new Error(`OpenAI error ${res.status}: ${txt}`);
+      }
+
+      const json = await res.json();
+      const parts = [];
+      for (const item of json.output ?? []) {
+        if (item?.type !== "message") continue;
+        for (const c of item.content ?? []) {
+          if (c?.type === "output_text" && typeof c.text === "string") parts.push(c.text);
+        }
+      }
+      return parts.join("\n").trim();
+    } catch (err) {
+      const msg = String(err?.message ?? err);
+      const retryable = /timeout|ECONNRESET|ETIMEDOUT|ENOTFOUND|upstream connect error/i.test(msg);
+      if (retryable && attempt < maxAttempts) {
+        const backoff = Math.min(60000, 1000 * 2 ** (attempt - 1));
+        console.log(`OpenAI network error (${label}) attempt ${attempt}/${maxAttempts} → retry in ${backoff}ms`);
+        await sleep(backoff);
+        continue;
+      }
+      throw err;
     }
   }
-  return parts.join("\n").trim();
 }
 
 function safeJsonParse(text) {
@@ -294,6 +323,22 @@ const outIndex = [];
 for (let s = 0; s < sections.length; s++) {
   const section = sections[s];
   const sectionSlug = String(s + 1).padStart(2, "0");
+
+  const sectionDir = path.join(outDir, `section_${sectionSlug}`);
+  const doneMarker = path.join(sectionDir, ".done");
+  if (fs.existsSync(doneMarker)) {
+    // resume support
+    outIndex.push({
+      section: sectionSlug,
+      title: section.title,
+      outputs: {
+        summary: `section_${sectionSlug}/summary.md`,
+        x: `section_${sectionSlug}/x_drafts.md`,
+      },
+    });
+    continue;
+  }
+
   console.log(`\n=== Section ${sectionSlug}/${sections.length}: ${section.title}`);
 
   const chunks = chunkText(section.text);
@@ -303,7 +348,7 @@ for (let s = 0; s < sections.length; s++) {
   for (let i = 0; i < chunks.length; i++) {
     console.log(`→ extract ${i + 1}/${chunks.length}`);
     const prompt = insightPrompt({ sectionTitle: section.title, chunk: chunks[i], idx: i, total: chunks.length });
-    const text = await callOpenAI(prompt);
+    const text = await callOpenAI(prompt, { label: `sec${sectionSlug}-extract${i + 1}` });
     const arr = recoverJsonArray(text);
     if (Array.isArray(arr)) candidates.push(...arr);
   }
@@ -311,16 +356,16 @@ for (let s = 0; s < sections.length; s++) {
   const merged = mergeInsights(candidates);
   const top = merged.slice(0, 14);
 
-  const summaryMd = await callOpenAI(sectionSummaryPrompt(section.title, top));
-  const xMd = await callOpenAI(xFromSectionPrompt(section.title, top));
+  const summaryMd = await callOpenAI(sectionSummaryPrompt(section.title, top), { label: `sec${sectionSlug}-summary` });
+  const xMd = await callOpenAI(xFromSectionPrompt(section.title, top), { label: `sec${sectionSlug}-x` });
 
-  const sectionDir = path.join(outDir, `section_${sectionSlug}`);
   fs.mkdirSync(sectionDir, { recursive: true });
 
   fs.writeFileSync(path.join(sectionDir, "section.txt"), section.text);
   fs.writeFileSync(path.join(sectionDir, "insights.json"), JSON.stringify(top, null, 2));
   fs.writeFileSync(path.join(sectionDir, "summary.md"), summaryMd);
   fs.writeFileSync(path.join(sectionDir, "x_drafts.md"), xMd);
+  fs.writeFileSync(doneMarker, new Date().toISOString());
 
   outIndex.push({
     section: sectionSlug,
