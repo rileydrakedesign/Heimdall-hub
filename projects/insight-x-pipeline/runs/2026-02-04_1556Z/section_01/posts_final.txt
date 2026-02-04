@@ -1,0 +1,82 @@
+Post 1
+
+stop asking who is winning AI.
+
+start with the timeframe you care about.
+because the answer changes.
+
+1/ today looks like distribution and product polish
+2/ next year looks like budget, GPUs, and execution speed
+3/ ten years looks like infrastructure compounding and research pipelines
+
+the common failure is mixing horizons.
+you chase short term attention, then spend like you are building a decade long lab.
+you get neither.
+
+Post 2
+
+chinese open weights have a US revenue constraint.
+
+the discussion points to one blocker.
+US enterprises avoid chinese AI APIs for security reasons.
+
+so the wedge is open weights.
+• ship the weights
+• let teams run locally
+• earn adoption without asking procurement to trust an external endpoint
+
+if you sell into enterprise, benchmark wins feel good.
+procurement wins pay the bills.
+
+Post 3
+
+deepseek R1 in jan 2025 mattered because it accelerated a pattern.
+
+> one lab ships
+> others reuse the ideas
+> the newest release takes the crown
+> then the crown moves again
+
+deepseek did not fall off.
+the field caught up.
+
+if your strategy depends on a durable model edge, build for parity.
+assume copy and catch up.
+
+Post 4
+
+hype does not predict usage.
+habit does.
+
+drivers called out in the discussion:
+- name recognition
+- muscle memory
+- friends recommending the default
+- teams standardizing on one workflow
+
+if you build an AI product, obsess over the boring parts:
+- onboarding
+- defaults
+- reliability
+- switching cost
+
+attention spikes.
+habits compound.
+
+Post 5
+
+people will split AI subscriptions by trust boundary.
+
+one bucket holds personal context.
+- memory features
+- long running history
+
+another bucket holds work context.
+- clean slate
+- tighter privacy posture
+- less mixing across projects
+
+if you build an AI tool, support that split.
+workspaces matter.
+boundaries matter.
+users do not merge personal and work context to make your product easier to sell.
