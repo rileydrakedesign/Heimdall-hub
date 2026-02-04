@@ -9,7 +9,7 @@ This skill uses the upstream Vercel-labs Web Interface Guidelines repo *verbatim
 
 Upstream source (vendored)
 - Repo: https://github.com/vercel-labs/web-interface-guidelines
-- Pinned commit: see `references/upstream/COMMIT_PIN.txt`
+- Pinned commit: see `references/COMMIT_PIN.txt`
 
 ## How to use this skill
 

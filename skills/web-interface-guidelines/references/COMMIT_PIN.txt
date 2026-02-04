@@ -1,0 +1,6 @@
+Pinned upstream commit for vercel-labs/web-interface-guidelines
+
+repo: https://github.com/vercel-labs/web-interface-guidelines
+submodule_path: skills/web-interface-guidelines/references/upstream
+commit: 3f6b1449dee158479deb8019f6372ff85e663406
+pinned_at: 2026-02-04
