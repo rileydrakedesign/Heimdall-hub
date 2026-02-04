@@ -4,6 +4,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
 
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 function arg(name, def = null) {
   const i = process.argv.indexOf(name);
   if (i === -1) return def;
@@ -27,39 +31,60 @@ function readTaboo() {
     .filter((l) => l && !l.toLowerCase().startsWith("category:") && !l.startsWith("#"));
 }
 
-function callOpenAI(prompt) {
+async function callOpenAI(prompt, { label = "" } = {}) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY not set");
 
-  const res = execSync(
-    `node -e ${JSON.stringify(`
-      const apiKey=process.env.OPENAI_API_KEY;
-      (async()=>{
-        const res=await fetch('https://api.openai.com/v1/responses',{
-          method:'POST',
-          headers:{'Content-Type':'application/json',Authorization:'Bearer '+apiKey},
-          body:JSON.stringify({model:${JSON.stringify(model)},input:${JSON.stringify(prompt)},temperature:0.35})
-        });
-        if(!res.ok){
-          const t=await res.text();
-          console.error('OPENAI_HTTP',res.status,t);
-          process.exit(2);
-        }
-        const json=await res.json();
-        const parts=[];
-        for(const item of (json.output||[])){
-          if(item.type!=='message') continue;
-          for(const c of (item.content||[])){
-            if(c.type==='output_text' && typeof c.text==='string') parts.push(c.text);
-          }
-        }
-        process.stdout.write(parts.join('\n').trim());
-      })();
-    `)}`,
-    { stdio: ["ignore", "pipe", "pipe"], env: process.env }
-  );
+  const maxAttempts = 6;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const res = await fetch("https://api.openai.com/v1/responses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model,
+          input: prompt,
+          temperature: 0.35,
+        }),
+      });
 
-  return res.toString("utf8").trim();
+      if (!res.ok) {
+        const txt = await res.text();
+        const retryable = [408, 429, 500, 502, 503, 504].includes(res.status);
+        if (retryable && attempt < maxAttempts) {
+          const backoff = Math.min(60000, 1000 * 2 ** (attempt - 1));
+          console.log(`OpenAI ${res.status} ${label} attempt ${attempt}/${maxAttempts} retry in ${backoff}ms`);
+          await sleep(backoff);
+          continue;
+        }
+        throw new Error(`OpenAI error ${res.status}: ${txt}`);
+      }
+
+      const json = await res.json();
+      const parts = [];
+      for (const item of json.output ?? []) {
+        if (item?.type !== "message") continue;
+        for (const c of item.content ?? []) {
+          if (c?.type === "output_text" && typeof c.text === "string") parts.push(c.text);
+        }
+      }
+      return parts.join("\n").trim();
+    } catch (err) {
+      const msg = String(err?.message ?? err);
+      const retryable = /timeout|ECONNRESET|ETIMEDOUT|ENOTFOUND|upstream connect error/i.test(msg);
+      if (retryable && attempt < maxAttempts) {
+        const backoff = Math.min(60000, 1000 * 2 ** (attempt - 1));
+        console.log(`OpenAI network ${label} attempt ${attempt}/${maxAttempts} retry in ${backoff}ms`);
+        await sleep(backoff);
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw new Error("OpenAI failed after retries");
 }
 
 function scanBanned(text) {
@@ -86,7 +111,7 @@ function ensureNoSemicolons(text) {
   return text.includes(";");
 }
 
-function writeSectionPosts(sectionNum) {
+async function writeSectionPosts(sectionNum) {
   const slug = String(sectionNum).padStart(2, "0");
   const sectionDir = path.join(runDir, `section_${slug}`);
   const insightsPath = path.join(sectionDir, "insights.json");
@@ -143,7 +168,7 @@ function writeSectionPosts(sectionNum) {
     "Post 1\n\n<text>\n\nPost 2...",
   ].join("\n");
 
-  let out = callOpenAI(prompt);
+  let out = await callOpenAI(prompt, { label: `sec${slug}` });
 
   // Normalize quotes and remove fences if any
   out = out.replace(/```[\s\S]*?```/g, (m) => m.replace(/```/g, ""));
@@ -176,14 +201,14 @@ function nextSection() {
   return null;
 }
 
-function main() {
+async function main() {
   if (mode === "one") {
     const s = nextSection();
     if (!s) {
       console.log("ALL_DONE");
       return;
     }
-    const { outPath } = writeSectionPosts(s);
+    const { outPath } = await writeSectionPosts(s);
     gitCommitPush(`Finalize section ${String(s).padStart(2, "0")} posts`, outPath);
     console.log(`SECTION_DONE ${String(s).padStart(2, "0")}`);
     return;
@@ -193,11 +218,14 @@ function main() {
     const slug = String(i).padStart(2, "0");
     const outPath = path.join(runDir, `section_${slug}`, "posts_final.txt");
     if (fs.existsSync(outPath)) continue;
-    const res = writeSectionPosts(i);
+    const res = await writeSectionPosts(i);
     gitCommitPush(`Finalize section ${slug} posts`, res.outPath);
     console.log(`SECTION_DONE ${slug}`);
   }
   console.log("ALL_DONE");
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
