@@ -40,3 +40,15 @@ projects:
       - label: Hub repo
         url: "https://github.com/rileydrakedesign/Heimdall-hub"
     notes: "System to ingest long-form text (e.g., podcast transcripts), extract nuanced insights, and generate an insight brief plus high-quality X post drafts."
+
+  - id: rooted-content-agent
+    name: Rooted Content Agent — Instagram Carousels
+    status: idea
+    priority: high
+    owner: Heimdall
+    next_action: "Define carousel formats + style system; build first end-to-end prototype (one carousel)"
+    due: null
+    links:
+      - label: Hub repo
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+    notes: "Workflow that ingests ideas + inspiration posts and produces informational Instagram carousel assets (copy, layout, images)."
