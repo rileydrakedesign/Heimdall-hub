@@ -20,7 +20,7 @@ projects:
     status: active
     priority: high
     owner: Heimdall
-    next_action: "Read brief.md + README, then draft landing IA + page outlines"
+    next_action: "Confirm naming + primary CTA, then produce final outlines + first-pass copy"
     due: null
     links:
       - label: Product repo
@@ -28,3 +28,15 @@ projects:
       - label: Live app
         url: "https://app.classchatai.com"
     notes: "High-converting, minimal SaaS landing site for Class Chat AI (AIStudyBuddy)."
+
+  - id: insight-x-pipeline
+    name: Insight → Summary → X Drafts Pipeline
+    status: active
+    priority: high
+    owner: Heimdall
+    next_action: "Define extraction rubric + output formats; build first text-only prototype for podcast transcripts"
+    due: null
+    links:
+      - label: Hub repo
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+    notes: "System to ingest long-form text (e.g., podcast transcripts), extract nuanced insights, and generate an insight brief plus high-quality X post drafts."
