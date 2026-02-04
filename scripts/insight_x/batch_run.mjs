@@ -129,7 +129,7 @@ function writeSectionPosts(sectionNum) {
     "Do not use these banned words or phrases:",
     taboo.map((t) => `- ${t}`).join("\n"),
     "",
-    `Section ${slug} source excerpt. Use this to add detail beyond the insight bullet. Stay faithful:",
+    `Section ${slug} source excerpt. Use this to add detail beyond the insight bullet. Stay faithful:`,
     sectionText.slice(0, 12000),
     "",
     "Candidate insights with timestamps. Pick 5 and write 5 posts, one per chosen insight. Make posts longer and informative.",
