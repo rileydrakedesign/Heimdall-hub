@@ -1,0 +1,83 @@
+Post 1
+
+google gets a structural advantage most labs never touch.
+
+it owns the stack.
+chips, data centers, the serving layer.
+
+so when margins on NVIDIA GPUs squeeze everyone else, google routes around it.
+
+> build to fit your own stack
+> avoid paying supplier margin
+> scale without renegotiating your unit economics every quarter
+
+if you build an AI product, copy the principle, not the company.
+own the bottleneck you pay every day.
+
+Post 2
+
+the speed vs intelligence trade off is not a debate.
+it is two different jobs.
+
+fast mode
+- quick lookups
+- simple explanations
+- low patience tasks
+
+slow mode
+- work queries
+- reference checking
+- higher stakes decisions
+
+1/ give users a toggle
+2/ default to fast
+3/ make slow feel worth the wait
+
+people do not want one model for every moment.
+
+Post 3
+
+model quality is not the only reason US models feel better.
+serving architecture shows up in the experience.
+
+what they describe in this section
+• fewer GPUs per replica makes a model slower
+• slower replicas increase timeouts and weird failure patterns
+• users blame intelligence, then churn
+
+if you serve a model, treat latency as product quality.
+people experience speed first.
+
+Post 4
+
+your best model pick changes by task.
+
+the workflow they describe is multi tool by default.
+
+- one model for fast explanations
+- one model for code and deep thinking
+- one model for real time lookup
+
+you do not need loyalty.
+you need a reliable map.
+
+document your routing rules.
+write them down like a checklist.
+then follow them until you learn a better one.
+
+Post 5
+
+users do not switch models gradually.
+they switch when a threshold breaks.
+
+the pattern
+1/ you use a model until it fails on your job
+2/ you lose trust
+3/ you move your workflow to the next one
+
+if you ship a model product, retention depends on two things.
+- how often it breaks
+- how fast you fix the specific break
+
+generic improvements do not save you.
+fix the break that caused the switch.
