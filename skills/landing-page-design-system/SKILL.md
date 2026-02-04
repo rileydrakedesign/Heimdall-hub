@@ -53,18 +53,27 @@ Output: `components.md`.
 
 ### 7) QA gates (hard)
 Run through the checklists.
-- Vercel Web Interface Guidelines
+- `/web-interface-guidelines` (full pass)
 - Basic performance and accessibility checks
 - Visual consistency checks
 
 If QA fails, fix before declaring done.
 
-## Hard enforcement: Vercel Web Interface Guidelines
-Always apply the condensed checklist.
-Read: `references/vercel-web-interface-guidelines.md`
+## Hard enforcement: Vercel Web Interface Guidelines (direct)
+Use the dedicated skill `web-interface-guidelines` (vendored upstream) as the canonical source.
+
+How to apply
+- Run `/web-interface-guidelines` early and often, not only at the end.
+- Use it as a blocking gate at the end.
+
+Required cadence (minimum)
+1) After `outline.md` + `copy.md`: run a quick guidelines pass focused on Content + Layout.
+2) After the first implemented hero + CTA: run a pass focused on Interactions + Focus + Links.
+3) Before merging/shipping: run a full pass and write `qa.md`.
 
 Convention
-When the user types `/web-interface-guidelines`, treat it as a request to review and apply these gates to the current design.
+- If the user types `/web-interface-guidelines`, immediately run a QA pass against the current artifact (copy, component spec, or built UI).
+- If I am building a landing page, I should proactively invoke the guidelines checks at each milestone above.
 
 ## Hard enforcement: product style tokens
 If working on Class Chat AI, read:
