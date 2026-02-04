@@ -1,4 +1,5 @@
 import { BASE_PATH } from "@/lib/basePath";
+import { githubTreeUrl, githubUploadUrl } from "@/lib/repo";
 import { getProjectById, loadProjects } from "@/lib/projects";
 
 export const dynamic = "force-static";
@@ -61,6 +62,28 @@ export default async function ProjectPage({
       <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
         <div className="text-sm text-white/60">Next action</div>
         <div className="mt-2 font-medium">{project.next_action}</div>
+      </div>
+
+      <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="text-sm font-semibold">Uploads</div>
+        <div className="mt-1 text-sm text-white/60">
+          Add project files (e.g., transcripts) to this folder:
+          <span className="ml-2 font-mono text-white/70">projects/{project.id}/files/</span>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <a
+            href={githubUploadUrl(`projects/${project.id}/files`)}
+            className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
+          >
+            Upload files
+          </a>
+          <a
+            href={githubTreeUrl(`projects/${project.id}/files`)}
+            className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
+          >
+            View folder
+          </a>
+        </div>
       </div>
 
       {project.links?.length ? (

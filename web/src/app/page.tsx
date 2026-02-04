@@ -1,6 +1,8 @@
 import { BASE_PATH } from "@/lib/basePath";
 import { loadProjects } from "@/lib/projects";
 
+import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
+
 function StatCard({ title, value }: { title: string; value: string | number }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -43,6 +45,42 @@ export default function Dashboard() {
       </section>
 
       <section className="mt-10">
+        <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="text-sm font-semibold">Knowledge Base</div>
+            <div className="mt-1 text-sm text-white/60">
+              Upload shared reference files (transcripts, notes, docs).
+            </div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href={githubUploadUrl("kb/uploads")}
+                className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
+              >
+                Upload files
+              </a>
+              <a
+                href={githubTreeUrl("kb/uploads")}
+                className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
+              >
+                View folder
+              </a>
+            </div>
+            <div className="mt-3 text-xs text-white/40">
+              Tip: uploads go straight to the GitHub repo (private).
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="text-sm font-semibold">Project Uploads</div>
+            <div className="mt-1 text-sm text-white/60">
+              Each project has a <span className="font-medium text-white/80">files/</span> folder for inputs.
+            </div>
+            <div className="mt-4 text-sm text-white/60">
+              Open any project to upload transcripts/specs to its folder.
+            </div>
+          </div>
+        </div>
+
         <div className="flex items-end justify-between">
           <h2 className="text-lg font-semibold">Next actions</h2>
           <a href={`${BASE_PATH}/projects/`} className="text-sm text-white/60 hover:text-white">
