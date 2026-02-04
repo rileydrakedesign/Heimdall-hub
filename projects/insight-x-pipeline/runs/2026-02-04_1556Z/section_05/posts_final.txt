@@ -1,0 +1,56 @@
+Post 1
+
+the Mixture of Experts layer changes how models scale.
+
+this layer allows for growth without a proportional rise in computational costs.
+
+1/ it integrates diverse knowledge
+2/ it optimizes resource usage
+3/ it is crucial for large-scale AI models
+
+this approach makes models more efficient. you get more from less. 
+
+Post 2
+
+recent advancements in large language models focus on algorithmic improvements.
+
+the shift highlights a new path for performance gains.
+
+- supervised fine-tuning
+- reinforcement learning with human feedback
+
+these methods refine training processes. they enhance capabilities without changing the core architecture.
+
+Post 3
+
+the evolution of training strategies is notable.
+
+now, we have pre-training, mid-training, and post-training stages.
+
+1/ this multi-stage approach allows for nuanced training
+2/ it leads to better model performance
+3/ it enhances adaptability
+
+understanding these stages can improve your model outcomes.
+
+Post 4
+
+FP8 and FP4 optimizations significantly increase training throughput.
+
+these methods allow for faster experimentation and efficient resource use.
+
+- you can boost training speed from 10K to 13K
+- they help scale AI models effectively
+
+this efficiency is essential for your AI projects.
+
+Post 5
+
+the distinction between dense and sparse models is important.
+
+it highlights trade-offs in resource allocation and model complexity.
+
+- sparse models use fewer active experts
+- dense models utilize all connections
+
+understanding this trade-off helps you optimize performance and training efficiency.
