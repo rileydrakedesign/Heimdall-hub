@@ -2,6 +2,8 @@ import { BASE_PATH } from "@/lib/basePath";
 import { githubFileUrl } from "@/lib/runs";
 import { githubTreeUrl, githubUploadUrl } from "@/lib/repo";
 import { getProjectById, loadProjects } from "@/lib/projects";
+import { FileList } from "@/components/FileList";
+import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
 
 export const dynamic = "force-static";
 
@@ -28,6 +30,13 @@ export default async function ProjectPage({
       </main>
     );
   }
+
+  const repoRoot = repoRootFromWebCwd();
+  const projectRecentFiles = listRepoFiles({
+    absDir: `${repoRoot}/projects/${project.id}/files`,
+    relPrefix: `projects/${project.id}/files`,
+    limit: 10,
+  });
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-10">
@@ -68,7 +77,7 @@ export default async function ProjectPage({
       <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
         <div className="text-sm font-semibold">Uploads</div>
         <div className="mt-1 text-sm text-white/60">
-          Add project files (e.g., transcripts) to this folder:
+          Add project files (e.g., transcripts, screenshots, specs) to:
           <span className="ml-2 font-mono text-white/70">projects/{project.id}/files/</span>
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
@@ -85,6 +94,7 @@ export default async function ProjectPage({
             View folder
           </a>
         </div>
+        <FileList title="Recent files" files={projectRecentFiles} />
       </div>
 
       {project.id === "insight-x-pipeline" ? (

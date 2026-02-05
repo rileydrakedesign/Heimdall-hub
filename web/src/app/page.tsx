@@ -1,5 +1,8 @@
 import { BASE_PATH } from "@/lib/basePath";
 import { loadProjects } from "@/lib/projects";
+import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
+import { FileList } from "@/components/FileList";
+import { Badge } from "@/components/Badge";
 
 import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
 
@@ -12,11 +15,31 @@ function StatCard({ title, value }: { title: string; value: string | number }) {
   );
 }
 
+function toneForStatus(status: string) {
+  if (status === "active") return "green" as const;
+  if (status === "paused") return "yellow" as const;
+  if (status === "done") return "blue" as const;
+  return "neutral" as const;
+}
+
+function toneForPriority(priority: string) {
+  if (priority === "urgent") return "red" as const;
+  if (priority === "high") return "yellow" as const;
+  return "neutral" as const;
+}
+
 export default function Dashboard() {
   const projects = loadProjects();
   const active = projects.filter((p) => p.status === "active");
   const paused = projects.filter((p) => p.status === "paused");
   const done = projects.filter((p) => p.status === "done");
+
+  const repoRoot = repoRootFromWebCwd();
+  const kbRecent = listRepoFiles({
+    absDir: `${repoRoot}/kb/uploads`,
+    relPrefix: "kb/uploads",
+    limit: 8,
+  });
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
@@ -90,23 +113,35 @@ export default function Dashboard() {
 
         <div className="mt-4 overflow-hidden rounded-xl border border-white/10">
           <div className="divide-y divide-white/10">
-            {projects.map((p) => (
-              <div key={p.id} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <a href={`${BASE_PATH}/projects/${p.id}/`} className="font-medium hover:underline">
-                    {p.name}
-                  </a>
-                  <div className="text-sm text-white/60">{p.next_action}</div>
+            {projects
+              .slice()
+              .sort((a, b) => {
+                // active first, then urgent/high priorities
+                const statusRank: Record<string, number> = { active: 0, idea: 1, paused: 2, done: 3 };
+                const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
+                const sr = (statusRank[a.status] ?? 9) - (statusRank[b.status] ?? 9);
+                if (sr !== 0) return sr;
+                return (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9);
+              })
+              .map((p) => (
+                <div key={p.id} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <a href={`${BASE_PATH}/projects/${p.id}/`} className="font-medium hover:underline">
+                      {p.name}
+                    </a>
+                    <div className="mt-1 text-sm text-white/60">{p.next_action}</div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    <Badge tone={toneForStatus(p.status)}>{p.status}</Badge>
+                    <Badge tone={toneForPriority(p.priority)}>{p.priority}</Badge>
+                    <Badge>{p.owner}</Badge>
+                  </div>
                 </div>
-                <div className="flex gap-2 text-xs">
-                  <span className="rounded-full bg-white/10 px-2 py-1">{p.status}</span>
-                  <span className="rounded-full bg-white/10 px-2 py-1">{p.priority}</span>
-                  <span className="rounded-full bg-white/10 px-2 py-1">{p.owner}</span>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
+
+        <FileList title="Recent KB uploads" files={kbRecent} />
       </section>
     </main>
   );

@@ -12,3 +12,8 @@ export function githubTreeUrl(dirPath: string) {
   const clean = dirPath.replace(/^\/+/, "").replace(/\/+$/, "");
   return `https://github.com/${REPO_OWNER}/${REPO_NAME}/tree/${REPO_BRANCH}/${clean}`;
 }
+
+export function githubRawUrl(filePath: string) {
+  const clean = filePath.replace(/^\/+/, "");
+  return `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${clean}`;
+}
