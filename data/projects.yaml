@@ -41,6 +41,20 @@ projects:
         url: "https://github.com/rileydrakedesign/Heimdall-hub"
     notes: "System to ingest long-form text (e.g., podcast transcripts), extract nuanced insights, and generate an insight brief plus high-quality X post drafts."
 
+  - id: agent-for-x-landing
+    name: Agent for X — Landing Page
+    status: done
+    priority: medium
+    owner: Heimdall
+    next_action: "Done (first draft shipped). Next: hook up real waitlist backend + real privacy/terms URLs when ready"
+    due: null
+    links:
+      - label: Product repo
+        url: "https://github.com/rileydrakedesign/ContentAutomationPlatform"
+      - label: Landing route
+        url: "https://github.com/rileydrakedesign/ContentAutomationPlatform/tree/main/src/app/agent-for-x"
+    notes: "Minimal marketing landing for Agent for X with waitlist CTA + feature carousel."
+
   - id: rooted-content-agent
     name: Rooted Content Agent — Instagram Carousels
     status: paused
