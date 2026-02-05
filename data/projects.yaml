@@ -67,6 +67,18 @@ projects:
         url: "https://github.com/rileydrakedesign/Heimdall-hub"
     notes: "Daily morning briefing: AI papers, markets, project status, overnight work updates, current events, surf + weather."
 
+  - id: program-manager
+    name: Program Manager (Heimdall Role)
+    status: active
+    priority: urgent
+    owner: Heimdall
+    next_action: "Draft operating system + cadences; define what I update automatically vs ask-first"
+    due: null
+    links:
+      - label: Hub repo
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+    notes: "Cross-project program management for Riley’s products + operations. Will evolve from a project into an always-on role."
+
   - id: rooted-content-agent
     name: Rooted Content Agent — Instagram Carousels
     status: paused
