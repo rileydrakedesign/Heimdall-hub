@@ -42,7 +42,10 @@
 - paused: intentionally tabled
 - done: shipped/parked
 
-## Next: confirm preferences
-- Preferred weekly review day/time
+## Preferences (confirmed)
+- I may auto-edit `data/projects.yaml` (status/next_action/due) without asking each time.
+- Weekly reviews: Mondays + Thursdays (time TBD)
+
+## Next: confirm remaining preferences
+- Weekly review time (UTC)
 - Preferred format for daily check-ins (short/medium/long)
-- Whether I’m allowed to auto-edit `data/projects.yaml` without asking each time
