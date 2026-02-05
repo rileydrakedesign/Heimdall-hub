@@ -55,6 +55,18 @@ projects:
         url: "https://github.com/rileydrakedesign/ContentAutomationPlatform/tree/main/src/app/agent-for-x"
     notes: "Minimal marketing landing for Agent for X with waitlist CTA + feature carousel."
 
+  - id: daily-debrief
+    name: Daily Debrief
+    status: active
+    priority: high
+    owner: Heimdall
+    next_action: "Confirm sources + format preferences, then generate first debrief + schedule daily delivery"
+    due: null
+    links:
+      - label: Hub repo
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+    notes: "Daily morning briefing: AI papers, markets, project status, overnight work updates, current events, surf + weather."
+
   - id: rooted-content-agent
     name: Rooted Content Agent — Instagram Carousels
     status: paused
