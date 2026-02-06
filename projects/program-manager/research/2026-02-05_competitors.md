@@ -87,3 +87,73 @@ GTM implication:
 - Asset: 5 before/after examples (raw transcript/notes → post/thread) + 1 short video.
 - Channels: X build-in-public + 2 creator forums (non-Reddit if blocked).
 - Metric: waitlist conversion rate (visit → submit) + inbound DMs.
+
+---
+
+## Iteration 3 — pricing + packaging patterns
+
+### Tweet Hunter — pricing + packaging
+- URL: https://tweethunter.io/pricing
+- Packaging themes (feature list):
+  - core workflow: viral tweet library, AI writer, scheduling, evergreen, analytics
+  - distribution automations: **auto-dm, auto-plug, auto-retweet**
+  - “X CRM” (lists of people; engage faster)
+  - “best-in-class AI”: train a custom model “to fit your exact needs and niche”
+
+GTM takeaways:
+- they’re not selling “a generator”. they’re selling a *system*: create + distribute + engage + measure.
+- “custom model to fit your niche” is basically “voice” positioning in different words.
+
+### Taplio — pricing page packaging
+- URL: https://taplio.com/pricing
+- Packaging themes:
+  - “inspiration/viral posts library”
+  - repurpose content
+  - scheduling
+  - analytics
+  - outreach: auto-dm
+  - chrome extension surface: “save post/account from extension”, “smart replies from LinkedIn”
+
+GTM takeaways:
+- extension as surface area is a repeatable play: “do it where you already work.”
+
+
+---
+
+## Iteration 4 — “privacy + self-hosting” competitor lane (Class Chat AI)
+
+### SecureAI Tools (open-source, self-hosted)
+- Repo page: https://github.com/SecureAI-Tools/SecureAI-Tools
+- Positioning: “Private and secure AI tools for everyone's productivity.”
+- Highlights include:
+  - chat with documents (PDFs)
+  - local inference (Ollama)
+  - built-in authentication / user management
+  - “self-hosting optimized”
+
+Pain signals from their HN thread (crowded space + OCR + offline processing):
+- scanned PDFs/OCR is a missing feature
+- users want offline/background processing so they can query later
+- crowding: other OSS players mentioned (Khoj, Danswer)
+  - Source: https://hn.algolia.com/api/v1/items/38587052
+
+GTM implication for Class Chat AI:
+- a clean “student lane” plus explicit privacy stance matters.
+- even if we don’t self-host, we should message **what we do/don’t store** and how users delete.
+
+
+---
+
+## Iteration 5 — “crowded market” reality + distribution channels
+
+Class Chat AI market note (HN search results):
+- There are many “chat with PDF” entrants (ChatPDF, ScholarTurbo, Documind, BardPDF, LocalGPT, etc.).
+  - Source: https://hn.algolia.com/api/v1/search?query=chat%20with%20pdf&tags=story
+
+GTM implication:
+- differentiation must be *narrow + provable* (for us: study workflow + citations + verify).
+- acquisition likely comes from:
+  - SEO long-tails
+  - short demo clips
+  - student communities (Reddit blocked for automation, but still a target)
+

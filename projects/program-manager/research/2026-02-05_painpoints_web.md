@@ -55,3 +55,45 @@ Direct quote (HN Show):
 Implications:
 - our GTM should highlight **polish + workflow** (not just “AI drafts”)
 - “taste + structure + no cringe” is a stronger promise than raw volume
+
+---
+
+## Iteration 3 — pain signals from competitor education content
+
+## Agent for X — distribution reality: creators are chasing the algorithm
+Source (Tweet Hunter blog):
+- “Cracking the Code: How the Twitter Algorithm Works”
+  - https://tweethunter.io/blog/twitter-algorithm-full-analysis
+
+Observed pattern:
+- creator tools publish long “algorithm explainers” to attract + retain users.
+- implicit pain: people don’t just need drafts; they want confidence their effort will *reach people*.
+
+Implication for Agent for X GTM:
+- we should ship (or market) an *execution loop*:
+  - draft → schedule → post → reply → measure → iterate
+- and we should speak to “distribution confidence” without turning into fluff.
+
+
+---
+
+## Iteration 4 — document AI pain points beyond chat
+
+### Pain: scanned PDFs and OCR reliability
+From HN thread (SecureAI tools):
+- users ask if “chat with PDFs” works with scanned PDFs (OCR)
+- another user: “I haven't found an OCR tool reliable enough… accuracy of amounts… is very important.”
+- Source: https://hn.algolia.com/api/v1/items/38587052
+
+Implication for Class Chat AI:
+- do not promise broad OCR reliability unless it’s real.
+- if OCR is not a focus, explicitly position toward text-based PDFs and study docs.
+
+### Pain: offline/background processing
+From HN thread:
+- users want to upload docs, let processing happen in background, then ask questions later.
+- Source: https://hn.algolia.com/api/v1/items/38587052
+
+Implication:
+- pre-processing progress + “ready to chat” state is part of UX trust.
+
