@@ -72,7 +72,7 @@ projects:
     status: active
     priority: urgent
     owner: Heimdall
-    next_action: "Draft operating system + cadences; define what I update automatically vs ask-first"
+    next_action: "Run continuous research→GTM loop + keep development on track (pre-launch focus)"
     due: null
     links:
       - label: Hub repo
