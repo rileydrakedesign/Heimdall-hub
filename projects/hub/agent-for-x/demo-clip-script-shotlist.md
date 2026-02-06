@@ -1,7 +1,15 @@
 # Demo Clip — Script + Shot List (Draft)
 
 Format: 35–45s screen-record + optional talking head.
-Goal: show **speed + groundedness** (quotes → drafts).
+Goal: show **speed + groundedness** (raw transcript → evidence-backed drafts).
+
+## Use real repo example (recommended)
+Use the existing run artifacts:
+- `projects/insight-x-pipeline/runs/2026-02-04_1556Z/section_22/section.txt` (raw)
+- `.../insights.json` (structured)
+- `.../posts_final.txt` (final outputs)
+
+---
 
 ## Script (VO / on-camera)
 0–3s (hook)
@@ -11,28 +19,28 @@ Goal: show **speed + groundedness** (quotes → drafts).
 - “Here’s the transcript. Messy, long, unshippable.”
 
 10–22s (show transformation)
-- “Agent for X extracts the best claims, attaches timestamps, and turns them into an insight card.”
+- “Agent for X pulls out the strongest claims and attaches the exact timestamp, so you can verify every line.”
 
 22–35s (show outputs)
-- “Then it generates: a thread, three singles, and a CTA post—same idea, different formats.”
+- “Then it turns those insights into publish-ready posts: singles, threads, and a CTA pack.”
 
 35–45s (CTA)
-- “If you want one, reply ‘PACK’ and I’ll send the intake.”
+- “If you want one, reply ‘PACK’ and I’ll send the 2-minute intake.”
+
+---
 
 ## Shot list (screen capture)
-1) Open transcript / raw notes (blur any private info).
-2) Scroll to 1–2 strong quote lines; highlight them.
-3) Show “Insight Card” view (or doc section) with: claim + why-it-matters + quote + timestamp.
-4) Show generated thread draft.
-5) Show singles list.
-6) Show CTA post.
-7) End card: “1 input → 5 outputs” + “Reply PACK”.
+1) Open `section.txt` and scroll to one quote block (show timestamps).
+2) Highlight the key lines (CUDA moat / inference chip).
+3) Open `insights.json` or `summary.md` and show: claim + why-it-matters.
+4) Open `posts_final.txt` and scroll through the finished posts.
+5) End card: “1 input → 5 outputs” + “Reply PACK”.
 
 ## On-screen text (minimal)
-- “30 min audio → 5 posts”
-- “Claims + quotes + timestamps”
-- “Thread + singles + CTA”
+- “Transcript → evidence → posts”
+- “Quotes + timestamps”
+- “Pack: thread + singles + CTA”
 
 ## REQUIRED_INPUT
-- Actual UI paths/screens you want to demo (extension? web app? docs?)
+- Actual UI/screens for *Agent for X* product (extension? web app? docs?) if you want this to be a product demo vs a doc demo.
 - Brand voice: sharp/technical vs casual founder.
