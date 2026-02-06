@@ -40,3 +40,18 @@ Direct quote (HN ChatPDF discussion):
 
 Implication:
 - For Class Chat AI, the promise should stay in the “study + citations + verify” lane, not legal.
+
+---
+
+## Iteration 2 — more pain + positioning signals
+
+## Agent for X — positioning signals from adjacent builders
+
+### Signal: the “craft” is in the details (and performance)
+Direct quote (HN Show):
+- “Vibe coding hits a wall with performance problems. The details Typefully polished? That's where the real craft lives.”
+  - Source: https://hn.algolia.com/api/v1/items/46742181
+
+Implications:
+- our GTM should highlight **polish + workflow** (not just “AI drafts”)
+- “taste + structure + no cringe” is a stronger promise than raw volume
