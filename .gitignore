@@ -1,6 +1,7 @@
 # Local scratch
 input/
 output/
+work/
 
 # Node
 node_modules/

@@ -1,5 +1,14 @@
 # Experiments
 
-Each experiment should have a doc describing hypothesis, metrics, and result.
+Each experiment should have a doc describing:
+- hypothesis
+- funnel stage
+- metrics
+- segment
+- test design + stop rule
+- result + decision
 
-Use `templates/experiment.md`.
+Template: `projects/program-manager/templates/experiment.md`
+
+## Active experiment sets
+- Agent for X: `projects/program-manager/experiments/agent-for-x/`

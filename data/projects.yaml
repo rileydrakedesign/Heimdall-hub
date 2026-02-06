@@ -8,7 +8,7 @@ projects:
     status: active
     priority: high
     owner: Riley
-    next_action: "Confirm GitHub Pages is publishing + review first UI pass"
+    next_action: "Confirm GitHub Pages is publishing; then add nav links to PM artifacts (war room, KPIs, GTM calendar)"
     due: null
     links:
       - label: Repo
@@ -20,7 +20,7 @@ projects:
     status: active
     priority: high
     owner: Heimdall
-    next_action: "Confirm naming + primary CTA, then produce final outlines + first-pass copy"
+    next_action: "Draft landing v1 around the trust wedge (citations + jump-to-page) + FAQ objections; ensure UTM/analytics plan exists"
     due: null
     links:
       - label: Product repo
@@ -34,7 +34,7 @@ projects:
     status: active
     priority: high
     owner: Heimdall
-    next_action: "Define extraction rubric + output formats; build first text-only prototype for podcast transcripts"
+    next_action: "Ship extraction rubric + sample outputs on 1 transcript; define evaluation criteria (quality bar)"
     due: null
     links:
       - label: Hub repo
@@ -60,7 +60,7 @@ projects:
     status: active
     priority: high
     owner: Heimdall
-    next_action: "Confirm sources + format preferences, then generate first debrief + schedule daily delivery"
+    next_action: "Generate first Daily Debrief draft from confirmed sources; define delivery time + sections to keep/kill"
     due: null
     links:
       - label: Hub repo
@@ -72,7 +72,7 @@ projects:
     status: active
     priority: urgent
     owner: Heimdall
-    next_action: "Run continuous research→GTM loop + keep development on track (pre-launch focus)"
+    next_action: "Execute 72h asset kit + start 3 Agent for X experiments; update KPI log daily; keep dev unblocked"
     due: null
     links:
       - label: Hub repo
