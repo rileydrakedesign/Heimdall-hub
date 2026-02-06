@@ -2,21 +2,25 @@
 
 ## Cadence
 
-### Daily (morning)
-- Project status scan
+### Daily (morning) — execution brief
+- Priority stack (today)
 - 3–7 recommended next steps (ranked)
 - 1–3 risks/blockers
 - “What changed since yesterday”
+- Experiment movement (started/stopped/won/lost)
 
-### Daily (evening, optional)
-- “What we shipped today”
-- “What’s next tomorrow”
+### Daily (evening, optional) — ship log
+- What shipped
+- What got learned (from users/metrics)
+- Next actions for tomorrow
 
-### Weekly (Sunday or Monday)
-- Priority stack (top 5)
-- Active bets + why
-- Deadlines + dependencies
-- Cleanup: archive done work, update next_action fields
+### Weekly reviews (Mondays + Thursdays)
+- KPI snapshot (trend, not vanity)
+- A/B tests + experiments review
+- Funnel diagnosis (acq/activation/retention/revenue)
+- User feedback themes + what we’ll ship next
+- Costs/overhead check
+- Cleanup: archive done work, keep `next_action` crisp
 
 ## Source of truth rules
 - `data/projects.yaml` is the canonical dashboard feed.

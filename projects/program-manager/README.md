@@ -4,7 +4,7 @@ This project defines an always-on **program manager** workflow that Heimdall exe
 
 ## Scope (C)
 - **Internal ops PM:** project tracking, next actions, blockers, decision logs, reminders.
-- **Business PM:** launches, roadmap, positioning, metrics (when available), customer feedback loops.
+- **Business PM:** GTM strategy, launches, roadmap, KPIs, experiments/A-B tests, user communication + feedback loops, cost/overhead control.
 
 ## Outputs (where they live)
 - Project list truth: `data/projects.yaml`
