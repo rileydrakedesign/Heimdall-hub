@@ -14,7 +14,7 @@
 - What got learned (from users/metrics)
 - Next actions for tomorrow
 
-### Weekly reviews (push) — M/W/F brief @ 10:00 (timezone TBD)
+### Weekly reviews (push) — M/W/F brief @ 10:00 America/Los_Angeles
 - KPI snapshot (trend, not vanity)
 - Experiments review (started/stopped/won/lost)
 - Funnel diagnosis (acq/activation/retention/revenue)
