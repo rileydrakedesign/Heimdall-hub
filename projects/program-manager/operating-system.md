@@ -14,13 +14,16 @@
 - What got learned (from users/metrics)
 - Next actions for tomorrow
 
-### Weekly reviews (Mondays + Thursdays)
+### Weekly reviews (push) — M/W/F brief @ 10:00 (timezone TBD)
 - KPI snapshot (trend, not vanity)
-- A/B tests + experiments review
+- Experiments review (started/stopped/won/lost)
 - Funnel diagnosis (acq/activation/retention/revenue)
 - User feedback themes + what we’ll ship next
 - Costs/overhead check
 - Cleanup: archive done work, keep `next_action` crisp
+
+### Pull mode
+- On request, generate a deeper dive for any project/metric/experiment.
 
 ## Source of truth rules
 - `data/projects.yaml` is the canonical dashboard feed.
