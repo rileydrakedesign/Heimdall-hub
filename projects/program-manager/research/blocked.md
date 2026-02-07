@@ -32,3 +32,16 @@ Purpose: avoid low-signal sources, unethical tactics, or rabbit holes.
 - https://typefully.com/pricing (fetch returned unrelated/low-signal content; treat as unreliable)
 - https://www.chatpdf.com/pricing (404)
 - https://www.chatpdf.com/privacy (404)
+
+### 2026-02-07
+- https://hypefury.com/ (bot verification)
+- https://typefully.com/features (extraction failed; likely JS-heavy)
+- https://typefully.com/help (extraction failed; likely JS-heavy)
+- https://typefully.com/about (extraction failed; likely JS-heavy)
+- https://typefully.com/pricing (fetch returned unrelated/low-signal content; treat as unreliable)
+- https://fedica.com/pricing (404)
+- https://fedica.com/plans (404)
+- https://chatdoc.com/pricing (404)
+- https://chatdoc.com/privacy-policy (404)
+- https://chatdoc.com/policy (404)
+- https://chatdoc.com/terms (404)
