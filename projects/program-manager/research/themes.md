@@ -24,3 +24,6 @@
 - trust is the product: citations (Class Chat) and voice control (Agent for X) are both “trust primitives”
 - reduce friction: competitors push “no signup required” or free companion tools, then upsell
 - **credits/quotas are the new price UX**: agentic features are packaged with monthly credits + clear overage; buyers expect usage visibility and caps
+- **security kits are a sales primitive now**: SOC2 + “request our security kit” + (limited) custom questionnaires are standard enterprise motion, even in productivity tools
+- **agent surfaces are proliferating**: Chrome extensions were the start; now launchers (Raycast) + MCP/connectors + webhooks make “agentic workflows” feel normal
+- **rollout collateral is part of the product** (esp. edu): fact sheets, onboarding decks, templates, and policy guidance materially drive adoption (not just features)
