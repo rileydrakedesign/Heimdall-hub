@@ -43,6 +43,18 @@ Only ping Riley when one of these happens:
 
 Otherwise, silently update `memory/ops-state.json` and store reports.
 
+## Telegram command palette
+
+Follow the routing conventions in `playbook/telegram-commands.md` (audit/screenshot/diagram/status/help). If a message starts with one of those commands, treat it as an explicit routing instruction.
+
+## Report-first default
+
+For audits/analysis/multi-step work:
+- write a durable markdown report in-repo
+- send a short Telegram summary
+
+See `playbook/reporting.md`.
+
 ## Audit cadence
 
 - Daily (repo): quick health checks on active repos.
