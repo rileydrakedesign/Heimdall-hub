@@ -27,3 +27,6 @@
 - **security kits are a sales primitive now**: SOC2 + “request our security kit” + (limited) custom questionnaires are standard enterprise motion, even in productivity tools
 - **agent surfaces are proliferating**: Chrome extensions were the start; now launchers (Raycast) + MCP/connectors + webhooks make “agentic workflows” feel normal
 - **rollout collateral is part of the product** (esp. edu): fact sheets, onboarding decks, templates, and policy guidance materially drive adoption (not just features)
+- **provenance is becoming a UX requirement**: when agents touch drafts, users expect audit trails that label the origin (human vs API/MCP/agent)
+- **time-horizon features price well**: competitors monetize planning depth (e.g., “months of scheduling” tiers) alongside usage quotas
+- **edu monetization norms are term-based and reassurance-heavy**: instructor/department licensing is normalized, and “no ads” / hardship language reduces backlash during paywall shifts

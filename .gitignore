@@ -11,3 +11,11 @@ node_modules/
 
 # Local tooling scratch
 scripts/remote_browser/
+
+# Generated / local skill artifacts
+skills/dist/
+skills/diagram-thread-cards/
+
+# Diagram rendering workspace artifacts
+# (kept local; large binaries in diagrams/out)
+diagrams/
