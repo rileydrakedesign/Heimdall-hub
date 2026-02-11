@@ -61,9 +61,10 @@
   },
   "vps": {
     "last": {
-      "securitySnapshotOkAt": null,
-      "listenersFingerprint": null,
-      "tailscaleIp": null
+      "securitySnapshotOkAt": "2026-02-11T19:31:30.790Z",
+      "listenersFingerprint": "cb127e7da0266347",
+      "openclawFingerprint": "86ffa2b16fd8e85d",
+      "tailscaleIp": "100.116.243.8"
     },
     "lastFindings": {
       "unknownListeners": [],

@@ -129,6 +129,16 @@ async function main() {
       state.vps.last.listenersFingerprint = fp;
     }
 
+    // openclaw status summary (for regression detection)
+    const oc = await sh('openclaw status 2>/dev/null || true', '/home/claw/clawd');
+    if (oc.ok && oc.stdout) {
+      const ocFp = hash(oc.stdout.split('\n').slice(0, 120));
+      if (state.vps.last.openclawFingerprint && state.vps.last.openclawFingerprint !== ocFp) {
+        alerts.push('openclaw status changed since last snapshot');
+      }
+      state.vps.last.openclawFingerprint = ocFp;
+    }
+
     const ts = await sh("tailscale status 2>/dev/null | head -n 5 || true", '/home/claw/clawd');
     if (ts.ok) {
       const m = ts.stdout.match(/(\d+\.\d+\.\d+\.\d+)/);

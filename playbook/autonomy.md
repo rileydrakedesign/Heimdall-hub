@@ -55,6 +55,10 @@ For audits/analysis/multi-step work:
 
 See `playbook/reporting.md`.
 
+## Tool routing
+
+Use the routing decision tree in `playbook/tool-routing.md`.
+
 ## Audit cadence
 
 - Daily (repo): quick health checks on active repos.
