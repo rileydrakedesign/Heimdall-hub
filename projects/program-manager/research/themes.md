@@ -30,3 +30,8 @@
 - **provenance is becoming a UX requirement**: when agents touch drafts, users expect audit trails that label the origin (human vs API/MCP/agent)
 - **time-horizon features price well**: competitors monetize planning depth (e.g., “months of scheduling” tiers) alongside usage quotas
 - **edu monetization norms are term-based and reassurance-heavy**: instructor/department licensing is normalized, and “no ads” / hardship language reduces backlash during paywall shifts
+
+### New (2026-02-12)
+- **privacy controversies create switching moments**: Piazza’s employer-data sharing narrative became a catalyst for instructors to migrate to alternatives (trust narratives travel fast in departments).
+- **"AI transparency artifacts" are product surface area**: “AI Nutrition Facts”, explicit training-consent language, and retention promises increasingly show up in enterprise edu AI positioning.
+- **pricing units differ by buyer**: creator tools sell per-account/per-seat + credits; edu discussion/chat sells per-student/per-course; bridging the two requires clear mapping to outcomes + governance.

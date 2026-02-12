@@ -87,3 +87,10 @@ Purpose: avoid low-signal sources, unethical tactics, or rabbit holes.
 - https://taplio.com/privacy (404)
 - https://www.khanmigo.ai/privacy (404)
 - https://hypefury.com/pricing (bot verification)
+
+### 2026-02-12
+- https://help.x.com/en/rules-and-policies/platform-manipulation-and-spam (403 / “Just a moment…”) 
+- https://hypefury.com/pricing (bot verification)
+- https://buffer.com/pricing (403 / “Just a moment…”) 
+- https://campuswire.com/pricing (200 but “Not found” content)
+- https://piazza.com/product (404 via fetch)
