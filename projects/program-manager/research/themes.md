@@ -35,3 +35,8 @@
 - **privacy controversies create switching moments**: Piazza’s employer-data sharing narrative became a catalyst for instructors to migrate to alternatives (trust narratives travel fast in departments).
 - **"AI transparency artifacts" are product surface area**: “AI Nutrition Facts”, explicit training-consent language, and retention promises increasingly show up in enterprise edu AI positioning.
 - **pricing units differ by buyer**: creator tools sell per-account/per-seat + credits; edu discussion/chat sells per-student/per-course; bridging the two requires clear mapping to outcomes + governance.
+
+### New (2026-02-13)
+- **quotas are trust UX**: exposing AI credits / post caps and pairing them with dashboards reduces “surprise throttle/charge” anxiety; hiding limits creates churn.
+- **compliance claims are now top-of-funnel** (edu): pricing pages themselves lead with FERPA/COPPA + SOC2 + certifications; trust language is not “later-stage” anymore.
+- **platform economics drives packaging**: X’s pay-per-usage API pricing pushes products toward usage-based tiers, feature gating, and clear mapping from “automation” → “API cost.”
