@@ -40,3 +40,8 @@
 - **quotas are trust UX**: exposing AI credits / post caps and pairing them with dashboards reduces “surprise throttle/charge” anxiety; hiding limits creates churn.
 - **compliance claims are now top-of-funnel** (edu): pricing pages themselves lead with FERPA/COPPA + SOC2 + certifications; trust language is not “later-stage” anymore.
 - **platform economics drives packaging**: X’s pay-per-usage API pricing pushes products toward usage-based tiers, feature gating, and clear mapping from “automation” → “API cost.”
+
+### New (2026-02-14)
+- **limits are multidimensional now**: competitors don’t just meter “credits”; they meter pages/doc, upload size, docs/day, questions/day, conversations/day, and reply length — users expect a visible “limits dashboard” that prevents dead-ends.
+- **model choice is becoming a packaging surface**: pricing pages increasingly list multiple LLMs with some gated behind “credits,” training buyers to expect a model menu (and to ask which model answered).
+- **“safe automation” is explained as “no hacks, human-like behavior”**: competitors answer “Is it safe?” directly in pricing FAQs and justify guardrails as account-protection features, not restrictions.
