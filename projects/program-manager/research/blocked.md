@@ -99,3 +99,10 @@ Purpose: avoid low-signal sources, unethical tactics, or rabbit holes.
 - https://typefully.com/pricing (fetch returned unrelated/low-signal content; treat as unreliable)
 - https://buffer.com/pricing (403 / “Just a moment…”)
 - https://help.x.com/en/rules-and-policies/platform-manipulation-and-spam (403 / “Just a moment…”)
+
+### 2026-02-15
+- https://typefully.com/pricing (fetch returned unrelated/low-signal content; treat as unreliable)
+- https://hypefury.com/pricing (bot verification)
+- https://help.x.com/en/using-x/x-pro (403 / “Just a moment…”)
+- https://teaching.jhu.edu/university-teaching-policies/generative-ai/guidelines/ (403 / Cloudflare)
+- https://technology.gsu.edu/technology-services/cybersecurity/university-technology-policies/generative-ai-guidance/ (403 / Cloudflare)

@@ -45,3 +45,8 @@
 - **limits are multidimensional now**: competitors don’t just meter “credits”; they meter pages/doc, upload size, docs/day, questions/day, conversations/day, and reply length — users expect a visible “limits dashboard” that prevents dead-ends.
 - **model choice is becoming a packaging surface**: pricing pages increasingly list multiple LLMs with some gated behind “credits,” training buyers to expect a model menu (and to ask which model answered).
 - **“safe automation” is explained as “no hacks, human-like behavior”**: competitors answer “Is it safe?” directly in pricing FAQs and justify guardrails as account-protection features, not restrictions.
+
+### New (2026-02-15)
+- **edu pricing is term- and class-size-shaped (plus reassurance copy)**: Piazza normalizes per-term, class-size tiers and adds “no ads” + hardship language as adoption friction reducers.
+- **security checklists are turning into marketing pages**: compliance requirements (no-training, retention/deletion, audit logs, SOC2) are now explicit top-of-funnel content, not buried enterprise collateral.
+- **affiliates/coupons are a real creator-tool channel**: deal pages become buyer-facing “pricing sources,” implying we should consider referral/affiliate motion (and supply an official “pricing + limits” artifact that travels well).
