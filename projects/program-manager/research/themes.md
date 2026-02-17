@@ -50,3 +50,8 @@
 - **edu pricing is term- and class-size-shaped (plus reassurance copy)**: Piazza normalizes per-term, class-size tiers and adds “no ads” + hardship language as adoption friction reducers.
 - **security checklists are turning into marketing pages**: compliance requirements (no-training, retention/deletion, audit logs, SOC2) are now explicit top-of-funnel content, not buried enterprise collateral.
 - **affiliates/coupons are a real creator-tool channel**: deal pages become buyer-facing “pricing sources,” implying we should consider referral/affiliate motion (and supply an official “pricing + limits” artifact that travels well).
+
+### New (2026-02-17)
+- **creator-tool distribution is increasingly “affiliate-native”**: competitors (Typefully/Hypefury) ship official affiliate programs and help-center playbooks; referral becomes a primary growth loop, not a side channel.
+- **edu AI trust is now “observable + governed,” not just “private”**: Mission Control / transcript visibility / real-time monitoring are framed as safety primitives for deployment.
+- **OAuth + refresh-token semantics are a buyer concern now**: any X tool implicitly asks for long-lived access (offline tokens); clear revocation + token storage explanations reduce ToS/security anxiety.
