@@ -12,7 +12,7 @@ projects:
     due: null
     links:
       - label: Repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "GitHub-backed dashboard + shared knowledge base (Next.js static)."
 
   - id: aistudybuddy-landing
@@ -38,7 +38,7 @@ projects:
     due: null
     links:
       - label: Hub repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "System to ingest long-form text (e.g., podcast transcripts), extract nuanced insights, and generate an insight brief plus high-quality X post drafts."
 
   - id: agent-for-x-landing
@@ -64,7 +64,7 @@ projects:
     due: null
     links:
       - label: Hub repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "Daily morning briefing: AI papers, markets, project status, overnight work updates, current events, surf + weather."
 
   - id: program-manager
@@ -76,7 +76,7 @@ projects:
     due: null
     links:
       - label: Hub repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "Cross-project program management for Riley’s products + operations. Will evolve from a project into an always-on role."
 
   - id: rooted-content-agent
@@ -88,7 +88,7 @@ projects:
     due: null
     links:
       - label: Hub repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "Workflow that ingests ideas + inspiration posts and produces informational Instagram carousel assets (copy, layout, images)."
 
   - id: riley-portfolio
@@ -100,7 +100,5 @@ projects:
     due: null
     links:
       - label: Repo
-        url: "https://github.com/rileydrakedesign/Heimdall-hub"
-      - label: Assets (in repo)
-        url: "public/iso-pixel/dev-room/"
+        url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "Next.js + PixiJS portfolio site where an isometric pixel room acts as the navigation UI. Assets generated via Nano Banana skill pipeline."

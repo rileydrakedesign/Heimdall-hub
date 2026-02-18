@@ -11,8 +11,8 @@ A pixel-art, semi-animated isometric room that acts as the navigation UI.
 - Playwright for interaction + visual smoke tests
 
 ## Current assets (approved)
-Stored in this repo under:
-- `public/iso-pixel/dev-room/`
+Stored in the portfolio repo under:
+- `public/iso-pixel/dev-room/` (in https://github.com/rileydrakedesign/rileyd-portfolio)
 
 Files:
 - `approved_scene_plate.png`
