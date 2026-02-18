@@ -1,0 +1,41 @@
+{
+  "angle": "2:1 isometric, 30-degree view",
+  "style": "16-bit pixel art, crisp edges, limited palette, subtle dithering",
+
+  "scene": {
+    "prompt": "Cozy cyberpunk ramen stall on a floating platform in space",
+    "notes": "Main establishing shot used as the style+orientation anchor."
+  },
+
+  "base": {
+    "goal": "Create a base/background plate that includes environment + static props only, removing non-static/movable items.",
+    "background_notes": "Keep the floating rock platform, stall structure, signage, and lighting. Remove any characters or loose movable items that should be separate assets."
+  },
+
+  "assets": {
+    "static": [
+      {
+        "id": "potted_plant_a",
+        "name": "Potted plant",
+        "description": "A small potted plant that is part of the set dressing"
+      }
+    ],
+    "dynamic": [
+      {
+        "id": "lantern_neon",
+        "name": "Neon paper lantern",
+        "description": "A hanging neon paper lantern with small metal bracket"
+      },
+      {
+        "id": "ramen_bowl",
+        "name": "Ramen bowl",
+        "description": "A steaming ramen bowl with chopsticks"
+      },
+      {
+        "id": "robot_vendor",
+        "name": "Robot vendor",
+        "description": "A friendly small robot vendor character"
+      }
+    ]
+  }
+}

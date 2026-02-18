@@ -16,6 +16,9 @@ scripts/remote_browser/
 skills/dist/
 skills/diagram-thread-cards/
 
+# Local build artifacts
+out/
+
 # Diagram rendering workspace artifacts
 # (kept local; large binaries in diagrams/out)
 diagrams/

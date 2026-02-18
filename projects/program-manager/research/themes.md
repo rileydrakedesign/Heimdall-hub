@@ -55,3 +55,8 @@
 - **creator-tool distribution is increasingly “affiliate-native”**: competitors (Typefully/Hypefury) ship official affiliate programs and help-center playbooks; referral becomes a primary growth loop, not a side channel.
 - **edu AI trust is now “observable + governed,” not just “private”**: Mission Control / transcript visibility / real-time monitoring are framed as safety primitives for deployment.
 - **OAuth + refresh-token semantics are a buyer concern now**: any X tool implicitly asks for long-lived access (offline tokens); clear revocation + token storage explanations reduce ToS/security anxiety.
+
+### New (2026-02-18)
+- **affiliate programs are getting “sales enablement” serious**: tier perks (cookie windows, free lifetime access) plus downloadable asset packs turn creators into a quasi-salesforce (and increase the cost of missing a canonical “limits/safety” page).
+- **edu paywalls need reassurance copy**: per-term pricing often ships with “no ads” + hardship accommodations to prevent backlash during monetization shifts.
+- **“safe automation” is marketed as “no hacks; normal-usage behavior”**: competitors explicitly answer “is this safe?” with behavioral claims, not technical details—copy + guardrails + caps become conversion drivers.

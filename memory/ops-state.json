@@ -4,11 +4,11 @@
     "ContentAutomationPlatform": {
       "path": "/home/claw/clawd/work/ContentAutomationPlatform",
       "last": {
-        "buildOkAt": "2026-02-11T19:00:52.211Z",
-        "typecheckOkAt": "2026-02-11T19:00:52.211Z",
-        "schemaGuardianOkAt": "2026-02-11T19:00:52.236Z",
-        "prodWiringAuditOkAt": "2026-02-11T19:00:52.236Z",
-        "promptQaOkAt": "2026-02-11T19:00:52.236Z",
+        "buildOkAt": "2026-02-18T09:16:28.531Z",
+        "typecheckOkAt": "2026-02-18T09:16:28.531Z",
+        "schemaGuardianOkAt": "2026-02-18T09:16:28.550Z",
+        "prodWiringAuditOkAt": "2026-02-18T09:16:28.550Z",
+        "promptQaOkAt": "2026-02-18T09:16:28.550Z",
         "npmAuditHighCount": null
       },
       "lastFindings": {
@@ -17,15 +17,13 @@
           "high": [
             "table referenced but not mentioned in migrations: captured_posts",
             "table referenced but not mentioned in migrations: drafts",
+            "table referenced but not mentioned in migrations: extension_replies",
             "table referenced but not mentioned in migrations: extracted_patterns",
             "table referenced but not mentioned in migrations: inspiration_posts",
-            "table referenced but not mentioned in migrations: niche_accounts",
-            "table referenced but not mentioned in migrations: niche_posts",
             "table referenced but not mentioned in migrations: scheduled_posts",
-            "table referenced but not mentioned in migrations: sources",
-            "table referenced but not mentioned in migrations: user_inspiration",
             "table referenced but not mentioned in migrations: user_settings",
             "table referenced but not mentioned in migrations: user_voice_examples",
+            "table referenced but not mentioned in migrations: waitlist_signups",
             "table referenced but not mentioned in migrations: x_byo_apps",
             "table referenced but not mentioned in migrations: x_connections",
             "table referenced but not mentioned in migrations: x_oauth_requests"
@@ -37,10 +35,6 @@
           "missingMention": [
             "captured_posts",
             "drafts",
-            "niche_accounts",
-            "niche_posts",
-            "sources",
-            "user_inspiration",
             "user_settings",
             "user_voice_examples",
             "x_connections",

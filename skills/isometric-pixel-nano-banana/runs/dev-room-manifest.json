@@ -1,0 +1,27 @@
+{
+  "project": "dev-room",
+  "approved": true,
+  "approvedAtUtc": "2026-02-17T21:17:00Z",
+  "approvedScene": {
+    "path": "/home/claw/clawd/out/iso-pixel/2026-02-17-23-18-approved-scene-dev-room-noside.png",
+    "note": "Approved main scene anchor (no side table); use as plate going forward."
+  },
+  "spec": {
+    "path": "/home/claw/clawd/skills/isometric-pixel-nano-banana/examples/spec.dev-room.json"
+  },
+  "outputs": {
+    "basePlate": {
+      "path": "/home/claw/clawd/out/iso-pixel/2026-02-18-00-15-base-solid-floor-rug-fix.png",
+      "mode": "byref+post",
+      "note": "Base plate saved: byref removals + post-edit to solid floor + rug border fix."
+    },
+    "dynamicAssets": [
+      {
+        "id": "desk_computer_setup",
+        "path": "/home/claw/clawd/out/iso-pixel/2026-02-17-22-07-trimmed3-desk.png",
+        "mode": "extract+cv-trim",
+        "note": "Approved desk asset (robust trim A v3)."
+      }
+    ]
+  }
+}

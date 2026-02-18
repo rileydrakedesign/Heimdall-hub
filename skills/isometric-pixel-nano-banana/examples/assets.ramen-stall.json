@@ -1,0 +1,21 @@
+{
+  "angle": "2:1 isometric, 30-degree view",
+  "style": "16-bit pixel art, crisp edges, limited palette, subtle dithering",
+  "assets": [
+    {
+      "id": "lantern_neon",
+      "name": "Neon paper lantern",
+      "description": "A hanging neon paper lantern with small metal bracket"
+    },
+    {
+      "id": "ramen_bowl",
+      "name": "Ramen bowl",
+      "description": "A steaming ramen bowl with chopsticks"
+    },
+    {
+      "id": "stool",
+      "name": "Stool",
+      "description": "A small square stool with worn paint"
+    }
+  ]
+}

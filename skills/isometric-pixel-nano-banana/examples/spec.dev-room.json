@@ -1,0 +1,146 @@
+{
+  "angle": "2:1 isometric, 30-degree view",
+  "style": "16-bit pixel art, crisp edges, limited palette, subtle dithering",
+  "scene": {
+    "prompt": "A cozy developer coding setup in a room. Neutral time, cozy, focused, dense and semi organized, aesthetic room. Must include: a file cabinet/book shelf organizational cabinet, a desk with a computer in a developer coding style setup, a 20-25 year old dirty blonde man with headphones seated at the desk (developer), a potted plant on a small table, a coffee machine, a side table with cluttered papers and an open drawer.",
+    "notes": "Initial scene from user query"
+  },
+  "base": {
+    "background_notes": "Keep the room architecture/background, floor/walls, lighting, and all static set dressing. Keep: coffee table, potted plant and its table, coffee machine, and any other small accents that should remain baked into the background."
+  },
+  "assets": {
+    "static": [
+      {
+        "id": "coffee_table",
+        "name": "Coffee table",
+        "description": "A small coffee table that stays in the background"
+      },
+      {
+        "id": "plant_and_table",
+        "name": "Potted plant on small table",
+        "description": "A potted plant sitting on a small side table"
+      },
+      {
+        "id": "coffee_machine",
+        "name": "Coffee machine",
+        "description": "A compact coffee machine as background set dressing"
+      }
+    ],
+    "dynamic": [
+      {
+        "id": "desk_computer_setup",
+        "name": "Developer desk + computer setup",
+        "description": "A desk with a monitor/computer in a developer coding style setup",
+        "extract": {
+          "bbox": [
+            0,
+            108,
+            736,
+            468
+          ],
+          "keep": [
+            "the entire desk",
+            "monitor",
+            "PC tower",
+            "speakers",
+            "keyboard",
+            "mouse",
+            "desk cables"
+          ],
+          "remove": [
+            "the developer/person",
+            "chair",
+            "rug",
+            "walls",
+            "floor",
+            "plant",
+            "any other furniture",
+            "any background objects"
+          ],
+          "center": {
+            "enabled": true,
+            "targetFill": 0.92
+          },
+          "note": "Approved crop A + isolate/center directives"
+        }
+      },
+      {
+        "id": "developer_character",
+        "name": "Developer character",
+        "description": "A 20-25yo dirty blonde man wearing headphones, seated posture",
+        "extract": {
+          "bbox": [
+            0,
+            72,
+            736,
+            504
+          ],
+          "keep": [
+            "the developer/person",
+            "headphones",
+            "hair",
+            "hoodie",
+            "hands",
+            "legs",
+            "shoes"
+          ],
+          "remove": [
+            "desk",
+            "computer",
+            "chair",
+            "rug",
+            "walls",
+            "floor",
+            "plant",
+            "any other furniture",
+            "any background objects"
+          ],
+          "center": {
+            "enabled": true,
+            "canvas": [
+              1024,
+              1024
+            ],
+            "targetFill": 0.92
+          }
+        }
+      },
+      {
+        "id": "organizational_cabinet",
+        "name": "Organizational cabinet",
+        "description": "A file cabinet / bookshelf organizational cabinet",
+        "extract": {
+          "bbox": [
+            809,
+            72,
+            633,
+            540
+          ],
+          "keep": [
+            "the cabinet/bookshelf unit",
+            "drawers",
+            "books",
+            "filing cabinet portion"
+          ],
+          "remove": [
+            "coffee machine",
+            "walls",
+            "floor",
+            "side table",
+            "papers",
+            "any other furniture",
+            "any background objects"
+          ],
+          "center": {
+            "enabled": true,
+            "canvas": [
+              1024,
+              1024
+            ],
+            "targetFill": 0.92
+          }
+        }
+      }
+    ]
+  }
+}
