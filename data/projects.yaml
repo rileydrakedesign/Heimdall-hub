@@ -90,3 +90,17 @@ projects:
       - label: Hub repo
         url: "https://github.com/rileydrakedesign/Heimdall-hub"
     notes: "Workflow that ingests ideas + inspiration posts and produces informational Instagram carousel assets (copy, layout, images)."
+
+  - id: riley-portfolio
+    name: Riley Portfolio — Interactive Isometric Room
+    status: active
+    priority: high
+    owner: Riley
+    next_action: "Implement RoomCanvas Pixi MVP + wire hotspot navigation; integrate approved dev-room plates/assets from public/iso-pixel/dev-room"
+    due: null
+    links:
+      - label: Repo
+        url: "https://github.com/rileydrakedesign/Heimdall-hub"
+      - label: Assets (in repo)
+        url: "public/iso-pixel/dev-room/"
+    notes: "Next.js + PixiJS portfolio site where an isometric pixel room acts as the navigation UI. Assets generated via Nano Banana skill pipeline."
