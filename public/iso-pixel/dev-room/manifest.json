@@ -1,0 +1,10 @@
+{
+  "project": "dev-room",
+  "approvedScenePlate": "public/iso-pixel/dev-room/approved_scene_plate.png",
+  "basePlate": "public/iso-pixel/dev-room/base_plate.png",
+  "assets": {
+    "desk_computer_setup": "public/iso-pixel/dev-room/asset_desk_computer_setup.png",
+    "developer_character": "public/iso-pixel/dev-room/asset_developer_character.png",
+    "organizational_cabinet": "public/iso-pixel/dev-room/asset_organizational_cabinet.png"
+  }
+}
