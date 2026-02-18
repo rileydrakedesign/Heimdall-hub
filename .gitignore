@@ -22,3 +22,7 @@ out/
 # Diagram rendering workspace artifacts
 # (kept local; large binaries in diagrams/out)
 diagrams/
+
+# Python
+__pycache__/
+*.pyc
