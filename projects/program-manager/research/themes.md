@@ -60,3 +60,8 @@
 - **affiliate programs are getting “sales enablement” serious**: tier perks (cookie windows, free lifetime access) plus downloadable asset packs turn creators into a quasi-salesforce (and increase the cost of missing a canonical “limits/safety” page).
 - **edu paywalls need reassurance copy**: per-term pricing often ships with “no ads” + hardship accommodations to prevent backlash during monetization shifts.
 - **“safe automation” is marketed as “no hacks; normal-usage behavior”**: competitors explicitly answer “is this safe?” with behavioral claims, not technical details—copy + guardrails + caps become conversion drivers.
+
+### New (2026-02-19)
+- **X is frequently treated as a paid add-on** in social suites (and “full X analytics” is gated): implies buyers expect X-specific constraints/costs and will accept explicit X carve-outs if explained well.
+- **public anti-spam / fair-use thresholds are a trust-building artifact**: competitors publish concrete posting thresholds + “what happens if you exceed” as part of customer expectation-setting.
+- **edu adoption is often stopped by IT checklists, not instructor enthusiasm**: LTI integrations trigger formal requirements (DPA, accessibility templates, data destruction/retention, etc.) — shipping the paperwork is part of product.

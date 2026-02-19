@@ -1,6 +1,9 @@
 # Project list (edit this file)
 # status: idea | active | paused | done
 # priority: low | medium | high | urgent
+#
+# Ideas: lightweight entries for projects still in ideation.
+# Promote to active by adding owner, next_action, and links.
 
 projects:
   - id: hub
@@ -102,3 +105,61 @@ projects:
       - label: Repo
         url: "https://github.com/rileydrakedesign/rileyd-portfolio"
     notes: "Next.js + PixiJS portfolio site where an isometric pixel room acts as the navigation UI. Assets generated via Nano Banana skill pipeline."
+
+# ─── Ideas (not yet in development) ───
+
+  - id: scene-splitter
+    name: Scene Splitter — AI Scene Generation & Asset Extraction
+    status: idea
+    priority: medium
+    tags: [ai, creative-tools, nano-banana]
+    notes: >
+      Productize the Nano Banana + Claude scene creation pipeline used for the portfolio.
+      Users describe a scene → AI generates a consistent composed image → app automatically
+      splits it into individual assets (transparent PNGs with metadata). Target: game devs,
+      indie creators, designers who need consistent asset packs from a single prompt.
+      Core tech already proven in the portfolio isometric room workflow.
+
+  - id: polymarket-sentiment
+    name: Prediction Market Sentiment Tracker
+    status: idea
+    priority: medium
+    tags: [data, sentiment, markets, chatbot]
+    notes: >
+      Sentiment analysis tool built on prediction market data (Polymarket, Kalshi, etc.).
+      NOT for placing bets — surfaces where money is flowing as a proxy for real-world
+      sentiment. Think Exploding Topics but powered by odds movements. Shows what's
+      blowing up, trending, and shifting. Features: trend dashboard with spikes/movers,
+      built-in chat interface for natural language queries ("what are people betting on
+      in AI regulation?"), and an API for programmatic access. Data layer ingests
+      market odds over time and computes momentum/velocity signals.
+
+  - id: dev-infra-agent
+    name: Agentic Developer Infrastructure Dashboard
+    status: idea
+    priority: medium
+    tags: [devtools, agents, github, infrastructure]
+    notes: >
+      GitHub-integrated agent that acts as commit-triggered middleware. On each push,
+      a multi-agent system audits the codebase: constructs/updates an infrastructure map
+      (system design diagram), validates architecture docs, and surfaces it all in a
+      clean developer dashboard. Core loop: commit → agent audit → update infra diagram
+      + architecture docs + dashboard. Docs are also agent-consumable so the dev's own
+      coding agents can reference accurate, up-to-date system context. Think of it as
+      a living, always-current system design doc that maintains itself. Target: dev teams
+      and solo devs who want their architecture docs to never go stale.
+
+  - id: card-optimizer
+    name: Credit Card Optimizer — Personalized Card Recommendations via Plaid
+    status: idea
+    priority: medium
+    tags: [fintech, plaid, affiliate, data]
+    notes: >
+      Users connect their bank via Plaid → spending history is categorized (groceries,
+      travel, dining, gas, subscriptions, etc.) → engine ranks credit cards by projected
+      rewards based on the user's actual spending proportions. Shows: top card recommendations
+      ranked by net ROI (rewards earned minus annual fees), historical backtest ("you would
+      have earned $X last year with this card"), and year-over-year comparison. Free to user,
+      monetized through credit card affiliate revenue. One-time or low-friction signup,
+      not a subscription. Key moat: personalized to real spending data, not generic
+      "best cards" listicles.

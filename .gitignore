@@ -3,6 +3,10 @@ input/
 output/
 work/
 
+# OpenClaw local trash/scratch
+.trash/
+.trash-*.md
+
 # Node
 node_modules/
 
