@@ -58,6 +58,21 @@ Periodic (rotate, not every heartbeat):
 
 ---
 
+## Active Tasks
+
+### TASK-004: Dev infra agent — research build session
+- **Status:** done
+- **Priority:** medium
+- **Created:** 2026-02-19
+- **Updated:** 2026-02-19
+- **Owner:** Heimdall (sub-agent: dev-infra-agent-research)
+- **Objective:** Produce an extensive research-backed build plan for the Agentic Developer Infrastructure Dashboard
+- **Check:** `projects/program-manager/research/idea-build/dev-infra-agent_build-plan.md` exists ✅
+- **Log:**
+  - 2026-02-19: Completed build-plan/spec doc with architecture, UX/UI, stack, roadmap, data model, security notes, and sources.
+
+---
+
 ## Completed
 
 _(none yet)_
