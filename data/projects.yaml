@@ -136,18 +136,22 @@ projects:
 
   - id: dev-infra-agent
     name: Agentic Developer Infrastructure Dashboard
-    status: idea
-    priority: medium
+    status: active
+    priority: high
+    owner: Heimdall
+    next_action: "MVP: implement GitHub webhook signature verification + enqueue stub scan job + write back a graph snapshot + Mermaid diagram to /docs/architecture/ on PR."
+    due: null
+    links:
+      - label: Repo
+        url: "https://github.com/rileydrakedesign/dev-infra-agent"
     tags: [devtools, agents, github, infrastructure]
     notes: >
-      GitHub-integrated agent that acts as commit-triggered middleware. On each push,
+      GitHub-integrated agent that acts as commit-triggered middleware. On each push/PR,
       a multi-agent system audits the codebase: constructs/updates an infrastructure map
       (system design diagram), validates architecture docs, and surfaces it all in a
       clean developer dashboard. Core loop: commit → agent audit → update infra diagram
-      + architecture docs + dashboard. Docs are also agent-consumable so the dev's own
-      coding agents can reference accurate, up-to-date system context. Think of it as
-      a living, always-current system design doc that maintains itself. Target: dev teams
-      and solo devs who want their architecture docs to never go stale.
+      + architecture docs + dashboard. Docs are agent-consumable so coding agents can
+      reference accurate, up-to-date system context.
 
   - id: card-optimizer
     name: Credit Card Optimizer — Personalized Card Recommendations via Plaid
