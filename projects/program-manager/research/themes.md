@@ -65,3 +65,8 @@
 - **X is frequently treated as a paid add-on** in social suites (and “full X analytics” is gated): implies buyers expect X-specific constraints/costs and will accept explicit X carve-outs if explained well.
 - **public anti-spam / fair-use thresholds are a trust-building artifact**: competitors publish concrete posting thresholds + “what happens if you exceed” as part of customer expectation-setting.
 - **edu adoption is often stopped by IT checklists, not instructor enthusiasm**: LTI integrations trigger formal requirements (DPA, accessibility templates, data destruction/retention, etc.) — shipping the paperwork is part of product.
+
+### New (2026-02-20)
+- **pay-per-usage upstream economics forces “credits + visible budgets” downstream**: X API is explicitly pay-per-usage; creator tools that touch X will be pushed toward transparent caps/credits and “posting budget” UX.
+- **“free forever” is a category anchor in classroom comms**: Campuswire’s positioning trains buyers to expect a free baseline; paid offerings must justify via governance/integrations/trust rather than “chat quality.”
+- **incentive alignment is now copy-level positioning** (edu): competitors explicitly contrast “paid product” vs “free funded by selling student data,” making “we never sell student data” a headline trust wedge.
