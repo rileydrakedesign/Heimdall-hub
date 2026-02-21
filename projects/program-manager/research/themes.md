@@ -70,3 +70,8 @@
 - **pay-per-usage upstream economics forces “credits + visible budgets” downstream**: X API is explicitly pay-per-usage; creator tools that touch X will be pushed toward transparent caps/credits and “posting budget” UX.
 - **“free forever” is a category anchor in classroom comms**: Campuswire’s positioning trains buyers to expect a free baseline; paid offerings must justify via governance/integrations/trust rather than “chat quality.”
 - **incentive alignment is now copy-level positioning** (edu): competitors explicitly contrast “paid product” vs “free funded by selling student data,” making “we never sell student data” a headline trust wedge.
+
+### New (2026-02-21)
+- **X is increasingly an explicit paid add-on in social suites**: Metricool excludes X from free and charges a per-connected-account add-on (+$5/account), training buyers to accept X carve-outs if explained plainly.
+- **“Is this safe?” FAQs are now part of packaging**: automation vendors put ban/throttle fear mitigation directly on pricing pages (Taplio-style “no hacks; normal behavior”), implying we need a first-class “Automation Safety Policy” artifact.
+- **edu AI procurement language is shifting from “private” → “compliance-grounded”**: referencing canonical FERPA resources + spelling out retention/deletion/disclosure is becoming table stakes, not a late-stage enterprise add-on.
