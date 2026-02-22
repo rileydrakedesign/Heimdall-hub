@@ -75,3 +75,8 @@
 - **X is increasingly an explicit paid add-on in social suites**: Metricool excludes X from free and charges a per-connected-account add-on (+$5/account), training buyers to accept X carve-outs if explained plainly.
 - **“Is this safe?” FAQs are now part of packaging**: automation vendors put ban/throttle fear mitigation directly on pricing pages (Taplio-style “no hacks; normal behavior”), implying we need a first-class “Automation Safety Policy” artifact.
 - **edu AI procurement language is shifting from “private” → “compliance-grounded”**: referencing canonical FERPA resources + spelling out retention/deletion/disclosure is becoming table stakes, not a late-stage enterprise add-on.
+
+### New (2026-02-22)
+- **risk reversal is part of packaging** (creator tools): self-serve refunds/cancel/pause are used to neutralize purchase anxiety; we should mirror this with equally self-serve revoke/delete controls.
+- **edu comms pain is “DM fragmentation” vs “community building”**: Slack/Discord feel social, but DMs/private channels undermine shared learning; course-native tools win by making Q&A public + structured while offering *safe* anonymity.
+- **pricing units diverge sharply by category**: creator tools meter accounts + AI outputs + scheduling horizon; edu discussion/chat can be per-student per-course — we must translate value across these units with governance + time-saved outcomes.
