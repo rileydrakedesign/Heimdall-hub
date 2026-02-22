@@ -167,3 +167,15 @@ projects:
       monetized through credit card affiliate revenue. One-time or low-friction signup,
       not a subscription. Key moat: personalized to real spending data, not generic
       "best cards" listicles.
+
+  - id: nl-terminal-agent
+    name: Natural Language Terminal Agent — CLI that Runs the Right Commands
+    status: idea
+    priority: medium
+    tags: [devtools, cli, ai, automation]
+    notes: >
+      Command-line AI tool where users type natural language requests like "install node".
+      The agent detects OS/distro + current machine context, asks clarifying questions when
+      needed, then looks up the correct/safe command(s) from the web and proposes a plan.
+      It only executes after explicit user confirmation. Core value: fewer docs tabs,
+      fewer copy/paste mistakes, and safer automation with transparent previews + audit log.
