@@ -80,3 +80,8 @@
 - **risk reversal is part of packaging** (creator tools): self-serve refunds/cancel/pause are used to neutralize purchase anxiety; we should mirror this with equally self-serve revoke/delete controls.
 - **edu comms pain is “DM fragmentation” vs “community building”**: Slack/Discord feel social, but DMs/private channels undermine shared learning; course-native tools win by making Q&A public + structured while offering *safe* anonymity.
 - **pricing units diverge sharply by category**: creator tools meter accounts + AI outputs + scheduling horizon; edu discussion/chat can be per-student per-course — we must translate value across these units with governance + time-saved outcomes.
+
+### New (2026-02-23)
+- **“Is it safe?” is now pricing-page FAQ copy** (automation tools): vendors explicitly claim “no hacks; behaves like a normal user” as a conversion primitive; we should mirror this with a canonical Automation Safety Policy + published caps.
+- **edu AI packaging is splitting into “teacher free / family $/mo / district request pricing”**: consumer value props differ from district procurement expectations (SSO/rostering, analytics, customer success, professional learning).
+- **privacy posture is benchmarked against enterprise AI commitments**: no-training-by-default + encryption + configurable retention are becoming the default checklist language, even outside pure enterprise buyers.
