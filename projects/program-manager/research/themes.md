@@ -85,3 +85,8 @@
 - **“Is it safe?” is now pricing-page FAQ copy** (automation tools): vendors explicitly claim “no hacks; behaves like a normal user” as a conversion primitive; we should mirror this with a canonical Automation Safety Policy + published caps.
 - **edu AI packaging is splitting into “teacher free / family $/mo / district request pricing”**: consumer value props differ from district procurement expectations (SSO/rostering, analytics, customer success, professional learning).
 - **privacy posture is benchmarked against enterprise AI commitments**: no-training-by-default + encryption + configurable retention are becoming the default checklist language, even outside pure enterprise buyers.
+
+### New (2026-02-24)
+- **limits map directly to workflow primitives** (creator tools): competitors don’t just meter “AI”; they meter X-account count, scheduling horizon, auto-DM caps, and content repurposing quotas—so a visible “limits dashboard” is part of the UX.
+- **dedupe/search is the core of class comms**: tools like Ed optimize around categories + similar-thread suggestions at composition time; the product promise is “answers become a knowledge base,” not “better chat.”
+- **pricing unit mismatch is an adoption blocker**: course tools often price per-student-per-course (procurement-shaped) while alternatives anchor on “free forever,” forcing paid products to lead with governance/integration justification.
