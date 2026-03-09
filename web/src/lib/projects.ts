@@ -15,6 +15,11 @@ export type Project = {
   owner: string;
   next_action: string;
   due: string | null;
+
+  // Optional: customize the task board/list column order for this project.
+  // If omitted, defaults to: backlog → in_progress → blocked → done.
+  board_columns?: Array<"backlog" | "in_progress" | "blocked" | "done">;
+
   links?: ProjectLink[];
   notes?: string;
 };

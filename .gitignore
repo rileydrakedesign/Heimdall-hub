@@ -26,6 +26,7 @@ out/
 # Diagram rendering workspace artifacts
 # (kept local; large binaries in diagrams/out)
 diagrams/
+.tmp-diagram-render/
 
 # Python
 __pycache__/

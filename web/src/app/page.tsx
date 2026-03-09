@@ -57,6 +57,12 @@ export default function Dashboard() {
           >
             View projects
           </a>
+          <a
+            href={`${BASE_PATH}/tasks/`}
+            className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
+          >
+            View tasks
+          </a>
         </div>
       </div>
 

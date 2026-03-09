@@ -13,6 +13,7 @@ projects:
     owner: Riley
     next_action: "Confirm GitHub Pages is publishing; then add nav links to PM artifacts (war room, KPIs, GTM calendar)"
     due: null
+    board_columns: [backlog, in_progress, blocked, done]
     links:
       - label: Repo
         url: "https://github.com/rileydrakedesign/rileyd-portfolio"

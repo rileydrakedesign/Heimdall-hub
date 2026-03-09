@@ -1,0 +1,88 @@
+# Morning Brief profiles + sources (static-first)
+# This file is designed to be:
+# - easy to edit via PR
+# - easy for agents to read/write
+# - later importable into Supabase tables
+
+briefs:
+  - id: default-morning
+    name: "Default Morning Brief"
+    enabled: true
+
+    # Output + style controls
+    output:
+      format: "markdown"
+      max_minutes_to_read: 7
+      bullet_style: "tight" # tight | normal
+      require_sources: true
+
+    sections:
+      - id: exec
+        title: "Top 5"
+        kind: "summary"
+        max_bullets: 5
+
+      - id: current_events
+        title: "Current Events"
+        kind: "news"
+        max_bullets: 10
+        sources_ref: "news_general"
+
+      - id: markets
+        title: "Markets"
+        kind: "markets"
+        max_bullets: 12
+        sources_ref: "markets_default"
+
+      - id: ai
+        title: "AI / Dev"
+        kind: "ai"
+        max_bullets: 10
+        sources_ref: "ai_default"
+
+      - id: ops
+        title: "Ops / Projects"
+        kind: "ops"
+        max_bullets: 10
+        sources_ref: "ops_default"
+
+      - id: local
+        title: "Local"
+        kind: "local"
+        enabled: false
+        max_bullets: 6
+        sources_ref: "local_default"
+
+sources:
+  # Replace with your preferred sources when home.
+  - id: news_general
+    kind: rss
+    feeds:
+      - name: "(placeholder)"
+        url: "https://example.com/rss"
+
+  - id: markets_default
+    kind: markets
+    watchlist:
+      tickers: ["SPY", "QQQ", "AAPL", "MSFT", "NVDA"]
+    notes: "Replace with Riley watchlist + sectors of interest"
+
+  - id: ai_default
+    kind: ai
+    arxiv:
+      categories: ["cs.AI", "cs.LG"]
+      keywords: ["agent", "tool", "rag", "reasoning"]
+
+  - id: ops_default
+    kind: ops
+    inputs:
+      - "data/projects.yaml"
+      - "data/tasks.yaml"
+      - "HEARTBEAT.md"
+
+  - id: local_default
+    kind: local
+    weather:
+      location: "(set later)"
+    surf:
+      location: "(set later)"
