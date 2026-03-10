@@ -68,7 +68,7 @@ async function fetchText(url, timeoutMs = 12000) {
   }
 }
 
-// Extremely small RSS-ish parser: pulls <item><title>, <link>
+// Extremely small RSS-ish parser: pulls <item><title>, <link>, <description>
 function parseRssItems(xml, limit = 10) {
   const items = [];
   const itemMatches = xml.match(/<item[\s\S]*?<\/item>/gi) ?? [];
@@ -124,9 +124,12 @@ async function section_news(cfg, section) {
     }
     try {
       const xml = await fetchText(feed.url);
-      const items = parseRssItems(xml, Math.max(3, Math.ceil(section.max_bullets / feeds.length)));
+      const perFeed = Math.max(3, Math.ceil(section.max_bullets / Math.max(1, feeds.length)));
+      const items = parseRssItems(xml, perFeed);
       for (const it of items) {
-        bullets.push(`- ${mdLink(truncate(it.title, 140), it.link)}`);
+        const summary = truncate(it.description, 220);
+        const head = `${feed.name ? `**${feed.name}**: ` : ""}${mdLink(truncate(it.title, 140), it.link)}`;
+        bullets.push(`- ${head}${summary ? ` — ${summary}` : ""}`);
         if (bullets.length >= section.max_bullets) break;
       }
     } catch (e) {
@@ -135,6 +138,12 @@ async function section_news(cfg, section) {
     if (bullets.length >= section.max_bullets) break;
   }
   return bullets.slice(0, section.max_bullets);
+}
+
+function googleNewsRssUrl(query) {
+  // Free, lightweight headline feed; good enough for v1 catalysts.
+  const q = encodeURIComponent(query);
+  return `https://news.google.com/rss/search?q=${q}%20when:1d&hl=en-US&gl=US&ceid=US:en`;
 }
 
 async function stooqQuote(ticker) {
@@ -203,12 +212,23 @@ async function section_markets(cfg, section) {
     const top = quotes.slice(0, limit);
     if (!top.length) return ["- (No quotes available to compute movers)"];
 
-    const bullets = top.map((q) => {
+    const bullets = [];
+    for (const q of top) {
       const move = `${q.chgPct >= 0 ? "+" : ""}${q.chgPct.toFixed(2)}%`;
-      return `- **${q.t}**: ${Number.isFinite(q.close) ? q.close.toFixed(2) : "—"} (${move})`;
-    });
+      let catalyst = "";
+      try {
+        const xml = await fetchText(googleNewsRssUrl(`${q.t} stock why move`), 10000);
+        const items = parseRssItems(xml, 1);
+        if (items[0]?.title) catalyst = truncate(items[0].title, 140);
+      } catch {
+        // ignore
+      }
+      bullets.push(
+        `- **${q.t}**: ${Number.isFinite(q.close) ? q.close.toFixed(2) : "—"} (${move})${catalyst ? ` — catalyst: ${catalyst}` : ""}`
+      );
+    }
 
-    bullets.push(`- Note: "why"/catalysts not yet implemented — will add headline→mover linkage once sources are tuned.`);
+    bullets.push(`- Bird’s-eye: movers computed from a liquid universe (not market-wide). We’ll refine as you add sectors/watchlists.`);
     return bullets.slice(0, section.max_bullets);
   }
 
@@ -246,7 +266,8 @@ async function section_ai(cfg, section) {
       const xml = await fetchText(feed.url);
       const items = parseRssItems(xml, 8);
       for (const it of items) {
-        bullets.push(`- ${mdLink(truncate(it.title, 140), it.link)}`);
+        const summary = truncate(it.description, 220);
+        bullets.push(`- ${feed.name ? `**${feed.name}**: ` : ""}${mdLink(truncate(it.title, 140), it.link)}${summary ? ` — ${summary}` : ""}`);
         if (bullets.length >= section.max_bullets) return bullets;
       }
     } catch {

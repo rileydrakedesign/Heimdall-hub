@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "brief:generate": "node scripts/generate-brief.mjs --profile default-morning"
+    "brief:generate": "node scripts/generate-brief.mjs --profile personal-morning"
   },
   "dependencies": {
     "@types/js-yaml": "^4.0.9",

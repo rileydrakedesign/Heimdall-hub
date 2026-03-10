@@ -5,8 +5,8 @@
 # - later importable into Supabase tables
 
 briefs:
-  - id: default-morning
-    name: "Default Morning Brief"
+  - id: personal-morning
+    name: "Personal Morning Brief"
     enabled: true
 
     # Output + style controls
@@ -39,12 +39,6 @@ briefs:
         kind: "ai"
         max_bullets: 10
         sources_ref: "ai_default"
-
-      - id: ops
-        title: "Ops / Projects"
-        kind: "ops"
-        max_bullets: 10
-        sources_ref: "ops_default"
 
       - id: local
         title: "Local"
@@ -96,6 +90,8 @@ sources:
       - "data/projects.yaml"
       - "data/tasks.yaml"
       - "HEARTBEAT.md"
+
+# (Optional) separate work brief profile can be added later that uses ops_default.
 
   - id: local_default
     kind: local
