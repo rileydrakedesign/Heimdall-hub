@@ -58,20 +58,37 @@ sources:
   - id: news_general
     kind: rss
     feeds:
-      - name: "(placeholder)"
-        url: "https://example.com/rss"
+      - name: "The Economist — The World This Week"
+        url: "https://www.economist.com/the-world-this-week/rss.xml"
+      - name: "Financial Times — World"
+        url: "https://www.ft.com/world?format=rss"
+        enabled: false
+        notes: "FT returns HTTP 406 to server fetches. Re-enable once we add cookie/browser fetch support or swap to a working FT feed."
+      - name: "Hacker News — Front Page"
+        url: "https://hnrss.org/frontpage"
 
   - id: markets_default
     kind: markets
-    watchlist:
-      tickers: ["SPY", "QQQ", "AAPL", "MSFT", "NVDA"]
-    notes: "Replace with Riley watchlist + sectors of interest"
+    mode: top_movers
+    top_movers:
+      universe:
+        # v1: liquid, widely-followed universe to approximate "top movers"
+        # (we can expand to true market-wide movers later)
+        tickers: ["AAPL","MSFT","NVDA","AMZN","GOOGL","META","TSLA","NFLX","AMD","INTC","ORCL","CRM","ADBE","AVGO","QCOM","TSM","ARM","IBM","PLTR","SHOP","SNOW","UBER","LYFT","SPOT","BA","CAT","XOM","CVX","JPM","GS","BAC","V","MA","UNH","LLY","NKE","COST","WMT","KO","PEP"]
+      limit: 10
+    notes: "v1: compute top movers (by absolute % change) from a liquid universe. Later: true market-wide movers + Riley watchlist + sectors."
 
   - id: ai_default
     kind: ai
+    mode: aggregate
+    notes: "v1: blend AI product/news + research. Later: add pinned sources + keyword tuning."
     arxiv:
       categories: ["cs.AI", "cs.LG"]
-      keywords: ["agent", "tool", "rag", "reasoning"]
+      keywords: ["agent", "tool", "reasoning", "eval", "inference", "rlhf", "rl", "alignment", "multimodal", "rag"]
+    rss:
+      feeds:
+        - name: "Hacker News — AI"
+          url: "https://hnrss.org/newest?q=ai"
 
   - id: ops_default
     kind: ops

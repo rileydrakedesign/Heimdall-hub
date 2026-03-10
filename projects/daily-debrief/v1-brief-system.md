@@ -111,5 +111,5 @@ Filename contract:
 - Delivery time + timezone
 - Market watchlist tickers + macro focus
 - Preferred news sources (general)
-- AI scope: categories/keywords/authors
+- AI scope: categories/keywords/authors + preferred news sources (model/tool drops, labs, newsletters)
 - Max length and tone constraints
