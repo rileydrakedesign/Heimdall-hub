@@ -48,6 +48,38 @@ function mdLink(text, url) {
   return `[${text}](${url})`;
 }
 
+function cleanSummary(text) {
+  if (!text) return "";
+  let s = String(text).replace(/\s+/g, " ").trim();
+
+  // Strip common HN RSS boilerplate (points/comments/urls).
+  s = s.replace(/Article URL:\s*https?:\/\/\S+/gi, "");
+  s = s.replace(/Comments URL:\s*https?:\/\/\S+/gi, "");
+  s = s.replace(/Points:\s*\d+/gi, "");
+  s = s.replace(/#\s*Comments:\s*\d+/gi, "");
+  s = s.replace(/\s+—\s+—/g, " — ");
+  s = s.replace(/\s{2,}/g, " ").trim();
+
+  // If the remaining summary is just a URL or empty, drop it.
+  if (/^https?:\/\//i.test(s)) return "";
+  return s;
+}
+
+function parseHnMeta(description) {
+  const d = String(description ?? "");
+  const points = Number(d.match(/Points:\s*(\d+)/i)?.[1] ?? NaN);
+  const comments = Number(d.match(/#\s*Comments:\s*(\d+)/i)?.[1] ?? NaN);
+  return {
+    points: Number.isFinite(points) ? points : 0,
+    comments: Number.isFinite(comments) ? comments : 0,
+  };
+}
+
+function parseHnScore(description) {
+  const { points, comments } = parseHnMeta(description);
+  return points + comments * 0.5;
+}
+
 async function fetchText(url, timeoutMs = 12000) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -73,11 +105,16 @@ function parseRssItems(xml, limit = 10) {
   const items = [];
   const itemMatches = xml.match(/<item[\s\S]*?<\/item>/gi) ?? [];
   for (const itemXml of itemMatches.slice(0, limit)) {
-    const title = (itemXml.match(/<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/i)?.[1] ??
+    let titleRaw =
+      itemXml.match(/<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/i)?.[1] ??
       itemXml.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ??
-      "")
-      .replace(/<[^>]+>/g, "")
-      .trim();
+      "";
+
+    // If the title contains an embedded CDATA wrapper, extract it.
+    const cdataTitle = titleRaw.match(/<!\[CDATA\[([\s\S]*?)\]\]>/i)?.[1];
+    if (cdataTitle) titleRaw = cdataTitle;
+
+    let title = titleRaw.replace(/<[^>]+>/g, "").trim();
 
     // RSS link variants
     const link =
@@ -88,9 +125,16 @@ function parseRssItems(xml, limit = 10) {
     const descRaw =
       itemXml.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/i)?.[1] ??
       itemXml.match(/<description>([\s\S]*?)<\/description>/i)?.[1] ??
+      itemXml.match(/<content:encoded><!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/i)?.[1] ??
+      itemXml.match(/<content:encoded>([\s\S]*?)<\/content:encoded>/i)?.[1] ??
       "";
 
-    const description = descRaw.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    const description = descRaw
+      .replace(/<[^>]+>/g, "")
+      .replace(/^<!\[CDATA\[/i, "")
+      .replace(/\]\]>$/i, "")
+      .replace(/\s+/g, " ")
+      .trim();
 
     if (title) items.push({ title, link, description });
   }
@@ -115,29 +159,83 @@ async function section_news(cfg, section) {
   }
 
   const feeds = src.feeds ?? [];
-  const bullets = [];
+  const collected = [];
+
   for (const feed of feeds) {
     if (feed?.enabled === false) continue;
     if (!feed?.url || String(feed.url).includes("example.com")) {
-      bullets.push(`- (Placeholder feed: ${feed?.name ?? "(unnamed)"})`);
+      collected.push({
+        score: -1,
+        line: `- (Placeholder feed: ${feed?.name ?? "(unnamed)"})`,
+      });
       continue;
     }
+
     try {
       const xml = await fetchText(feed.url);
-      const perFeed = Math.max(3, Math.ceil(section.max_bullets / Math.max(1, feeds.length)));
+      const perFeed = Math.max(5, Math.ceil(section.max_bullets / Math.max(1, feeds.length)) + 2);
       const items = parseRssItems(xml, perFeed);
+
       for (const it of items) {
-        const summary = truncate(it.description, 220);
-        const head = `${feed.name ? `**${feed.name}**: ` : ""}${mdLink(truncate(it.title, 140), it.link)}`;
-        bullets.push(`- ${head}${summary ? ` — ${summary}` : ""}`);
-        if (bullets.length >= section.max_bullets) break;
+        const isHn = (feed.name ?? "").toLowerCase().includes("hacker news");
+        const rawSummary = cleanSummary(it.description);
+        let summary = truncate(rawSummary, 260);
+
+        // If HN summary is empty after cleaning, replace with engagement meta.
+        if (isHn && !summary) {
+          const { points, comments } = parseHnMeta(it.description);
+          if (points || comments) summary = `HN context: ${points} points · ${comments} comments`;
+        }
+
+        // Importance scoring: HN uses points/comments; others default to 0.
+        const score = isHn ? parseHnScore(it.description) : 0;
+
+        const line = `- ${mdLink(truncate(it.title, 140), it.link)}${summary ? ` — ${summary}` : ""} _(source: ${feed.name ?? feed.url})_`;
+        collected.push({ score, line, feed: feed.name ?? feed.url });
       }
     } catch (e) {
-      bullets.push(`- (Failed to load ${feed.name ?? feed.url}: ${String(e.message ?? e)})`);
+      collected.push({
+        score: -2,
+        feed: feed.name ?? feed.url,
+        line: `- (Failed to load ${feed.name ?? feed.url}: ${String(e.message ?? e)})`,
+      });
     }
-    if (bullets.length >= section.max_bullets) break;
   }
-  return bullets.slice(0, section.max_bullets);
+
+  // Interleave by importance *but* guarantee at least 1 item per enabled feed when possible.
+  const byFeed = new Map();
+  for (const item of collected) {
+    const k = item.feed ?? "(unknown)";
+    if (!byFeed.has(k)) byFeed.set(k, []);
+    byFeed.get(k).push(item);
+  }
+  for (const [k, list] of byFeed) list.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+
+  const chosen = [];
+  // First pass: one from each feed, ordered by score.
+  const firstPicks = Array.from(byFeed.values())
+    .map((list) => list[0])
+    .filter(Boolean)
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+
+  for (const it of firstPicks) {
+    if (chosen.length >= section.max_bullets) break;
+    chosen.push(it);
+    // remove it from its feed list
+    const list = byFeed.get(it.feed);
+    if (list) list.shift();
+  }
+
+  // Second pass: fill remaining slots globally by score.
+  const rest = [];
+  for (const list of byFeed.values()) rest.push(...list);
+  rest.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+  for (const it of rest) {
+    if (chosen.length >= section.max_bullets) break;
+    chosen.push(it);
+  }
+
+  return chosen.slice(0, section.max_bullets).map((x) => x.line);
 }
 
 function googleNewsRssUrl(query) {
@@ -266,8 +364,8 @@ async function section_ai(cfg, section) {
       const xml = await fetchText(feed.url);
       const items = parseRssItems(xml, 8);
       for (const it of items) {
-        const summary = truncate(it.description, 220);
-        bullets.push(`- ${feed.name ? `**${feed.name}**: ` : ""}${mdLink(truncate(it.title, 140), it.link)}${summary ? ` — ${summary}` : ""}`);
+        const summary = truncate(cleanSummary(it.description), 260);
+        bullets.push(`- ${mdLink(truncate(it.title, 140), it.link)}${summary ? ` — ${summary}` : ""} _(source: ${feed.name ?? feed.url})_`);
         if (bullets.length >= section.max_bullets) return bullets;
       }
     } catch {
