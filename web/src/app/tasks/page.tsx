@@ -1,108 +1,120 @@
-import { BASE_PATH } from "@/lib/basePath";
-import { loadProjects } from "@/lib/projects";
-import { loadTasks, type Task, type TaskStatus } from "@/lib/tasks";
+import { Suspense } from "react";
+import { loadProjectsAsync } from "@/lib/projects";
+import { loadTasksAsync, type Task, type TaskStatus } from "@/lib/tasks";
+import { StatusDot } from "@/components/StatusDot";
+import { PriorityBar } from "@/components/PriorityBar";
 import { Badge } from "@/components/Badge";
+import { ProjectFilter } from "@/components/ProjectFilter";
 
-export const dynamic = "force-static";
-
-function toneForStatus(status: TaskStatus) {
-  if (status === "in_progress") return "green" as const;
-  if (status === "blocked") return "red" as const;
-  if (status === "done") return "blue" as const;
-  return "neutral" as const;
-}
-
-function toneForPriority(priority: Task["priority"]) {
-  if (priority === "urgent") return "red" as const;
-  if (priority === "high") return "yellow" as const;
-  return "neutral" as const;
-}
+const STATUS_ORDER: TaskStatus[] = ["in_progress", "blocked", "backlog", "done"];
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   backlog: "Backlog",
-  in_progress: "In progress",
+  in_progress: "In Progress",
   blocked: "Blocked",
   done: "Done",
 };
 
-const STATUS_ORDER: TaskStatus[] = ["backlog", "in_progress", "blocked", "done"];
+export default async function TasksPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ project?: string }>;
+}) {
+  const params = await searchParams;
+  const [tasks, projects] = await Promise.all([
+    loadTasksAsync(),
+    loadProjectsAsync(),
+  ]);
 
-function TaskRow({ task }: { task: Task }) {
-  const projects = loadProjects();
-  const project = task.project_id ? projects.find((p) => p.id === task.project_id) : null;
-
-  return (
-    <div className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div className="min-w-0">
-        <div className="font-medium text-white/95">{task.title}</div>
-        <div className="mt-1 text-sm text-white/60">
-          {project ? (
-            <a className="hover:underline" href={`${BASE_PATH}/projects/${project.id}/`}>
-              {project.name}
-            </a>
-          ) : (
-            <span className="text-white/50">Personal / Unassigned</span>
-          )}
-          {task.next_step ? <span className="text-white/40"> · {task.next_step}</span> : null}
-          {task.blocked_by ? <span className="text-white/40"> · Blocked by: {task.blocked_by}</span> : null}
-        </div>
-      </div>
-
-      <div className="flex flex-wrap gap-2 text-xs">
-        <Badge tone={toneForStatus(task.status)}>{task.status}</Badge>
-        <Badge tone={toneForPriority(task.priority)}>{task.priority}</Badge>
-        <Badge>{task.area}</Badge>
-        <Badge>{task.owner}</Badge>
-      </div>
-    </div>
-  );
-}
-
-export default function TasksPage() {
-  const tasks = loadTasks();
+  const projectFilter = params.project;
+  const filtered = projectFilter
+    ? tasks.filter((t) => t.project_id === projectFilter)
+    : tasks;
 
   const byStatus = new Map<TaskStatus, Task[]>();
   for (const s of STATUS_ORDER) byStatus.set(s, []);
-  for (const t of tasks) (byStatus.get(t.status) ?? byStatus.set(t.status, []).get(t.status)!).push(t);
+  for (const t of filtered) {
+    (byStatus.get(t.status) ?? byStatus.set(t.status, []).get(t.status)!).push(t);
+  }
+
+  const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
-      <div className="flex items-center justify-between gap-6">
+    <main className="mx-auto max-w-6xl px-6 py-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Tasks</h1>
-          <p className="mt-2 text-white/60">
-            Source of truth: <span className="font-mono text-white/70">data/tasks.yaml</span>
-          </p>
+          <p className="mt-1 text-sm text-muted">All tasks across projects</p>
         </div>
-        <a href={`${BASE_PATH}/`} className="text-sm text-white/60 hover:text-white">
-          ← Dashboard
-        </a>
+        <Suspense>
+          <ProjectFilter
+            projects={projects.map((p) => ({ id: p.id, name: p.name }))}
+          />
+        </Suspense>
       </div>
 
-      <div className="mt-8 space-y-6">
+      <div className="space-y-8">
         {STATUS_ORDER.map((status) => {
-          const list = byStatus.get(status) ?? [];
+          const list = (byStatus.get(status) ?? [])
+            .slice()
+            .sort((a, b) => (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9));
+
           return (
             <section key={status}>
-              <div className="flex items-end justify-between">
-                <h2 className="text-lg font-semibold">{STATUS_LABELS[status]}</h2>
-                <div className="text-sm text-white/50">{list.length}</div>
+              <div className="flex items-center gap-2 mb-3">
+                <StatusDot status={status} />
+                <h2 className="text-sm font-semibold uppercase tracking-wider">
+                  {STATUS_LABELS[status]}
+                </h2>
+                <span className="text-xs text-muted">({list.length})</span>
               </div>
 
-              <div className="mt-3 overflow-hidden rounded-xl border border-white/10">
-                <div className="divide-y divide-white/10">
-                  {list.length === 0 ? (
-                    <div className="p-4 text-sm text-white/50">No tasks.</div>
-                  ) : (
-                    list
-                      .slice()
-                      .sort((a, b) => {
-                        const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
-                        return (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9);
-                      })
-                      .map((t) => <TaskRow key={t.id} task={t} />)
-                  )}
-                </div>
+              <div className="rounded-lg border border-border bg-surface divide-y divide-border">
+                {list.length === 0 ? (
+                  <div className="p-4 text-sm text-muted">No tasks</div>
+                ) : (
+                  list.map((t) => {
+                    const project = t.project_id
+                      ? projects.find((p) => p.id === t.project_id)
+                      : null;
+                    return (
+                      <div key={t.id} className="p-3">
+                        <PriorityBar priority={t.priority}>
+                          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                            <div className="min-w-0">
+                              <div className="font-medium text-sm">{t.title}</div>
+                              <div className="mt-0.5 text-xs text-muted">
+                                {project ? (
+                                  <a
+                                    className="hover:text-foreground"
+                                    href={`/projects/${project.id}`}
+                                  >
+                                    {project.name}
+                                  </a>
+                                ) : (
+                                  <span>Unassigned</span>
+                                )}
+                                {t.next_step && (
+                                  <span className="text-muted/60"> · {t.next_step}</span>
+                                )}
+                                {t.blocked_by && (
+                                  <span className="text-rose-400/80">
+                                    {" "}
+                                    · Blocked: {t.blocked_by}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex shrink-0 gap-2">
+                              <Badge>{t.area}</Badge>
+                              <Badge>{t.assigned_to ?? t.owner ?? "—"}</Badge>
+                            </div>
+                          </div>
+                        </PriorityBar>
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </section>
           );

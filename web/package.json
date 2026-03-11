@@ -10,6 +10,7 @@
     "brief:generate": "node scripts/generate-brief.mjs --profile personal-morning"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.0",
     "@types/js-yaml": "^4.0.9",
     "js-yaml": "^4.1.1",
     "next": "16.1.6",

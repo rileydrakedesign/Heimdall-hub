@@ -1,43 +1,103 @@
-import { BASE_PATH } from "@/lib/basePath";
-import { loadProjects } from "@/lib/projects";
+import { Suspense } from "react";
+import { loadProjectsAsync } from "@/lib/projects";
+import { StatusDot } from "@/components/StatusDot";
+import { Badge } from "@/components/Badge";
+import { StatusFilterTabs } from "@/components/StatusFilterTabs";
+import { SortControl } from "@/components/SortControl";
 
-export const dynamic = "force-static";
+async function ProjectsList({
+  searchParams,
+}: {
+  searchParams: { status?: string; sort?: string };
+}) {
+  const projects = await loadProjectsAsync();
+  const statusFilter = searchParams.status;
+  const sort = searchParams.sort ?? "priority";
 
-export default function ProjectsPage() {
-  const projects = loadProjects();
+  let filtered = statusFilter
+    ? projects.filter((p) => p.status === statusFilter)
+    : projects;
+
+  const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
+  const statusRank: Record<string, number> = { active: 0, paused: 1, idea: 2, done: 3 };
+
+  filtered = filtered.slice().sort((a, b) => {
+    if (sort === "name") return a.name.localeCompare(b.name);
+    if (sort === "updated") {
+      return (b.updated_at ?? "").localeCompare(a.updated_at ?? "");
+    }
+    // default: priority then status
+    const sr = (statusRank[a.status] ?? 9) - (statusRank[b.status] ?? 9);
+    if (sr !== 0) return sr;
+    return (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9);
+  });
+
+  const borderColor: Record<string, string> = {
+    active: "border-l-emerald-500",
+    paused: "border-l-amber-500",
+    done: "border-l-sky-500",
+    idea: "border-l-slate-500",
+  };
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
-      <div className="flex items-center justify-between gap-6">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {filtered.map((p) => (
+        <a
+          key={p.id}
+          href={`/projects/${p.id}`}
+          className={`block rounded-lg border border-border border-l-2 ${borderColor[p.status] ?? "border-l-slate-500"} bg-surface p-4 hover:bg-surface-light transition-colors`}
+        >
+          <div className="flex items-center gap-2">
+            <StatusDot status={p.status} />
+            <span className="font-medium truncate">{p.name}</span>
+          </div>
+          <p className="mt-2 text-sm text-muted truncate">{p.next_action}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Badge
+              tone={
+                p.priority === "urgent" ? "red" : p.priority === "high" ? "yellow" : "neutral"
+              }
+            >
+              {p.priority}
+            </Badge>
+            <Badge>{p.owner}</Badge>
+          </div>
+        </a>
+      ))}
+      {filtered.length === 0 && (
+        <div className="col-span-full rounded-lg border border-border bg-surface p-8 text-center text-sm text-muted">
+          No projects match this filter.
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default async function ProjectsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ status?: string; sort?: string }>;
+}) {
+  const params = await searchParams;
+
+  return (
+    <main className="mx-auto max-w-6xl px-6 py-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
-          <p className="mt-2 text-white/60">Source of truth: data/projects.yaml</p>
+          <p className="mt-1 text-sm text-muted">All projects</p>
         </div>
-        <a href={`${BASE_PATH}/`} className="text-sm text-white/60 hover:text-white">
-          ← Dashboard
-        </a>
+        <div className="flex items-center gap-3">
+          <Suspense>
+            <StatusFilterTabs />
+          </Suspense>
+          <Suspense>
+            <SortControl />
+          </Suspense>
+        </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4">
-        {projects.map((p) => (
-          <a
-            key={p.id}
-            href={`${BASE_PATH}/projects/${p.id}/`}
-            className="block rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="font-medium">{p.name}</div>
-                <div className="mt-1 text-sm text-white/60">{p.next_action}</div>
-              </div>
-              <div className="flex gap-2 text-xs">
-                <span className="rounded-full bg-white/10 px-2 py-1">{p.status}</span>
-                <span className="rounded-full bg-white/10 px-2 py-1">{p.priority}</span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
+      <ProjectsList searchParams={params} />
     </main>
   );
 }

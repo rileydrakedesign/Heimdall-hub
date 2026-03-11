@@ -1,4 +1,3 @@
-import { BASE_PATH } from "@/lib/basePath";
 import { FileList } from "@/components/FileList";
 import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
 import { githubTreeUrl } from "@/lib/repo";
@@ -15,35 +14,31 @@ export default function BriefsPage() {
   });
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
-      <div className="flex items-center justify-between gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Briefs</h1>
-          <p className="mt-2 text-white/60">
-            Morning brief runs saved to <span className="font-mono text-white/70">projects/daily-debrief/runs/</span>
-          </p>
-        </div>
-        <a href={`${BASE_PATH}/`} className="text-sm text-white/60 hover:text-white">
-          ← Dashboard
-        </a>
+    <main className="mx-auto max-w-6xl px-6 py-8">
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold tracking-tight">Briefs</h1>
+        <p className="mt-1 text-sm text-muted">
+          Morning brief runs saved to{" "}
+          <span className="font-mono text-foreground/70">projects/daily-debrief/runs/</span>
+        </p>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-2 mb-8">
         <a
           href={githubFileUrl("data/briefs.yaml")}
-          className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
+          className="rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-muted hover:bg-surface-light hover:text-foreground transition-colors"
         >
           Edit brief config
         </a>
         <a
           href={githubTreeUrl("projects/daily-debrief/runs")}
-          className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
+          className="rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-muted hover:bg-surface-light hover:text-foreground transition-colors"
         >
           View runs folder
         </a>
       </div>
 
-      <div className="mt-8">
+      <div className="rounded-lg border border-border bg-surface p-4">
         <FileList title="Recent briefs" files={runs} />
       </div>
     </main>

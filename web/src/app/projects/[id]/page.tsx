@@ -1,39 +1,32 @@
-import { BASE_PATH } from "@/lib/basePath";
-import { githubFileUrl } from "@/lib/runs";
-import { githubTreeUrl, githubUploadUrl } from "@/lib/repo";
-import { getProjectById, loadProjects } from "@/lib/projects";
-import { loadTasks, type Task, type TaskStatus } from "@/lib/tasks";
+import { loadProjectsAsync, type Project } from "@/lib/projects";
+import { loadTasksAsync, type Task, type TaskStatus } from "@/lib/tasks";
+import { StatusDot } from "@/components/StatusDot";
 import { Badge } from "@/components/Badge";
+import { PriorityBar } from "@/components/PriorityBar";
 import { FileList } from "@/components/FileList";
 import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
+import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
 
-export const dynamic = "force-static";
-
-export function generateStaticParams() {
-  return loadProjects().map((p) => ({ id: p.id }));
-}
-
-function toneForTaskStatus(status: TaskStatus) {
-  if (status === "in_progress") return "green" as const;
-  if (status === "blocked") return "red" as const;
-  if (status === "done") return "blue" as const;
-  return "neutral" as const;
-}
-
-function toneForTaskPriority(priority: Task["priority"]) {
-  if (priority === "urgent") return "red" as const;
-  if (priority === "high") return "yellow" as const;
-  return "neutral" as const;
+export async function generateStaticParams() {
+  const projects = await loadProjectsAsync();
+  return projects.map((p) => ({ id: p.id }));
 }
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   backlog: "Backlog",
-  in_progress: "In progress",
+  in_progress: "In Progress",
   blocked: "Blocked",
   done: "Done",
 };
 
-const DEFAULT_COLUMNS: TaskStatus[] = ["backlog", "in_progress", "blocked", "done"];
+const COLUMNS: TaskStatus[] = ["backlog", "in_progress", "blocked", "done"];
+
+function toneForStatus(status: string) {
+  if (status === "active") return "green" as const;
+  if (status === "paused") return "yellow" as const;
+  if (status === "done") return "sky" as const;
+  return "neutral" as const;
+}
 
 export default async function ProjectPage({
   params,
@@ -41,25 +34,28 @@ export default async function ProjectPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const project = getProjectById(id);
+  const [allProjects, allTasks] = await Promise.all([
+    loadProjectsAsync(),
+    loadTasksAsync(),
+  ]);
+  const project = allProjects.find((p) => p.id === id);
 
   if (!project) {
     return (
       <main className="mx-auto max-w-3xl px-6 py-10">
         <h1 className="text-2xl font-semibold">Not found</h1>
-        <p className="mt-2 text-white/60">Unknown project id: {id}</p>
-        <a href={`${BASE_PATH}/projects/`} className="mt-6 inline-block text-sm text-white/60 hover:text-white">
-          ← Back to projects
+        <p className="mt-2 text-muted">Unknown project id: {id}</p>
+        <a href="/projects" className="mt-6 inline-block text-sm text-muted hover:text-foreground">
+          Back to projects
         </a>
       </main>
     );
   }
 
-  const tasks = loadTasks().filter((t) => t.project_id === project.id);
-
+  const tasks = allTasks.filter((t) => t.project_id === project.id);
   const columns: TaskStatus[] = project.board_columns?.length
     ? (project.board_columns as TaskStatus[])
-    : DEFAULT_COLUMNS;
+    : COLUMNS;
 
   const byStatus = new Map<TaskStatus, Task[]>();
   for (const s of columns) byStatus.set(s, []);
@@ -75,158 +71,162 @@ export default async function ProjectPage({
     limit: 10,
   });
 
+  const links: Array<{ label: string; url: string }> =
+    Array.isArray(project.links) ? project.links : [];
+
+  const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
+
   return (
-    <main className="mx-auto max-w-3xl px-6 py-10">
-      <div className="flex items-start justify-between gap-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
-          <p className="mt-2 text-white/60">{project.notes ?? ""}</p>
-        </div>
-        <a href={`${BASE_PATH}/projects/`} className="text-sm text-white/60 hover:text-white">
-          ← Projects
+    <main className="mx-auto max-w-6xl px-6 py-8">
+      {/* Breadcrumb */}
+      <nav className="mb-6 text-sm text-muted">
+        <a href="/projects" className="hover:text-foreground">
+          Projects
         </a>
+        <span className="mx-2">/</span>
+        <span className="text-foreground">{project.name}</span>
+      </nav>
+
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
+        {project.notes && <p className="mt-1 text-sm text-muted">{project.notes}</p>}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-sm text-white/60">Status</div>
-          <div className="mt-2 font-medium">{project.status}</div>
+      {/* Info bar */}
+      <div className="mb-8 flex flex-wrap gap-6 rounded-lg border border-border bg-surface px-6 py-4">
+        <div>
+          <div className="text-xs text-muted uppercase tracking-wider">Status</div>
+          <div className="mt-1 flex items-center gap-2">
+            <StatusDot status={project.status} />
+            <Badge tone={toneForStatus(project.status)}>{project.status}</Badge>
+          </div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-sm text-white/60">Priority</div>
-          <div className="mt-2 font-medium">{project.priority}</div>
+        <div>
+          <div className="text-xs text-muted uppercase tracking-wider">Priority</div>
+          <div className="mt-1">
+            <Badge
+              tone={
+                project.priority === "urgent"
+                  ? "red"
+                  : project.priority === "high"
+                    ? "yellow"
+                    : "neutral"
+              }
+            >
+              {project.priority}
+            </Badge>
+          </div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-sm text-white/60">Owner</div>
-          <div className="mt-2 font-medium">{project.owner}</div>
+        <div>
+          <div className="text-xs text-muted uppercase tracking-wider">Owner</div>
+          <div className="mt-1 text-sm font-medium">{project.owner}</div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-sm text-white/60">Due</div>
-          <div className="mt-2 font-medium">{project.due ?? "—"}</div>
+        <div>
+          <div className="text-xs text-muted uppercase tracking-wider">Due</div>
+          <div className="mt-1 text-sm font-medium">{project.due ?? "—"}</div>
+        </div>
+        <div className="flex-1">
+          <div className="text-xs text-muted uppercase tracking-wider">Next Action</div>
+          <div className="mt-1 text-sm">{project.next_action}</div>
         </div>
       </div>
 
-      <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
-        <div className="text-sm text-white/60">Next action</div>
-        <div className="mt-2 font-medium">{project.next_action}</div>
-      </div>
-
-      <div className="mt-8">
-        <div className="flex items-end justify-between">
+      {/* Task board — columns */}
+      <section>
+        <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Tasks</h2>
-          <a href={`${BASE_PATH}/tasks/`} className="text-sm text-white/60 hover:text-white">
-            All tasks →
-          </a>
+          <span className="text-xs text-muted">{tasks.length} total</span>
         </div>
 
-        <div className="mt-4 space-y-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
           {columns.map((status) => {
-            const list = byStatus.get(status) ?? [];
+            const list = (byStatus.get(status) ?? [])
+              .slice()
+              .sort((a, b) => (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9));
             return (
-              <section key={status}>
-                <div className="flex items-end justify-between">
-                  <h3 className="text-sm font-semibold text-white/80">{STATUS_LABELS[status] ?? status}</h3>
-                  <div className="text-sm text-white/50">{list.length}</div>
+              <div key={status} className="rounded-lg border border-border bg-surface">
+                <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                  <StatusDot status={status} />
+                  <span className="text-sm font-semibold">
+                    {STATUS_LABELS[status] ?? status}
+                  </span>
+                  <span className="text-xs text-muted">({list.length})</span>
                 </div>
-
-                <div className="mt-2 overflow-hidden rounded-xl border border-white/10">
-                  <div className="divide-y divide-white/10">
-                    {list.length === 0 ? (
-                      <div className="p-4 text-sm text-white/50">No tasks.</div>
-                    ) : (
-                      list
-                        .slice()
-                        .sort((a, b) => {
-                          const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
-                          return (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9);
-                        })
-                        .map((t) => (
-                          <div key={t.id} className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
-                            <div className="min-w-0">
-                              <div className="font-medium text-white/95">{t.title}</div>
-                              <div className="mt-1 text-sm text-white/60">
-                                {t.next_step ? <span className="text-white/50">{t.next_step}</span> : null}
-                                {t.blocked_by ? <span className="text-white/40"> · Blocked by: {t.blocked_by}</span> : null}
-                              </div>
+                <div className="divide-y divide-border">
+                  {list.length === 0 ? (
+                    <div className="p-4 text-xs text-muted">No tasks</div>
+                  ) : (
+                    list.map((t) => (
+                      <div key={t.id} className="p-3">
+                        <PriorityBar priority={t.priority}>
+                          <div className="text-sm font-medium">{t.title}</div>
+                          {t.next_step && (
+                            <div className="mt-1 text-xs text-muted">{t.next_step}</div>
+                          )}
+                          {t.blocked_by && (
+                            <div className="mt-1 text-xs text-rose-400/80">
+                              Blocked: {t.blocked_by}
                             </div>
-                            <div className="flex flex-wrap gap-2 text-xs">
-                              <Badge tone={toneForTaskStatus(t.status)}>{t.status}</Badge>
-                              <Badge tone={toneForTaskPriority(t.priority)}>{t.priority}</Badge>
-                              <Badge>{t.area}</Badge>
-                              <Badge>{t.owner}</Badge>
-                            </div>
+                          )}
+                          <div className="mt-2 flex gap-1">
+                            <Badge>{t.area}</Badge>
                           </div>
-                        ))
-                    )}
-                  </div>
+                        </PriorityBar>
+                      </div>
+                    ))
+                  )}
                 </div>
-              </section>
+              </div>
             );
           })}
         </div>
-      </div>
+      </section>
 
-      <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
-        <div className="text-sm font-semibold">Uploads</div>
-        <div className="mt-1 text-sm text-white/60">
-          Add project files (e.g., transcripts, screenshots, specs) to:
-          <span className="ml-2 font-mono text-white/70">projects/{project.id}/files/</span>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <a
-            href={githubUploadUrl(`projects/${project.id}/files`)}
-            className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
-          >
-            Upload files
-          </a>
-          <a
-            href={githubTreeUrl(`projects/${project.id}/files`)}
-            className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
-          >
-            View folder
-          </a>
-        </div>
-        <FileList title="Recent files" files={projectRecentFiles} />
-      </div>
-
-      {project.id === "insight-x-pipeline" ? (
-        <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-sm font-semibold">Latest outputs</div>
-          <div className="mt-1 text-sm text-white/60">
-            Section-by-section summaries + X drafts are saved under
-            <span className="ml-2 font-mono text-white/70">projects/insight-x-pipeline/runs/</span>
+      {/* Uploads — demoted */}
+      <section className="mt-8">
+        <details className="rounded-lg border border-border bg-surface">
+          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-muted hover:text-foreground">
+            Uploads &amp; Files
+          </summary>
+          <div className="border-t border-border px-4 py-4">
+            <div className="flex flex-wrap gap-2 mb-4">
+              <a
+                href={githubUploadUrl(`projects/${project.id}/files`)}
+                className="rounded-md border border-border bg-surface-light px-3 py-1.5 text-xs text-muted hover:text-foreground transition-colors"
+              >
+                Upload files
+              </a>
+              <a
+                href={githubTreeUrl(`projects/${project.id}/files`)}
+                className="rounded-md border border-border bg-surface-light px-3 py-1.5 text-xs text-muted hover:text-foreground transition-colors"
+              >
+                View folder
+              </a>
+            </div>
+            <FileList title="Recent files" files={projectRecentFiles} />
           </div>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <a
-              href={githubFileUrl("projects/insight-x-pipeline/runs/LATEST.md")}
-              className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
-            >
-              Open latest index
-            </a>
-            <a
-              href={githubTreeUrl("projects/insight-x-pipeline/runs")}
-              className="rounded-lg border border-white/15 bg-white/0 px-4 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
-            >
-              View runs folder
-            </a>
-          </div>
-        </div>
-      ) : null}
+        </details>
+      </section>
 
-      {project.links?.length ? (
-        <div className="mt-8">
-          <h2 className="text-sm font-semibold text-white/80">Links</h2>
-          <ul className="mt-3 space-y-2">
-            {project.links.map((l) => (
+      {/* Links */}
+      {links.length > 0 && (
+        <section className="mt-6">
+          <h2 className="text-sm font-semibold text-muted mb-3">Links</h2>
+          <ul className="space-y-2">
+            {links.map((l) => (
               <li key={l.url}>
-                <a className="text-sm underline underline-offset-4 hover:text-white/90" href={l.url}>
+                <a
+                  className="text-sm text-accent hover:underline"
+                  href={l.url}
+                >
                   {l.label}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-      ) : null}
+        </section>
+      )}
     </main>
   );
 }

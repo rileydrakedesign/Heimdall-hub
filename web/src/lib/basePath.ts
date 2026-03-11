@@ -1,4 +1,3 @@
-// GitHub Pages serves this site at https://<user>.github.io/<repo>/
-// Next.js basePath does not reliably apply to client-side navigation in static export (App Router),
-// so we prefix links manually.
-export const BASE_PATH = "/Heimdall-hub";
+// Vercel serves at root — no base path needed.
+// Kept as a constant so all link references stay consistent.
+export const BASE_PATH = "";
