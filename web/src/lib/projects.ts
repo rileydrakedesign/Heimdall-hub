@@ -16,6 +16,7 @@ type ProjectsFile = { projects: Project[] };
 // ---------------------------------------------------------------------------
 function loadProjectsFromYaml(): Project[] {
   const filePath = path.resolve(process.cwd(), "..", "data", "projects.yaml");
+  if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, "utf8");
   const parsed = yaml.load(raw) as ProjectsFile;
   return parsed?.projects ?? [];
