@@ -3,27 +3,11 @@ import path from "node:path";
 import yaml from "js-yaml";
 import { isSupabaseConfigured, getBrowserClient } from "./supabase";
 
-export type ProjectStatus = "idea" | "active" | "paused" | "done";
-export type ProjectPriority = "low" | "medium" | "high" | "urgent";
+// Re-export types and constants so existing imports keep working
+export type { ProjectStatus, ProjectPriority, ProjectLink, Project } from "./project-types";
+export { VALID_PROJECT_STATUSES, VALID_PROJECT_PRIORITIES } from "./constants";
 
-export type ProjectLink = { label: string; url: string };
-
-export type Project = {
-  id: string;
-  name: string;
-  status: ProjectStatus;
-  priority: ProjectPriority;
-  owner: string;
-  next_action: string;
-  due: string | null;
-
-  board_columns?: Array<"backlog" | "in_progress" | "blocked" | "done">;
-
-  links?: ProjectLink[];
-  notes?: string;
-  created_at?: string;
-  updated_at?: string;
-};
+import type { Project } from "./project-types";
 
 type ProjectsFile = { projects: Project[] };
 
@@ -54,10 +38,6 @@ async function loadProjectsFromDb(): Promise<Project[]> {
 // Public API — sync for now (YAML), async-ready for DB
 // ---------------------------------------------------------------------------
 
-/**
- * Load all projects. Uses Supabase when configured, YAML otherwise.
- * Returns a promise so callers can await when DB is active.
- */
 export async function loadProjectsAsync(): Promise<Project[]> {
   if (isSupabaseConfigured()) return loadProjectsFromDb();
   return loadProjectsFromYaml();

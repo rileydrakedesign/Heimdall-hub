@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { validateAgentToken } from "@/lib/agent-auth";
 import { isSupabaseConfigured, getServiceClient } from "@/lib/supabase";
 import { writeAuditLog } from "@/lib/audit";
-import type { TaskStatus, TaskPriority, TaskArea } from "@/lib/tasks";
-
-const VALID_STATUS: TaskStatus[] = ["backlog", "in_progress", "blocked", "done"];
-const VALID_PRIORITY: TaskPriority[] = ["low", "medium", "high", "urgent"];
-const VALID_AREA: TaskArea[] = ["work", "personal"];
+import {
+  VALID_TASK_STATUSES as VALID_STATUS,
+  VALID_TASK_PRIORITIES as VALID_PRIORITY,
+  VALID_TASK_AREAS as VALID_AREA,
+  type TaskStatus,
+  type TaskPriority,
+  type TaskArea,
+} from "@/lib/tasks";
 const MAX_LEN = 2000;
 
 // ---------------------------------------------------------------------------

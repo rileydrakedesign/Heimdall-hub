@@ -6,6 +6,9 @@ import { PriorityBar } from "@/components/PriorityBar";
 import { FileList } from "@/components/FileList";
 import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
 import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
+import { EditProjectButton } from "@/components/EditProjectButton";
+import { CreateTaskButton } from "@/components/CreateTaskButton";
+import { TaskRow } from "@/components/TaskRow";
 
 export async function generateStaticParams() {
   const projects = await loadProjectsAsync();
@@ -75,6 +78,7 @@ export default async function ProjectPage({
     Array.isArray(project.links) ? project.links : [];
 
   const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
+  const allProjectList = allProjects.map((p) => ({ id: p.id, name: p.name }));
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-8">
@@ -88,9 +92,12 @@ export default async function ProjectPage({
       </nav>
 
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
-        {project.notes && <p className="mt-1 text-sm text-muted">{project.notes}</p>}
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
+          {project.notes && <p className="mt-1 text-sm text-muted">{project.notes}</p>}
+        </div>
+        <EditProjectButton project={project} />
       </div>
 
       {/* Info bar */}
@@ -136,7 +143,10 @@ export default async function ProjectPage({
       <section>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Tasks</h2>
-          <span className="text-xs text-muted">{tasks.length} total</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-muted">{tasks.length} total</span>
+            <CreateTaskButton projects={allProjectList} defaultProjectId={project.id} />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -158,22 +168,13 @@ export default async function ProjectPage({
                     <div className="p-4 text-xs text-muted">No tasks</div>
                   ) : (
                     list.map((t) => (
-                      <div key={t.id} className="p-3">
-                        <PriorityBar priority={t.priority}>
-                          <div className="text-sm font-medium">{t.title}</div>
-                          {t.next_step && (
-                            <div className="mt-1 text-xs text-muted">{t.next_step}</div>
-                          )}
-                          {t.blocked_by && (
-                            <div className="mt-1 text-xs text-rose-400/80">
-                              Blocked: {t.blocked_by}
-                            </div>
-                          )}
-                          <div className="mt-2 flex gap-1">
-                            <Badge>{t.area}</Badge>
-                          </div>
-                        </PriorityBar>
-                      </div>
+                      <TaskRow
+                        key={t.id}
+                        task={t}
+                        projectName={project.name}
+                        projectId={project.id}
+                        projects={allProjectList}
+                      />
                     ))
                   )}
                 </div>

@@ -5,6 +5,7 @@ import { StatCard } from "@/components/StatCard";
 import { StatusDot } from "@/components/StatusDot";
 import { Badge } from "@/components/Badge";
 import { ActivityFeed } from "@/components/ActivityFeed";
+import { CreateTaskButton } from "@/components/CreateTaskButton";
 
 import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
 
@@ -28,9 +29,12 @@ export default async function Dashboard() {
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted">Command center overview</p>
+      <div className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted">Command center overview</p>
+        </div>
+        <CreateTaskButton projects={projects.map((p) => ({ id: p.id, name: p.name }))} />
       </div>
 
       {/* Stats row */}

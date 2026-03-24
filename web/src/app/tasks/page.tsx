@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import { loadProjectsAsync } from "@/lib/projects";
 import { loadTasksAsync, type Task, type TaskStatus } from "@/lib/tasks";
 import { StatusDot } from "@/components/StatusDot";
-import { PriorityBar } from "@/components/PriorityBar";
-import { Badge } from "@/components/Badge";
 import { ProjectFilter } from "@/components/ProjectFilter";
+import { CreateTaskButton } from "@/components/CreateTaskButton";
+import { TaskRow } from "@/components/TaskRow";
 
 const STATUS_ORDER: TaskStatus[] = ["in_progress", "blocked", "backlog", "done"];
 
@@ -38,6 +38,7 @@ export default async function TasksPage({
   }
 
   const prRank: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
+  const projectList = projects.map((p) => ({ id: p.id, name: p.name }));
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-8">
@@ -46,11 +47,17 @@ export default async function TasksPage({
           <h1 className="text-2xl font-semibold tracking-tight">Tasks</h1>
           <p className="mt-1 text-sm text-muted">All tasks across projects</p>
         </div>
-        <Suspense>
-          <ProjectFilter
-            projects={projects.map((p) => ({ id: p.id, name: p.name }))}
+        <div className="flex items-center gap-3">
+          <Suspense>
+            <ProjectFilter
+              projects={projectList}
+            />
+          </Suspense>
+          <CreateTaskButton
+            projects={projectList}
+            defaultProjectId={projectFilter}
           />
-        </Suspense>
+        </div>
       </div>
 
       <div className="space-y-8">
@@ -78,40 +85,13 @@ export default async function TasksPage({
                       ? projects.find((p) => p.id === t.project_id)
                       : null;
                     return (
-                      <div key={t.id} className="p-3">
-                        <PriorityBar priority={t.priority}>
-                          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                            <div className="min-w-0">
-                              <div className="font-medium text-sm">{t.title}</div>
-                              <div className="mt-0.5 text-xs text-muted">
-                                {project ? (
-                                  <a
-                                    className="hover:text-foreground"
-                                    href={`/projects/${project.id}`}
-                                  >
-                                    {project.name}
-                                  </a>
-                                ) : (
-                                  <span>Unassigned</span>
-                                )}
-                                {t.next_step && (
-                                  <span className="text-muted/60"> · {t.next_step}</span>
-                                )}
-                                {t.blocked_by && (
-                                  <span className="text-rose-400/80">
-                                    {" "}
-                                    · Blocked: {t.blocked_by}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                            <div className="flex shrink-0 gap-2">
-                              <Badge>{t.area}</Badge>
-                              <Badge>{t.assigned_to ?? t.owner ?? "—"}</Badge>
-                            </div>
-                          </div>
-                        </PriorityBar>
-                      </div>
+                      <TaskRow
+                        key={t.id}
+                        task={t}
+                        projectName={project?.name ?? null}
+                        projectId={project?.id ?? null}
+                        projects={projectList}
+                      />
                     );
                   })
                 )}

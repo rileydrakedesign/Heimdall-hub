@@ -3,33 +3,11 @@ import path from "node:path";
 import yaml from "js-yaml";
 import { isSupabaseConfigured, getBrowserClient } from "./supabase";
 
-export type TaskStatus = "backlog" | "in_progress" | "blocked" | "done";
-export type TaskPriority = "low" | "medium" | "high" | "urgent";
-export type TaskArea = "work" | "personal";
+// Re-export types and constants so existing imports keep working
+export type { TaskStatus, TaskPriority, TaskArea, Task } from "./task-types";
+export { VALID_TASK_STATUSES, VALID_TASK_PRIORITIES, VALID_TASK_AREAS } from "./constants";
 
-export type Task = {
-  id: string;
-  title: string;
-  status: TaskStatus;
-  priority: TaskPriority;
-  area: TaskArea;
-  project_id: string | null;
-  due: string | null;
-  blocked_by?: string | null;
-  next_step?: string;
-  notes?: string;
-  links?: Array<{ label: string; url: string }>;
-
-  // Fields used by YAML (kept for backward compat)
-  owner?: string;
-
-  // Fields added for Supabase schema
-  created_by_type?: "user" | "agent";
-  created_by?: string;
-  assigned_to?: string;
-  created_at?: string;
-  updated_at?: string;
-};
+import type { Task } from "./task-types";
 
 type TasksFile = { tasks: Task[] };
 

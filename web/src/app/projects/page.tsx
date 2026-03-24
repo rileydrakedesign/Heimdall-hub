@@ -4,6 +4,7 @@ import { StatusDot } from "@/components/StatusDot";
 import { Badge } from "@/components/Badge";
 import { StatusFilterTabs } from "@/components/StatusFilterTabs";
 import { SortControl } from "@/components/SortControl";
+import { CreateProjectButton } from "@/components/CreateProjectButton";
 
 async function ProjectsList({
   searchParams,
@@ -94,6 +95,7 @@ export default async function ProjectsPage({
           <Suspense>
             <SortControl />
           </Suspense>
+          <CreateProjectButton />
         </div>
       </div>
 
