@@ -9,6 +9,8 @@ import { CreateTaskButton } from "@/components/CreateTaskButton";
 
 import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
 
+export const dynamic = "force-dynamic";
+
 export default async function Dashboard() {
   const [projects, tasks, activity] = await Promise.all([
     loadProjectsAsync(),

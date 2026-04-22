@@ -2,15 +2,18 @@
 
 ## Project structure
 
-- `web/` — The Heimdall Hub dashboard (Next.js). **This is the main app.**
-- Root `package.json` — A separate portfolio site; not the hub.
+The Heimdall Hub dashboard (Next.js) lives at the repo root. Sibling
+directories hold non-app content:
+
+- `data/` — YAML source read by the hub (projects, tasks, briefs).
+- `projects/` — per-project agent working directories (content, not code).
+- `docs/`, `kb/`, `memory/`, `playbook/`, `skills/`, `scripts/` — agent
+  runtime and ops content. Not imported by the Next.js app.
 
 ## Dev server
 
-Always start the dev server from `web/`:
-
 ```sh
-cd web && npm run dev
+npm run dev
 ```
 
-Do NOT run `npm run dev` from the repo root — that starts the wrong app.
+Run from the repo root.

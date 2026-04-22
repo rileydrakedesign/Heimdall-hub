@@ -44,7 +44,6 @@ export function listRepoFiles(opts: {
   return entries.slice(0, limit);
 }
 
-export function repoRootFromWebCwd() {
-  // During Next build, process.cwd() is typically /.../web
-  return path.resolve(process.cwd(), "..");
+export function getRepoRoot() {
+  return process.cwd();
 }

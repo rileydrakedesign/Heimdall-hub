@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { loadProjectsAsync } from "@/lib/projects";
 import { loadTasksAsync, type Task, type TaskStatus } from "@/lib/tasks";
+
+export const dynamic = "force-dynamic";
 import { StatusDot } from "@/components/StatusDot";
 import { ProjectFilter } from "@/components/ProjectFilter";
 import { CreateTaskButton } from "@/components/CreateTaskButton";

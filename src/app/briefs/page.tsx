@@ -1,12 +1,12 @@
 import { FileList } from "@/components/FileList";
-import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
+import { listRepoFiles, getRepoRoot } from "@/lib/fsList";
 import { githubTreeUrl } from "@/lib/repo";
 import { githubFileUrl } from "@/lib/runs";
 
 export const dynamic = "force-static";
 
 export default function BriefsPage() {
-  const repoRoot = repoRootFromWebCwd();
+  const repoRoot = getRepoRoot();
   const runs = listRepoFiles({
     absDir: `${repoRoot}/projects/daily-debrief/runs`,
     relPrefix: "projects/daily-debrief/runs",

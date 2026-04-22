@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { loadProjectsAsync } from "@/lib/projects";
+
+export const dynamic = "force-dynamic";
 import { StatusDot } from "@/components/StatusDot";
 import { Badge } from "@/components/Badge";
 import { StatusFilterTabs } from "@/components/StatusFilterTabs";

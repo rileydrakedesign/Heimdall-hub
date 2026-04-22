@@ -4,16 +4,13 @@ import { StatusDot } from "@/components/StatusDot";
 import { Badge } from "@/components/Badge";
 import { PriorityBar } from "@/components/PriorityBar";
 import { FileList } from "@/components/FileList";
-import { listRepoFiles, repoRootFromWebCwd } from "@/lib/fsList";
+import { listRepoFiles, getRepoRoot } from "@/lib/fsList";
 import { githubUploadUrl, githubTreeUrl } from "@/lib/repo";
 import { EditProjectButton } from "@/components/EditProjectButton";
 import { CreateTaskButton } from "@/components/CreateTaskButton";
 import { TaskRow } from "@/components/TaskRow";
 
-export async function generateStaticParams() {
-  const projects = await loadProjectsAsync();
-  return projects.map((p) => ({ id: p.id }));
-}
+export const dynamic = "force-dynamic";
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   backlog: "Backlog",
@@ -67,7 +64,7 @@ export default async function ProjectPage({
     byStatus.get(t.status)!.push(t);
   }
 
-  const repoRoot = repoRootFromWebCwd();
+  const repoRoot = getRepoRoot();
   const projectRecentFiles = listRepoFiles({
     absDir: `${repoRoot}/projects/${project.id}/files`,
     relPrefix: `projects/${project.id}/files`,

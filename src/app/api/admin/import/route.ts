@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
   }
 
   const db = getServiceClient();
-  const dataDir = path.resolve(process.cwd(), "..", "data");
+  const dataDir = path.resolve(process.cwd(), "data");
   const results: Record<string, unknown> = {};
 
   // ---- Import projects ----

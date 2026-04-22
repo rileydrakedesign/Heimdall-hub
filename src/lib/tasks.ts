@@ -15,7 +15,7 @@ type TasksFile = { tasks: Task[] };
 // YAML loader (static export / fallback)
 // ---------------------------------------------------------------------------
 function loadTasksFromYaml(): Task[] {
-  const filePath = path.resolve(process.cwd(), "..", "data", "tasks.yaml");
+  const filePath = path.resolve(process.cwd(), "data", "tasks.yaml");
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, "utf8");
   const parsed = yaml.load(raw) as TasksFile;
