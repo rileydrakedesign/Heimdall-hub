@@ -17,9 +17,14 @@ type TasksFile = { tasks: Task[] };
 function loadTasksFromYaml(): Task[] {
   const filePath = path.resolve(process.cwd(), "data", "tasks.yaml");
   if (!fs.existsSync(filePath)) return [];
-  const raw = fs.readFileSync(filePath, "utf8");
-  const parsed = yaml.load(raw) as TasksFile;
-  return parsed?.tasks ?? [];
+  try {
+    const raw = fs.readFileSync(filePath, "utf8");
+    const parsed = yaml.load(raw) as TasksFile;
+    return parsed?.tasks ?? [];
+  } catch (e) {
+    console.error("[tasks] Failed to load tasks.yaml:", e);
+    return [];
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -40,7 +45,14 @@ async function loadTasksFromDb(): Promise<Task[]> {
 // ---------------------------------------------------------------------------
 
 export async function loadTasksAsync(): Promise<Task[]> {
-  if (isSupabaseConfigured()) return loadTasksFromDb();
+  if (isSupabaseConfigured()) {
+    try {
+      return await loadTasksFromDb();
+    } catch (e) {
+      console.error("[tasks] Supabase load failed, falling back to YAML:", e);
+      return loadTasksFromYaml();
+    }
+  }
   return loadTasksFromYaml();
 }
 
