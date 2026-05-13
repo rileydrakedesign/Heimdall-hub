@@ -38,6 +38,37 @@ function writeYaml<T>(file: string, key: string, items: T[]) {
 }
 
 // ---------------------------------------------------------------------------
+// Legacy-schema fallback
+// ---------------------------------------------------------------------------
+// Older Supabase schemas (pre-simplify) declared additional NOT NULL columns
+// the new UI no longer touches. We try a minimal INSERT first; if Postgres
+// rejects it with a NOT NULL violation (SQLSTATE 23502), we retry with the
+// historical defaults so the user doesn't have to run a migration.
+
+const LEGACY_TASK_DEFAULTS = {
+  area: "personal",
+  created_by_type: "user",
+  created_by: "user",
+};
+
+const LEGACY_PROJECT_DEFAULTS = {
+  owner: "user",
+};
+
+async function dbInsertWithLegacyFallback(
+  table: "tasks" | "projects",
+  row: Record<string, unknown>,
+  legacyDefaults: Record<string, unknown>,
+) {
+  const client = getServiceClient();
+  const first = await client.from(table).insert(row);
+  if (first.error?.code === "23502") {
+    return client.from(table).insert({ ...legacyDefaults, ...row });
+  }
+  return first;
+}
+
+// ---------------------------------------------------------------------------
 // Shared utilities
 // ---------------------------------------------------------------------------
 
@@ -101,7 +132,7 @@ export async function createTask(
   };
 
   if (isSupabaseConfigured()) {
-    const { error } = await getServiceClient().from("tasks").insert(row);
+    const { error } = await dbInsertWithLegacyFallback("tasks", row, LEGACY_TASK_DEFAULTS);
     if (error) return fail(error.message);
   } else {
     const tasks = readYaml<Task>(TASKS_FILE, "tasks");
@@ -237,7 +268,7 @@ export async function createProject(
     const db = getServiceClient();
     const { data: existing } = await db.from("projects").select("id").eq("id", id).maybeSingle();
     if (existing) return fail(`Project id '${id}' already exists`);
-    const { error } = await db.from("projects").insert(row);
+    const { error } = await dbInsertWithLegacyFallback("projects", row, LEGACY_PROJECT_DEFAULTS);
     if (error) return fail(error.message);
   } else {
     const projects = readYaml<Project>(PROJECTS_FILE, "projects");
@@ -295,6 +326,34 @@ export async function deleteProject(projectId: string): Promise<ActionResult> {
 
   if (isSupabaseConfigured()) {
     const db = getServiceClient();
+
+    // Seed the Personal bucket if it isn't already there, so any tasks we
+    // reassign land in a real row (and the UI's pinned card has data).
+    const { data: hasPersonal } = await db
+      .from("projects")
+      .select("id")
+      .eq("id", PERSONAL_PROJECT_ID)
+      .maybeSingle();
+    if (!hasPersonal) {
+      const seed = {
+        id: PERSONAL_PROJECT_ID,
+        name: "Personal",
+        status: "active" as ProjectStatus,
+        priority: "medium" as ProjectPriority,
+        next_action: "Capture personal tasks here",
+        due: null,
+        notes: "Default bucket for personal tasks.",
+        created_at: nowIso(),
+        updated_at: nowIso(),
+      };
+      const { error: seedErr } = await dbInsertWithLegacyFallback(
+        "projects",
+        seed,
+        LEGACY_PROJECT_DEFAULTS,
+      );
+      if (seedErr) return fail(seedErr.message);
+    }
+
     // Reassign tasks to "personal" before deleting the project.
     const { error: reassignErr } = await db
       .from("tasks")
