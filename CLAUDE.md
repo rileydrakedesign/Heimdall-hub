@@ -30,9 +30,12 @@ Both backends use the same data shape, so you can switch by toggling env vars.
 ### Supabase setup (one-time)
 
 1. Create a free Supabase project at https://supabase.com.
-2. In the SQL editor, paste and run the contents of `data/schema.sql`.
+2. In the SQL editor, paste and run the contents of `data/schema.sql`. The
+   file is non-destructive and safe to re-run; it preserves legacy rows
+   and just relaxes constraints on columns the new UI ignores.
 3. In Vercel project settings, set two environment variables:
-   - `SUPABASE_URL` — the project URL, e.g. `https://xxx.supabase.co`
+   - `SUPABASE_URL` *(or the legacy `NEXT_PUBLIC_SUPABASE_URL`)* — the
+     project URL, e.g. `https://xxx.supabase.co`
    - `SUPABASE_SERVICE_ROLE_KEY` — the service-role key (Settings → API).
      Keep this secret; it bypasses RLS and is used server-side only.
 4. Redeploy. Writes from the dashboard now persist in Postgres.
