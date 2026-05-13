@@ -3,9 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import type { Task, TaskStatus } from "@/lib/task-types";
 import { VALID_TASK_STATUSES } from "@/lib/constants";
-import { quickUpdateTaskStatus } from "@/lib/actions";
+import { quickUpdateTaskStatus, deleteTask } from "@/lib/actions";
 import { PriorityBar } from "./PriorityBar";
-import { Badge } from "./Badge";
 import { Modal } from "./Modal";
 import { TaskForm } from "./TaskForm";
 import { useToast } from "./ToastProvider";
@@ -29,11 +28,13 @@ export function TaskRow({
   projectName,
   projectId,
   projects,
+  hideProject = false,
 }: {
   task: Task;
   projectName: string | null;
   projectId: string | null;
   projects: { id: string; name: string }[];
+  hideProject?: boolean;
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -60,17 +61,27 @@ export function TaskRow({
     }
   }
 
+  async function handleDelete() {
+    if (!confirm(`Delete task "${task.title}"?`)) return;
+    const result = await deleteTask(task.id);
+    if (result.ok) {
+      addToast("Task deleted");
+    } else {
+      addToast(result.error ?? "Failed to delete", "error");
+    }
+  }
+
   return (
     <div className="p-3 group">
       <PriorityBar priority={task.priority}>
         <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 flex items-start gap-2">
-            {/* Status dot → dropdown */}
             <div className="relative mt-1" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className={`h-2.5 w-2.5 rounded-full ${STATUS_COLORS[task.status] ?? "bg-slate-400"} hover:ring-2 hover:ring-white/20 transition-shadow`}
                 title="Change status"
+                aria-label="Change status"
               />
               {dropdownOpen && (
                 <div className="absolute left-0 top-5 z-30 w-36 rounded-md border border-border bg-surface shadow-lg py-1">
@@ -93,25 +104,29 @@ export function TaskRow({
             <div className="min-w-0 flex-1">
               <button
                 onClick={() => setEditOpen(true)}
-                className="font-medium text-sm text-left hover:text-accent transition-colors"
+                className={`font-medium text-sm text-left hover:text-accent transition-colors ${
+                  task.status === "done" ? "line-through text-muted" : ""
+                }`}
               >
                 {task.title}
               </button>
-              <div className="mt-0.5 text-xs text-muted">
-                {projectName ? (
-                  <a className="hover:text-foreground" href={`/projects/${projectId}`}>
-                    {projectName}
-                  </a>
-                ) : (
-                  <span>Unassigned</span>
-                )}
-                {task.next_step && (
-                  <span className="text-muted/60"> · {task.next_step}</span>
-                )}
-                {task.blocked_by && (
-                  <span className="text-rose-400/80"> · Blocked: {task.blocked_by}</span>
-                )}
-              </div>
+              {(!hideProject || task.next_step || task.blocked_by) && (
+                <div className="mt-0.5 text-xs text-muted">
+                  {!hideProject && projectName && (
+                    <a className="hover:text-foreground" href={`/projects/${projectId}`}>
+                      {projectName}
+                    </a>
+                  )}
+                  {task.next_step && (
+                    <span className={!hideProject && projectName ? "text-muted/60" : ""}>
+                      {!hideProject && projectName ? " · " : ""}{task.next_step}
+                    </span>
+                  )}
+                  {task.blocked_by && (
+                    <span className="text-rose-400/80"> · Blocked: {task.blocked_by}</span>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -121,12 +136,19 @@ export function TaskRow({
                 onClick={() => handleStatusChange("done")}
                 className="opacity-0 group-hover:opacity-100 text-muted hover:text-emerald-400 transition-all text-sm"
                 title="Mark done"
+                aria-label="Mark done"
               >
                 ✓
               </button>
             )}
-            <Badge>{task.area}</Badge>
-            <Badge>{task.assigned_to ?? task.owner ?? "—"}</Badge>
+            <button
+              onClick={handleDelete}
+              className="opacity-0 group-hover:opacity-100 text-muted hover:text-rose-400 transition-all text-sm"
+              title="Delete task"
+              aria-label="Delete task"
+            >
+              ×
+            </button>
           </div>
         </div>
       </PriorityBar>

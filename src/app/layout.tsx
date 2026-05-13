@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Heimdall Hub",
-  description: "Private ops dashboard and knowledge base",
+  description: "Personal project + task tracker",
 };
 
 export default function RootLayout({

@@ -80,7 +80,7 @@ export function ProjectForm({
           label="Status"
           name="status"
           required
-          defaultValue={project?.status ?? "idea"}
+          defaultValue={project?.status ?? "active"}
           options={VALID_PROJECT_STATUSES.map((s) => ({ value: s, label: s }))}
         />
         <SelectField
@@ -91,8 +91,6 @@ export function ProjectForm({
           options={VALID_PROJECT_PRIORITIES.map((p) => ({ value: p, label: p }))}
         />
       </div>
-
-      <TextInput label="Owner" name="owner" defaultValue={project?.owner ?? "Riley"} />
 
       <TextInput
         label="Next Action"

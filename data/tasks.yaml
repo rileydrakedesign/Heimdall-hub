@@ -1,40 +1,6 @@
-# Task list (edit this file)
+# Task list
 # status: backlog | in_progress | blocked | done
 # priority: low | medium | high | urgent
-# area: work | personal
-# project_id: must match a project id in data/projects.yaml (or null)
+# project_id: must match a project id in data/projects.yaml (use "personal" for personal tasks)
 
-tasks:
-  - id: hub-task-system-v1
-    title: "Hub: implement v1 task system (YAML + /tasks UI)"
-    status: in_progress
-    priority: urgent
-    area: work
-    owner: Heimdall
-    project_id: hub
-    due: null
-    blocked_by: null
-    next_step: "Add tasks schema + tasks page + project task rollups"
-    notes: "Foundation for PM/marketing workflows + personal tasks + agent visibility."
-
-  - id: portfolio-playwright-screens
-    title: "Portfolio: produce Playwright screenshots for isometric room"
-    status: backlog
-    priority: high
-    area: work
-    owner: Heimdall
-    project_id: riley-portfolio
-    due: null
-    blocked_by: "Playwright run currently failing/hanging"
-    next_step: "Debug Playwright + ensure desktop/mobile artifacts land in work/riley-portfolio/test-results/"
-
-  - id: personal-weekly-review-setup
-    title: "Personal: set up weekly review + reminders loop"
-    status: backlog
-    priority: medium
-    area: personal
-    owner: Riley
-    project_id: null
-    due: null
-    blocked_by: null
-    next_step: "Decide review cadence + default checklist; then add recurring tasks"
+tasks: []

@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { createTask, updateTask, type ActionResult } from "@/lib/actions";
-import { VALID_TASK_STATUSES, VALID_TASK_PRIORITIES, VALID_TASK_AREAS } from "@/lib/constants";
+import { VALID_TASK_STATUSES, VALID_TASK_PRIORITIES, PERSONAL_PROJECT_ID } from "@/lib/constants";
 import type { Task } from "@/lib/task-types";
 import { TextInput, TextArea, SelectField, DateInput, FormActions } from "./FormField";
 import { useToast } from "./ToastProvider";
@@ -37,7 +37,7 @@ export function TaskForm({
 
       <TextInput label="Title" name="title" defaultValue={task?.title} required />
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         <SelectField
           label="Status"
           name="status"
@@ -52,19 +52,13 @@ export function TaskForm({
           defaultValue={task?.priority ?? "medium"}
           options={VALID_TASK_PRIORITIES.map((p) => ({ value: p, label: p }))}
         />
-        <SelectField
-          label="Area"
-          name="area"
-          required
-          defaultValue={task?.area ?? "work"}
-          options={VALID_TASK_AREAS.map((a) => ({ value: a, label: a }))}
-        />
       </div>
 
       <SelectField
         label="Project"
         name="project_id"
-        defaultValue={task?.project_id ?? defaultProjectId ?? ""}
+        required
+        defaultValue={task?.project_id ?? defaultProjectId ?? PERSONAL_PROJECT_ID}
         options={projects.map((p) => ({ value: p.id, label: p.name }))}
       />
 

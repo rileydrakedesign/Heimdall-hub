@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { loadProjectsAsync } from "@/lib/projects";
+import { loadTasksAsync } from "@/lib/tasks";
 
 export const dynamic = "force-dynamic";
 import { StatusDot } from "@/components/StatusDot";
@@ -7,15 +8,22 @@ import { Badge } from "@/components/Badge";
 import { StatusFilterTabs } from "@/components/StatusFilterTabs";
 import { SortControl } from "@/components/SortControl";
 import { CreateProjectButton } from "@/components/CreateProjectButton";
+import { PERSONAL_PROJECT_ID } from "@/lib/constants";
 
 async function ProjectsList({
   searchParams,
 }: {
   searchParams: { status?: string; sort?: string };
 }) {
-  const projects = await loadProjectsAsync();
+  const [projects, tasks] = await Promise.all([loadProjectsAsync(), loadTasksAsync()]);
   const statusFilter = searchParams.status;
   const sort = searchParams.sort ?? "priority";
+
+  const openCounts = new Map<string, number>();
+  for (const t of tasks) {
+    if (t.status === "done" || !t.project_id) continue;
+    openCounts.set(t.project_id, (openCounts.get(t.project_id) ?? 0) + 1);
+  }
 
   let filtered = statusFilter
     ? projects.filter((p) => p.status === statusFilter)
@@ -25,11 +33,13 @@ async function ProjectsList({
   const statusRank: Record<string, number> = { active: 0, paused: 1, idea: 2, done: 3 };
 
   filtered = filtered.slice().sort((a, b) => {
+    // Personal always pinned to top
+    if (a.id === PERSONAL_PROJECT_ID) return -1;
+    if (b.id === PERSONAL_PROJECT_ID) return 1;
     if (sort === "name") return a.name.localeCompare(b.name);
     if (sort === "updated") {
       return (b.updated_at ?? "").localeCompare(a.updated_at ?? "");
     }
-    // default: priority then status
     const sr = (statusRank[a.status] ?? 9) - (statusRank[b.status] ?? 9);
     if (sr !== 0) return sr;
     return (prRank[a.priority] ?? 9) - (prRank[b.priority] ?? 9);
@@ -44,29 +54,36 @@ async function ProjectsList({
 
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-      {filtered.map((p) => (
-        <a
-          key={p.id}
-          href={`/projects/${p.id}`}
-          className={`block rounded-lg border border-border border-l-2 ${borderColor[p.status] ?? "border-l-slate-500"} bg-surface p-4 hover:bg-surface-light transition-colors`}
-        >
-          <div className="flex items-center gap-2">
-            <StatusDot status={p.status} />
-            <span className="font-medium truncate">{p.name}</span>
-          </div>
-          <p className="mt-2 text-sm text-muted truncate">{p.next_action}</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <Badge
-              tone={
-                p.priority === "urgent" ? "red" : p.priority === "high" ? "yellow" : "neutral"
-              }
-            >
-              {p.priority}
-            </Badge>
-            <Badge>{p.owner}</Badge>
-          </div>
-        </a>
-      ))}
+      {filtered.map((p) => {
+        const open = openCounts.get(p.id) ?? 0;
+        const isPersonal = p.id === PERSONAL_PROJECT_ID;
+        return (
+          <a
+            key={p.id}
+            href={`/projects/${p.id}`}
+            className={`block rounded-lg border border-border border-l-2 ${borderColor[p.status] ?? "border-l-slate-500"} bg-surface p-4 hover:bg-surface-light transition-colors`}
+          >
+            <div className="flex items-center gap-2">
+              <StatusDot status={p.status} />
+              <span className="font-medium truncate">{p.name}</span>
+              {isPersonal && (
+                <span className="ml-auto text-[10px] uppercase tracking-wider text-muted">Pinned</span>
+              )}
+            </div>
+            <p className="mt-2 text-sm text-muted truncate">{p.next_action}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Badge
+                tone={
+                  p.priority === "urgent" ? "red" : p.priority === "high" ? "yellow" : "neutral"
+                }
+              >
+                {p.priority}
+              </Badge>
+              <Badge>{open} open</Badge>
+            </div>
+          </a>
+        );
+      })}
       {filtered.length === 0 && (
         <div className="col-span-full rounded-lg border border-border bg-surface p-8 text-center text-sm text-muted">
           No projects match this filter.
