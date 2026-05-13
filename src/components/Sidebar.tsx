@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -31,15 +32,6 @@ const nav = [
       </svg>
     ),
   },
-  {
-    label: "Briefs",
-    href: "/briefs",
-    icon: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5" />
-      </svg>
-    ),
-  },
 ];
 
 export function Sidebar() {
@@ -53,16 +45,16 @@ export function Sidebar() {
 
   const sidebar = (
     <div className="flex h-full flex-col bg-surface border-r border-border">
-      <div className="flex h-14 items-center gap-2 px-4 border-b border-border">
+      <Link href="/" className="flex h-14 items-center gap-2 px-4 border-b border-border hover:bg-surface-light transition-colors">
         <span className="text-accent font-semibold text-lg">H</span>
         <span className="font-semibold text-sm">Heimdall Hub</span>
-      </div>
+      </Link>
 
       <nav className="flex-1 px-3 py-4 space-y-1">
         {nav.map((item) => {
           const active = isActive(item.href);
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
@@ -74,28 +66,19 @@ export function Sidebar() {
             >
               {item.icon}
               {item.label}
-            </a>
+            </Link>
           );
         })}
       </nav>
-
-      <div className="border-t border-border px-4 py-3">
-        <div className="flex items-center gap-2 text-xs text-muted">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          Connected
-        </div>
-      </div>
     </div>
   );
 
   return (
     <>
-      {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 lg:block">
         {sidebar}
       </aside>
 
-      {/* Mobile top bar */}
       <div className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-border bg-surface px-4 lg:hidden">
         <button
           onClick={() => setOpen(!open)}
@@ -106,11 +89,12 @@ export function Sidebar() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
-        <span className="text-accent font-semibold">H</span>
-        <span className="font-semibold text-sm">Heimdall Hub</span>
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-accent font-semibold">H</span>
+          <span className="font-semibold text-sm">Heimdall Hub</span>
+        </Link>
       </div>
 
-      {/* Mobile overlay */}
       {open && (
         <>
           <div
