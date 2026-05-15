@@ -8,7 +8,9 @@ import { CreateTaskButton } from "@/components/CreateTaskButton";
 import { TaskRow } from "@/components/TaskRow";
 import { PERSONAL_PROJECT_ID } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+// ISR: served instantly from cache, regenerated in the background and
+// invalidated immediately by revalidatePath() after any write.
+export const revalidate = 300;
 
 const STATUS_LABELS: Record<TaskStatus, string> = {
   backlog: "Backlog",

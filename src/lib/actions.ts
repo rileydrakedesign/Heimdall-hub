@@ -73,9 +73,9 @@ async function dbInsertWithLegacyFallback(
 // ---------------------------------------------------------------------------
 
 function revalidateAll() {
-  revalidatePath("/");
-  revalidatePath("/tasks");
-  revalidatePath("/projects");
+  // "layout" cascades to every route under the root layout, including the
+  // ISR-cached dashboard and project detail pages.
+  revalidatePath("/", "layout");
 }
 
 function genId(prefix: string): string {
