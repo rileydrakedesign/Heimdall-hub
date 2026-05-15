@@ -1,36 +1,40 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 /**
- * Heimdall is server-only when it comes to Supabase: every read happens in a
- * server component, every write happens in a server action. So we only need
- * the service-role key — never expose anything to the browser.
- *
- * For the project URL we accept either SUPABASE_URL or the legacy
- * NEXT_PUBLIC_SUPABASE_URL so existing Vercel deployments keep working.
+ * Heimdall talks to Supabase from the server only — every read happens in a
+ * server component, every write in a server action — so we use the
+ * service-role key and never expose anything to the browser.
  */
 
-function url(): string | undefined {
-  return process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+function clean(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  // Tolerate env values pasted with surrounding quotes or stray whitespace,
+  // which otherwise produce an opaque "fetch failed" at request time.
+  const trimmed = value.trim().replace(/^["']|["']$/g, "").trim();
+  return trimmed || undefined;
 }
 
-export function isSupabaseConfigured(): boolean {
-  return !!(url() && process.env.SUPABASE_SERVICE_ROLE_KEY);
+function projectUrl(): string | undefined {
+  // Accept SUPABASE_URL or the legacy NEXT_PUBLIC_SUPABASE_URL.
+  return clean(process.env.SUPABASE_URL) || clean(process.env.NEXT_PUBLIC_SUPABASE_URL);
 }
 
 let _client: SupabaseClient | null = null;
 
 export function getServiceClient(): SupabaseClient {
-  if (!_client) {
-    const projectUrl = url();
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (!projectUrl || !key) {
-      throw new Error(
-        "Supabase not configured (SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)",
-      );
-    }
-    _client = createClient(projectUrl, key, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
+  if (_client) return _client;
+
+  const url = projectUrl();
+  const key = clean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  if (!url || !key) {
+    throw new Error(
+      "Supabase is not configured. Set SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL) " +
+        "and SUPABASE_SERVICE_ROLE_KEY in the environment.",
+    );
   }
+
+  _client = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
   return _client;
 }

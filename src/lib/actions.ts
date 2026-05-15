@@ -1,10 +1,7 @@
 "use server";
 
-import fs from "node:fs";
-import path from "node:path";
-import yaml from "js-yaml";
 import { revalidatePath } from "next/cache";
-import { isSupabaseConfigured, getServiceClient } from "./supabase";
+import { getServiceClient } from "./supabase";
 import {
   VALID_TASK_STATUSES,
   VALID_TASK_PRIORITIES,
@@ -12,30 +9,12 @@ import {
   VALID_PROJECT_PRIORITIES,
   PERSONAL_PROJECT_ID,
 } from "./constants";
-import type { Task, TaskStatus, TaskPriority } from "./task-types";
-import type { Project, ProjectStatus, ProjectPriority } from "./project-types";
+import type { TaskStatus, TaskPriority } from "./task-types";
+import type { ProjectStatus, ProjectPriority } from "./project-types";
 
 export type ActionResult = { ok: boolean; error?: string };
 
 const MAX_LEN = 2000;
-const PROJECTS_FILE = path.resolve(process.cwd(), "data", "projects.yaml");
-const TASKS_FILE = path.resolve(process.cwd(), "data", "tasks.yaml");
-
-// ---------------------------------------------------------------------------
-// YAML helpers (local-dev backend)
-// ---------------------------------------------------------------------------
-
-function readYaml<T>(file: string, key: string): T[] {
-  if (!fs.existsSync(file)) return [];
-  const raw = fs.readFileSync(file, "utf8");
-  const parsed = yaml.load(raw) as Record<string, T[]> | null;
-  return parsed?.[key] ?? [];
-}
-
-function writeYaml<T>(file: string, key: string, items: T[]) {
-  const text = yaml.dump({ [key]: items }, { lineWidth: 100, noRefs: true });
-  fs.writeFileSync(file, text, "utf8");
-}
 
 // ---------------------------------------------------------------------------
 // Legacy-schema fallback
@@ -97,6 +76,17 @@ function fail(error: string): ActionResult {
   return { ok: false, error };
 }
 
+// Turns a thrown transport error (e.g. "TypeError: fetch failed" when the
+// Supabase project is paused or unreachable) into a clean, actionable result
+// instead of an unhandled server-action exception.
+function dbFail(e: unknown): ActionResult {
+  const msg = e instanceof Error ? e.message : String(e);
+  return fail(
+    `Could not reach the database (${msg}). The Supabase project may be paused ` +
+      `or its URL/key may be misconfigured.`,
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Task actions
 // ---------------------------------------------------------------------------
@@ -117,9 +107,8 @@ export async function createTask(
   if (!VALID_TASK_STATUSES.includes(status as TaskStatus)) return fail("Invalid status");
   if (!VALID_TASK_PRIORITIES.includes(priority as TaskPriority)) return fail("Invalid priority");
 
-  const id = genId("t");
   const row = {
-    id,
+    id: genId("t"),
     title,
     status: status as TaskStatus,
     priority: priority as TaskPriority,
@@ -131,13 +120,11 @@ export async function createTask(
     updated_at: nowIso(),
   };
 
-  if (isSupabaseConfigured()) {
+  try {
     const { error } = await dbInsertWithLegacyFallback("tasks", row, LEGACY_TASK_DEFAULTS);
     if (error) return fail(error.message);
-  } else {
-    const tasks = readYaml<Task>(TASKS_FILE, "tasks");
-    tasks.unshift(row as Task);
-    writeYaml(TASKS_FILE, "tasks", tasks);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
@@ -176,15 +163,11 @@ export async function updateTask(
   if (updates.priority && !VALID_TASK_PRIORITIES.includes(updates.priority as TaskPriority))
     return fail("Invalid priority");
 
-  if (isSupabaseConfigured()) {
+  try {
     const { error } = await getServiceClient().from("tasks").update(updates).eq("id", task_id);
     if (error) return fail(error.message);
-  } else {
-    const tasks = readYaml<Task>(TASKS_FILE, "tasks");
-    const idx = tasks.findIndex((t) => t.id === task_id);
-    if (idx === -1) return fail("Task not found");
-    tasks[idx] = { ...tasks[idx], ...(updates as Partial<Task>) };
-    writeYaml(TASKS_FILE, "tasks", tasks);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
@@ -197,18 +180,14 @@ export async function quickUpdateTaskStatus(
 ): Promise<ActionResult> {
   if (!VALID_TASK_STATUSES.includes(status)) return fail("Invalid status");
 
-  if (isSupabaseConfigured()) {
+  try {
     const { error } = await getServiceClient()
       .from("tasks")
       .update({ status, updated_at: nowIso() })
       .eq("id", taskId);
     if (error) return fail(error.message);
-  } else {
-    const tasks = readYaml<Task>(TASKS_FILE, "tasks");
-    const idx = tasks.findIndex((t) => t.id === taskId);
-    if (idx === -1) return fail("Task not found");
-    tasks[idx] = { ...tasks[idx], status, updated_at: nowIso() };
-    writeYaml(TASKS_FILE, "tasks", tasks);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
@@ -216,15 +195,13 @@ export async function quickUpdateTaskStatus(
 }
 
 export async function deleteTask(taskId: string): Promise<ActionResult> {
-  if (isSupabaseConfigured()) {
+  try {
     const { error } = await getServiceClient().from("tasks").delete().eq("id", taskId);
     if (error) return fail(error.message);
-  } else {
-    const tasks = readYaml<Task>(TASKS_FILE, "tasks");
-    const next = tasks.filter((t) => t.id !== taskId);
-    if (next.length === tasks.length) return fail("Task not found");
-    writeYaml(TASKS_FILE, "tasks", next);
+  } catch (e) {
+    return dbFail(e);
   }
+
   revalidateAll();
   return { ok: true };
 }
@@ -264,17 +241,14 @@ export async function createProject(
     updated_at: nowIso(),
   };
 
-  if (isSupabaseConfigured()) {
+  try {
     const db = getServiceClient();
     const { data: existing } = await db.from("projects").select("id").eq("id", id).maybeSingle();
     if (existing) return fail(`Project id '${id}' already exists`);
     const { error } = await dbInsertWithLegacyFallback("projects", row, LEGACY_PROJECT_DEFAULTS);
     if (error) return fail(error.message);
-  } else {
-    const projects = readYaml<Project>(PROJECTS_FILE, "projects");
-    if (projects.some((p) => p.id === id)) return fail(`Project id '${id}' already exists`);
-    projects.unshift(row as Project);
-    writeYaml(PROJECTS_FILE, "projects", projects);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
@@ -303,18 +277,14 @@ export async function updateProject(
   if (updates.priority && !VALID_PROJECT_PRIORITIES.includes(updates.priority as ProjectPriority))
     return fail("Invalid priority");
 
-  if (isSupabaseConfigured()) {
+  try {
     const { error } = await getServiceClient()
       .from("projects")
       .update(updates)
       .eq("id", project_id);
     if (error) return fail(error.message);
-  } else {
-    const projects = readYaml<Project>(PROJECTS_FILE, "projects");
-    const idx = projects.findIndex((p) => p.id === project_id);
-    if (idx === -1) return fail("Project not found");
-    projects[idx] = { ...projects[idx], ...(updates as Partial<Project>) };
-    writeYaml(PROJECTS_FILE, "projects", projects);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
@@ -324,7 +294,7 @@ export async function updateProject(
 export async function deleteProject(projectId: string): Promise<ActionResult> {
   if (projectId === PERSONAL_PROJECT_ID) return fail("Cannot delete the Personal project");
 
-  if (isSupabaseConfigured()) {
+  try {
     const db = getServiceClient();
 
     // Seed the Personal bucket if it isn't already there, so any tasks we
@@ -363,22 +333,8 @@ export async function deleteProject(projectId: string): Promise<ActionResult> {
 
     const { error } = await db.from("projects").delete().eq("id", projectId);
     if (error) return fail(error.message);
-  } else {
-    const projects = readYaml<Project>(PROJECTS_FILE, "projects");
-    const next = projects.filter((p) => p.id !== projectId);
-    if (next.length === projects.length) return fail("Project not found");
-    writeYaml(PROJECTS_FILE, "projects", next);
-
-    const tasks = readYaml<Task>(TASKS_FILE, "tasks");
-    let mutated = false;
-    for (const t of tasks) {
-      if (t.project_id === projectId) {
-        t.project_id = PERSONAL_PROJECT_ID;
-        t.updated_at = nowIso();
-        mutated = true;
-      }
-    }
-    if (mutated) writeYaml(TASKS_FILE, "tasks", tasks);
+  } catch (e) {
+    return dbFail(e);
   }
 
   revalidateAll();
