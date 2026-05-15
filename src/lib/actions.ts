@@ -52,8 +52,8 @@ async function dbInsertWithLegacyFallback(
 // ---------------------------------------------------------------------------
 
 function revalidateAll() {
-  // "layout" cascades to every route under the root layout, including the
-  // ISR-cached dashboard and project detail pages.
+  // "layout" cascades to every route under the root layout, clearing the
+  // client router cache so a write is reflected on the next navigation.
   revalidatePath("/", "layout");
 }
 

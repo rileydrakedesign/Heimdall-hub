@@ -7,9 +7,9 @@ import { Badge } from "@/components/Badge";
 import { CreateTaskButton } from "@/components/CreateTaskButton";
 import { TaskRow } from "@/components/TaskRow";
 
-// ISR: served instantly from cache, regenerated in the background and
-// invalidated immediately by revalidatePath() after any write.
-export const revalidate = 300;
+// Rendered per-request: the dashboard depends on live Supabase data, so it
+// must not be prerendered at build time (a paused DB would fail the build).
+export const dynamic = "force-dynamic";
 
 const PRIORITY_RANK: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
 
