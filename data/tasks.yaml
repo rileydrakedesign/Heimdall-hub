@@ -1,6 +1,0 @@
-# Task list
-# status: backlog | in_progress | blocked | done
-# priority: low | medium | high | urgent
-# project_id: must match a project id in data/projects.yaml (use "personal" for personal tasks)
-
-tasks: []

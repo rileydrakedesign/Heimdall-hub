@@ -7,7 +7,9 @@ import { Badge } from "@/components/Badge";
 import { CreateTaskButton } from "@/components/CreateTaskButton";
 import { TaskRow } from "@/components/TaskRow";
 
-export const dynamic = "force-dynamic";
+// ISR: served instantly from cache, regenerated in the background and
+// invalidated immediately by revalidatePath() after any write.
+export const revalidate = 300;
 
 const PRIORITY_RANK: Record<string, number> = { urgent: 0, high: 1, medium: 2, low: 3 };
 
@@ -57,7 +59,7 @@ export default async function Dashboard() {
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {activeProjects.map((p) => (
-            <a
+            <Link
               key={p.id}
               href={`/projects/${p.id}`}
               className="flex items-center justify-between gap-4 rounded-lg border border-border bg-surface p-4 hover:bg-surface-light transition-colors"
@@ -72,7 +74,7 @@ export default async function Dashboard() {
               <Badge tone={p.priority === "urgent" ? "red" : p.priority === "high" ? "yellow" : "neutral"}>
                 {p.priority}
               </Badge>
-            </a>
+            </Link>
           ))}
           {activeProjects.length === 0 && (
             <div className="col-span-full rounded-lg border border-border bg-surface p-6 text-center text-sm text-muted">

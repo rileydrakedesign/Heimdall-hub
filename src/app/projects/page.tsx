@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { loadProjectsAsync } from "@/lib/projects";
 import { loadTasksAsync } from "@/lib/tasks";
 
@@ -58,7 +59,7 @@ async function ProjectsList({
         const open = openCounts.get(p.id) ?? 0;
         const isPersonal = p.id === PERSONAL_PROJECT_ID;
         return (
-          <a
+          <Link
             key={p.id}
             href={`/projects/${p.id}`}
             className={`block rounded-lg border border-border border-l-2 ${borderColor[p.status] ?? "border-l-slate-500"} bg-surface p-4 hover:bg-surface-light transition-colors`}
@@ -81,7 +82,7 @@ async function ProjectsList({
               </Badge>
               <Badge>{open} open</Badge>
             </div>
-          </a>
+          </Link>
         );
       })}
       {filtered.length === 0 && (
